@@ -21,129 +21,89 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col">
         <SiteHeader />
         <main className="container flex-1 pt-24 sm:pt-28 pb-10 sm:pb-12">{children}</main>
-        <footer className="border-t border-[#0e9954]/30 bg-[#040118] pt-16 pb-12 text-slate-300 relative overflow-hidden">
-          {/* Subtle green ambient glow spot */}
-          <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-96 h-32 bg-[#0e9954]/10 blur-3xl pointer-events-none" />
+        <footer className="relative overflow-hidden border-t border-[#0e9954]/30 bg-[#040118] text-slate-300">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0e9954] to-transparent opacity-70" />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-[#0e9954]/10 blur-3xl" />
 
-          <div className="container mx-auto px-4 space-y-12 relative z-10">
-            {/* Top Footer Row: Branding & Telemetry Status */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-white/10">
-              {/* Column 1: Brand & Engineer Profile */}
-              <div className="space-y-4 md:col-span-1">
+          <div className="container relative z-10 space-y-10 py-12 sm:py-16">
+            <div className="flex flex-col gap-6 border-b border-white/10 pb-10 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-xl">
                 <div className="flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#0e9954] shadow-[0_0_12px_rgba(14,153,84,0.4)]">
-                    <img
-                      src="/assets/logo.png"
-                      alt="Abdulhameed Katby"
-                      className="object-cover object-top w-full h-full"
-                    />
+                  <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[#0e9954] shadow-[0_0_14px_rgba(14,153,84,0.4)]">
+                    <img src="/assets/logo.png" alt="Abdulhameed Katby" className="h-full w-full object-cover object-top" />
                   </div>
                   <div>
-                    <span className="text-2xl font-bold tracking-tight font-brand text-white block leading-none">
-                      <span className="text-[#0e9954] font-black">M</span>ech<span className="text-[#0e9954] font-black">D</span>ev<span className="text-[#0e9954] font-black">.</span>
+                    <span className="block font-brand text-2xl font-bold leading-none text-white">
+                      <span className="font-black text-[#0e9954]">M</span>ech<span className="font-black text-[#0e9954]">D</span>ev<span className="font-black text-[#0e9954]">.</span>
                     </span>
-                    <span className="text-[10px] font-mono text-slate-400 tracking-wider uppercase">BY ABDULHAMEED KATBY</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">Flight mechanics archive</span>
                   </div>
                 </div>
-                <p className="text-xs text-slate-400 font-sans leading-relaxed">
-                  An engineering investigation platform discovering why supersonic aircraft are designed the way they are through physics & wind-tunnel evidence.
+                <p className="mt-5 max-w-lg text-sm leading-relaxed text-slate-400">
+                  Understand the physics behind aircraft design through evidence, equations, and interactive experiments.
                 </p>
-
-                {/* Professional LinkedIn Connect Button */}
-                <a
-                  href="https://www.linkedin.com/in/abdulhameedkatby/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0a66c2]/15 hover:bg-[#0a66c2] border border-[#0a66c2]/40 hover:border-[#0a66c2] text-xs font-semibold text-white transition-all duration-150 shadow-[0_0_15px_rgba(10,102,194,0.2)]"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current text-[#0a66c2] group-hover:text-white transition-colors" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                  </svg>
-                  <span className="font-brand text-[11px]">Connect on LinkedIn</span>
-                  <span className="text-[10px] text-slate-400 group-hover:text-white transition-colors">↗</span>
-                </a>
               </div>
 
-              {/* Column 2: Core Investigations */}
-              <div className="space-y-3">
-                <h4 className="text-xs font-mono uppercase tracking-widest text-[#0e9954] font-bold">Investigations</h4>
-                <ul className="space-y-2 text-xs font-sans text-slate-300">
-                  <li>
-                    <a href="/aircraft/concorde" className="hover:text-[#0e9954] transition-colors flex items-center gap-1.5">
-                      <span>✈️ Concorde Airframe</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/questions/why-delta-wing" className="hover:text-[#0e9954] transition-colors flex items-center gap-1.5">
-                      <span>❓ Why Delta Wing?</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/concepts/supersonic-aerodynamics" className="hover:text-[#0e9954] transition-colors flex items-center gap-1.5">
-                      <span>⚡ Shock Wave Aerodynamics</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/editorial" className="hover:text-[#0e9954] transition-colors flex items-center gap-1.5">
-                      <span>📖 Editorial Methodology</span>
-                    </a>
-                  </li>
+              <a
+                href="https://www.linkedin.com/in/abdulhameedkatby/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex w-fit items-center gap-2 rounded-lg border border-[#0a66c2]/40 bg-[#0a66c2]/10 px-3.5 py-2 text-xs font-semibold text-white transition-colors hover:border-[#0a66c2] hover:bg-[#0a66c2]"
+              >
+                <svg className="h-3.5 w-3.5 fill-current text-[#4da3e8] group-hover:text-white" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69 1.69 1.69 0 0 0-1.69 1.69m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                </svg>
+                Connect with the engineer
+                <span className="text-slate-400 group-hover:text-white">↗</span>
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.35fr]">
+              <div>
+                <h4 className="mb-4 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#0e9954]">Investigate</h4>
+                <ul className="space-y-2.5 text-sm text-slate-400">
+                  <li><a href="/aircraft/concorde" className="transition-colors hover:text-white">Concorde airframe</a></li>
+                  <li><a href="/questions/why-delta-wing" className="transition-colors hover:text-white">Why the delta wing?</a></li>
+                  <li><a href="/concepts/supersonic-aerodynamics" className="transition-colors hover:text-white">Supersonic aerodynamics</a></li>
+                  <li><a href="/editorial" className="transition-colors hover:text-white">Methodology & trust</a></li>
                 </ul>
               </div>
 
-              {/* Column 3: Interactive Workstations */}
-              <div className="space-y-3">
-                <h4 className="text-xs font-mono uppercase tracking-widest text-[#0e9954] font-bold">Interactive Labs</h4>
-                <ul className="space-y-2 text-xs font-mono text-slate-300">
-                  <li>
-                    <a href="/lab/aspect-ratio" className="hover:text-[#0e9954] transition-colors">Lab 01: Aspect Ratio</a>
-                  </li>
-                  <li>
-                    <a href="/lab/wing-sweep" className="hover:text-[#0e9954] transition-colors">Lab 02: Wing Sweep Angle</a>
-                  </li>
-                  <li>
-                    <a href="/lab/kinetic-heating" className="hover:text-[#0e9954] transition-colors">Lab 03: Kinetic Stagnation</a>
-                  </li>
-                  <li>
-                    <a href="/lab/fuel-transfer" className="hover:text-[#0e9954] transition-colors">Lab 05: Center of Pressure Trim</a>
-                  </li>
+              <div>
+                <h4 className="mb-4 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#0e9954]">Run a lab</h4>
+                <ul className="space-y-2.5 font-mono text-xs text-slate-400">
+                  <li><a href="/lab/aspect-ratio" className="transition-colors hover:text-white">01 / Aspect ratio</a></li>
+                  <li><a href="/lab/wing-sweep" className="transition-colors hover:text-white">02 / Wing sweep</a></li>
+                  <li><a href="/lab/kinetic-heating" className="transition-colors hover:text-white">03 / Kinetic heating</a></li>
+                  <li><a href="/lab/fuel-transfer" className="transition-colors hover:text-white">05 / Fuel transfer</a></li>
                 </ul>
               </div>
 
-              {/* Column 4: Archive Metadata */}
-              <div className="space-y-3">
-                <h4 className="text-xs font-mono uppercase tracking-widest text-[#0e9954] font-bold">Archive Specs</h4>
-                <div className="p-3.5 rounded-2xl bg-[#07032a] border border-[#0e9954]/25 space-y-2 text-[11px] font-mono">
-                  <div className="flex justify-between text-slate-400">
-                    <span>FLAGSHIP:</span>
-                    <span className="text-white font-bold">CONCORDE 001</span>
-                  </div>
-                  <div className="flex justify-between text-slate-400">
-                    <span>CRUISE:</span>
-                    <span className="text-[#0e9954]">MACH 2.04</span>
-                  </div>
-                  <div className="flex justify-between text-slate-400">
-                    <span>SOURCES:</span>
-                    <span className="text-slate-200">NASA / BAC / AEROSPATIALE</span>
-                  </div>
+              <div>
+                <h4 className="mb-4 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#0e9954]">Explore</h4>
+                <ul className="space-y-2.5 text-sm text-slate-400">
+                  <li><a href="/aircraft" className="transition-colors hover:text-white">Aircraft archive</a></li>
+                  <li><a href="/questions" className="transition-colors hover:text-white">Engineering questions</a></li>
+                  <li><a href="/concepts" className="transition-colors hover:text-white">Physics concepts</a></li>
+                  <li><a href="/lab" className="transition-colors hover:text-white">All interactive labs</a></li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-[#0e9954]/25 bg-[#07032a]/70 p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <h4 className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#0e9954]">Archive signal</h4>
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase text-emerald-300"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" /> Live</span>
+                </div>
+                <div className="mt-4 grid grid-cols-2 gap-4 font-mono">
+                  <div><div className="text-lg font-bold text-white">Mach 2.04</div><div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">Flagship cruise</div></div>
+                  <div><div className="text-lg font-bold text-white">NASA / BAC</div><div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">Core sources</div></div>
                 </div>
               </div>
             </div>
 
-            {/* Bottom Copyright & Professional Credit Row */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
-              <div>
-                © {new Date().getFullYear()} <span className="text-white font-brand font-bold"><span className="text-[#0e9954]">M</span>ech<span className="text-[#0e9954]">D</span>ev<span className="text-[#0e9954]">.</span></span> · Designed & Built by{' '}
-                <a href="https://www.linkedin.com/in/abdulhameedkatby/" target="_blank" rel="noopener noreferrer" className="group/credit inline-flex items-center gap-1.5 text-slate-200 hover:text-[#0a66c2] transition-colors">
-                  <span className="font-semibold">Abdulhameed Katby</span>
-                  <svg className="w-3 h-3 fill-current text-slate-500 group-hover/credit:text-[#0a66c2] transition-colors" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                  </svg>
-                </a>
-              </div>
-              <div className="text-[11px] text-slate-400">
-                Verifiable Flight Mechanics & Wind Tunnel Data Archive
-              </div>
+            <div className="flex flex-col gap-3 border-t border-white/10 pt-5 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+              <p>© {new Date().getFullYear()} MechDev. · Built by <a href="https://www.linkedin.com/in/abdulhameedkatby/" target="_blank" rel="noopener noreferrer" className="font-semibold text-slate-300 hover:text-white">Abdulhameed Katby</a></p>
+              <p className="font-mono text-[10px] uppercase tracking-wider">Evidence-led flight mechanics</p>
             </div>
           </div>
         </footer>

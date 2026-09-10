@@ -11,6 +11,22 @@ interface EvidencePanelProps {
 export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePanelProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
+  const getCredibilityScore = (source: Source) => {
+    const text = `${source.publisher} ${source.type} ${source.credibility}`.toLowerCase()
+    if (text.includes('nasa') || text.includes('government') || text.includes('regulatory') || text.includes('peer-reviewed')) return 5
+    if (source.tier === 'primary') return 4
+    if (source.tier === 'secondary') return 3
+    return 1
+  }
+
+  const getScoreExplanation = (source: Source) => {
+    const score = getCredibilityScore(source)
+    if (score === 5) return 'Strongest evidence: official, regulatory, government, or peer-reviewed technical material.'
+    if (score === 4) return 'Primary evidence produced by the organization that designed, tested, or operated the system.'
+    if (score === 3) return 'Interpretive technical material that should be checked against primary evidence.'
+    return 'Tertiary interpretation. Useful context, but not sufficient on its own for an engineering claim.'
+  }
+
   useEffect(() => {
     if (!isOpen) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -69,6 +85,9 @@ export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePan
             <h3 id="evidence-panel-title" className="text-xl font-semibold text-[#E9F8EE]">
               &ldquo;{evidence.claim}&rdquo;
             </h3>
+            <p className="mt-2 max-w-2xl text-xs leading-relaxed text-slate-400">
+              Sources are ranked by evidence type and provenance. A score describes the source, not a guarantee that every claim is correct.
+            </p>
           </div>
           <button
             ref={closeButtonRef}
@@ -97,8 +116,13 @@ export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePan
                   <span className="font-bold text-white text-base">{src.publisher}</span>
                   <span className="text-xs text-slate-400 font-mono">({src.year})</span>
                 </div>
-                <span className="text-xs text-emerald-300/80 font-mono bg-emerald-950/60 px-2 py-1 rounded border border-emerald-800/40">
-                  {src.credibility}
+                <span
+                  title={getScoreExplanation(src)}
+                  aria-label={`Credibility score ${getCredibilityScore(src)} out of 5. ${getScoreExplanation(src)}`}
+                  className="text-xs text-amber-300 font-mono bg-amber-950/40 px-2 py-1 rounded border border-amber-700/40 whitespace-nowrap"
+                >
+                  {'★'.repeat(getCredibilityScore(src))}{'☆'.repeat(5 - getCredibilityScore(src))}
+                  <span className="ml-2 text-slate-400">{getCredibilityScore(src)}/5</span>
                 </span>
               </div>
 
@@ -106,6 +130,10 @@ export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePan
                 <span className="text-slate-400">Doc:</span> {src.document}
                 <span className="mx-2 text-slate-600">•</span>
                 <span className="text-slate-400">Type:</span> {src.type}
+              </div>
+
+              <div className="text-xs leading-relaxed text-slate-400">
+                <span className="text-slate-500">Assessment:</span> {src.credibility}. {getScoreExplanation(src)}
               </div>
 
               {src.quote && (

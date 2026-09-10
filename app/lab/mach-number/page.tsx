@@ -30,7 +30,7 @@ export default function MachLab() {
   return (
     <div className="max-w-4xl mx-auto py-6 space-y-6">
       <div>
-        <h2 className="text-2xl font-bold font-serif text-white">Mach Number Calculator</h2>
+        <h1 className="text-2xl font-bold font-serif text-white">Mach Number Calculator</h1>
         <p className="text-slate-400 font-mono text-sm">M = V / a</p>
       </div>
 

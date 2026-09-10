@@ -113,7 +113,7 @@ export default function SiteHeader() {
             </Link>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1.5 p-1.5 rounded-full bg-[#040118]/80 border border-white/10 shadow-inner">
+          <nav className="hidden lg:flex items-center gap-1.5 p-1.5 rounded-full bg-[#040118]/80 border border-white/10 shadow-inner">
             <Link href="/aircraft/concorde" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Deep-Dive</Link>
             <Link href="/questions" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Questions</Link>
             <Link href="/concepts" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Concepts</Link>
@@ -121,7 +121,7 @@ export default function SiteHeader() {
           </nav>
 
           {/* ── Search Button (desktop) ─────────────────────────── */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={() => setSearchOpen(true)}
               className="group relative flex items-center gap-2.5 px-4 py-2 rounded-full overflow-hidden
@@ -152,7 +152,7 @@ export default function SiteHeader() {
           </div>
 
           {/* Mobile buttons */}
-          <div className="md:hidden flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="lg:hidden flex shrink-0 items-center gap-1.5 sm:gap-2">
             <button
               onClick={() => setSearchOpen(true)}
               className="w-9 h-9 flex items-center justify-center text-[#0e9954] hover:text-white bg-[#0e9954]/20 hover:bg-[#0e9954] rounded-full border border-[#0e9954]/40 transition-all shadow-[0_0_10px_rgba(14,153,84,0.2)]"
@@ -291,7 +291,7 @@ export default function SiteHeader() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md md:hidden"
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md lg:hidden"
           onClick={() => setMobileOpen(false)}
         >
           <div

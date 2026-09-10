@@ -40,12 +40,12 @@ export default function LiftLab() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold">Lift Calculator</h2>
+      <h1 className="text-2xl font-bold">Lift Calculator</h1>
       <p className="text-muted">L = ½ ρ V² S C<sub>L</sub></p>
 
       <div style={{marginTop:12}}>
         <ExperimentPanel title="Lift experiment" result={lift ? `${lift.toFixed(0)} N` : '—'}>
-          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <label>
               <div className="text-muted">Air density ρ (kg/m³)</div>
               <input type="number" value={rho} onChange={e => setRho(Number(e.target.value))} className="mt-1 w-full p-2 rounded bg-surface" />
