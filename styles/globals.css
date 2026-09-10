@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Cinzel:wght@500;700;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Exact image green accent color: #0e9954 */
+  --accent: #0e9954;
+  --accent-light: #12b865;
+  --accent-dark: #09703c;
+  --accent-glow: rgba(14, 153, 84, 0.35);
+  
+  /* Midnight Dark Navy Theme (Darkened #110654) */
+  --bg: #05021a;
+  --bg-deep: #030112;
+  --bg-base: #0a0333;
+  --surface: #0e0545;
+  --surface-elevated: #130759;
+  --surface-border: rgba(14, 153, 84, 0.3);
+  --muted: #9aa8f0;
+  --muted-dark: #4d578c;
+  --accent-cyan: #38bdf8;
+  --accent-amber: #fbbf24;
+  --accent-crimson: #f87171;
+}
+
+html, body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  @apply antialiased;
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(17, 6, 84, 0.5), transparent 85%),
+    radial-gradient(circle at 85% 85%, rgba(14, 153, 84, 0.08), transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+  color: #f1f4ff;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.65;
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(16px, 4vw, 24px);
+  padding-right: clamp(16px, 4vw, 24px);
+}
+
+img, svg, video, canvas {
+  max-width: 100%;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 640px) {
+  body {
+    line-height: 1.55;
+  }
+
+  h1, h2, h3, h4 {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Luxury Scientific Headings */
+h1, h2, h3, h4 {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+/* Modern Precision Brand Font */
+.font-brand {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Engineering Monospace */
+code, kbd, samp, pre, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Ergonomic Glass Card (Midnight dark navy with #0e9954 green border) */
+.aerolab-glass {
+  background: linear-gradient(135deg, rgba(10, 3, 51, 0.88) 0%, rgba(4, 1, 24, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(14, 153, 84, 0.3);
+  box-shadow: 0 16px 40px rgba(2, 0, 12, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: border-color 75ms ease-out, box-shadow 75ms ease-out, transform 75ms ease-out;
+  will-change: transform, border-color;
+}
+
+.aerolab-glass:hover {
+  border-color: rgba(14, 153, 84, 0.65);
+  box-shadow: 0 20px 48px rgba(2, 0, 12, 0.9), 0 0 28px rgba(14, 153, 84, 0.25);
+}
+
+/* Tactical HUD Accents */
+.hud-corner {
+  position: relative;
+}
+.hud-corner::before,
+.hud-corner::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: #0e9954;
+  pointer-events: none;
+}
+.hud-corner::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid #0e9954;
+  border-left: 2px solid #0e9954;
+}
+.hud-corner::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid #0e9954;
+  border-right: 2px solid #0e9954;
+}
+
+/* Aerospace Spec Metric Readout */
+.telemetry-value {
+  font-family: 'JetBrains Mono', monospace;
+  background: linear-gradient(180deg, #FFFFFF 0%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(14, 153, 84, 0.4));
+}
+
+/* Custom Eye-friendly scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #030112;
+}
+::-webkit-scrollbar-thumb {
+  background: #0e0545;
+  border-radius: 5px;
+  border: 2px solid #030112;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0e9954;
+}

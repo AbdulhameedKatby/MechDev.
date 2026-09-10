@@ -1,0 +1,11 @@
+{
+  "slug": "x-59",
+  "name": "NASA X-59",
+  "subtitle": "Low-boom supersonic demonstrator",
+  "why": "X-59 is shaped to reduce sonic-boom signature reaching the ground through careful shock-wave management.",
+  "design_dna": ["Low boom", "Shock-wave shaping", "Experimental research"],
+  "role": "Supersonic research demonstrator",
+  "first_flight": "2023-xx-xx",
+  "range": "Test program dependent",
+  "source": { "publisher": "NASA", "url": "https://www.nasa.gov/" }
+}

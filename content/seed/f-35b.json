@@ -1,0 +1,11 @@
+{
+  "slug": "f-35b",
+  "name": "Lockheed Martin F-35B",
+  "subtitle": "STOVL multirole fighter",
+  "why": "The F-35B demonstrates heavy systems integration: propulsion, lift systems, and sensor fusion optimized around a combat mission.",
+  "design_dna": ["STOVL", "Low observability", "Sensor fusion"],
+  "role": "Multirole fighter (STOVL)",
+  "first_flight": "2006-06-11",
+  "range": "Classified / mission dependent",
+  "source": { "publisher": "Lockheed Martin", "url": "https://www.lockheedmartin.com/" }
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "concorde",
+  "name": "Concorde",
+  "subtitle": "Supersonic transport — delta wing",
+  "why": "Concorde's delta wing and slender fuselage were driven by sustained supersonic cruise requirements and wave-drag management.",
+  "design_dna": ["Supersonic cruise", "Wave-drag control", "High-speed propulsion"],
+  "role": "Supersonic transport",
+  "first_flight": "1969-03-02",
+  "range": "~4,500 nm (historical)",
+  "source": { "publisher": "British Airways / Airbus archives", "url": "https://www.airbus.com/" }
+}

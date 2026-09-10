@@ -1,0 +1,8 @@
+{
+  "/page": "app/page.js",
+  "/questions/why-delta-wing/page": "app/questions/why-delta-wing/page.js",
+  "/lab/wing-sweep/page": "app/lab/wing-sweep/page.js",
+  "/aircraft/[slug]/page": "app/aircraft/[slug]/page.js",
+  "/questions/page": "app/questions/page.js",
+  "/concepts/supersonic-aerodynamics/page": "app/concepts/supersonic-aerodynamics/page.js"
+}

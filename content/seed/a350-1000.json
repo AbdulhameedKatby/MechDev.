@@ -1,0 +1,14 @@
+{
+  "slug": "a350-1000",
+  "name": "Airbus A350-1000",
+  "subtitle": "Long-haul widebody — integrated efficiency",
+  "why": "A large long-range airliner is an exercise in managing mass, drag, fuel, structure, propulsion and passenger capacity together to optimize range and efficiency.",
+  "design_dna": ["Range", "Fuel efficiency", "Composite structure", "High-bypass propulsion"],
+  "role": "Long-haul transport",
+  "first_flight": "2016-11-24",
+  "range": "~8,700 nm (manufacturer figures vary by variant)",
+  "source": {
+    "publisher": "Airbus",
+    "url": "https://www.airbus.com/"
+  }
+}
