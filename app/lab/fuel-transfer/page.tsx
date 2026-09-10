@@ -8,6 +8,7 @@ import {
   requiredAftFuelFraction,
   stabilityMargin,
 } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function FuelTransferLab() {
   const [mach, setMach] = useState(1.4)
@@ -40,7 +41,7 @@ export default function FuelTransferLab() {
           Active Fuel Transfer ↔ Center of Pressure Migration
         </h1>
         <p className="mt-1 text-sm text-slate-300">
-          How Concorde pumped 3,000 kg of fuel per minute across 13 tanks to balance an aft-shifting lift vector without dragging elevon surfaces.
+          Explore how moving fuel between tanks can shift the center of gravity toward the changing aerodynamic center and reduce trim requirements. Transfer rate is a model/reference input, not a universal aircraft constant.
         </p>
       </div>
 
@@ -263,18 +264,24 @@ export default function FuelTransferLab() {
                 ? '⚠ CATASTROPHIC PITCH-UP INSTABILITY'
                 : isOverlyTrimDrag
                 ? '⚠ HEAVY ELEVON DEFLECTION (TRIM DRAG)'
-                : '✓ OPTIMAL ZERO-DRAG TRIM ALIGNMENT'}
+                : '✓ REDUCED-TRIM-DRAG CONDITION'}
             </div>
             <p className="text-xs leading-relaxed">
               {isDangerouslyUnstable
                 ? 'CG has drifted behind CP. In a delta wing without a horizontal tail, this causes an uncontrollable diverging pitch-up maneuver.'
                 : isOverlyTrimDrag
                 ? 'CG is too far ahead of CP. The elevons must deflect upward to hold the nose up, creating 3% extra parasite drag.'
-                : 'By transferring fuel to match the aft CP shift, Concorde trimmed the aircraft with zero aerodynamic surface deflection, saving ~3,000 kg of fuel across the Atlantic.'}
+                : 'By transferring fuel toward the aft tanks as the aerodynamic center changes, the model reduces the trim unbalance that would otherwise require aerodynamic control deflection. It does not represent zero drag or a universal fuel saving.'}
             </p>
           </div>
         </div>
       </div>
+      <ModelDisclosure
+        model="Simplified center-of-gravity and aerodynamic-center trim model"
+        variables="Mach number, aft fuel fraction, center-of-pressure location, center of gravity"
+        assumptions="Steady longitudinal conditions with simplified positions and fuel distribution"
+        limitations="It illustrates trim trends and does not reproduce Concorde's complete fuel-management logic, stability margins, structural limits, or measured fuel-transfer schedule."
+      />
     </div>
   )
 }

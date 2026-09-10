@@ -86,7 +86,7 @@ export default function SupersonicAerodynamicsConceptPage() {
 
         <p className="text-sm text-slate-300 leading-relaxed">
           <EvidenceClaim evidenceId="ev-heating" evidence={concorde.evidence}>
-            At Mach 2.04 and 60,000 ft (ambient -56.5°C = 216.65 K), total stagnation temperature reaches 400 K (127°C)
+            At Mach 2.04 and 60,000 ft (standard-atmosphere ambient about -56.5°C = 216.65 K), the ideal stagnation-temperature model reaches about 400 K (127°C)
           </EvidenceClaim>
           . This sets the structural ceiling for aluminum alloys.
         </p>
@@ -102,7 +102,7 @@ export default function SupersonicAerodynamicsConceptPage() {
             See Concorde as the Physical Embodiment of These Equations
           </h3>
           <p className="text-sm text-slate-300 mt-2 leading-relaxed">
-            Every geometric feature of Concorde — its 63° ogival delta sweep, its 3% ultra-thin airfoil, its 13-tank fuel trim system, and its pure turbojet engines — was mathematically demanded by the supersonic physics explained above.
+            Concorde's geometry emerged from aerodynamic theory, wind-tunnel testing, structural requirements, propulsion constraints, low-speed handling, and its sustained-supersonic mission.
           </p>
         </div>
 

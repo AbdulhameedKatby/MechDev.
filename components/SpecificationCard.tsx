@@ -9,6 +9,12 @@ interface SpecificationCardProps {
 
 export default function SpecificationCard({ spec, onOpenEvidence }: SpecificationCardProps) {
   const [expanded, setExpanded] = useState(false)
+  const status = spec.status ?? (spec.type.toLowerCase().includes('calculated') ? 'CALCULATED' : 'VERIFIED')
+  const statusStyle = status === 'VERIFIED'
+    ? 'border-emerald-400/30 bg-emerald-400/10 text-emerald-300'
+    : status === 'CALCULATED'
+      ? 'border-cyan-400/30 bg-cyan-400/10 text-cyan-300'
+      : 'border-amber-400/30 bg-amber-400/10 text-amber-300'
 
   return (
     <div className="rounded-2xl border border-white/10 bg-[#07032a] p-5 shadow-lg transition-colors duration-200 hover:border-emerald-500/30">
@@ -47,6 +53,9 @@ export default function SpecificationCard({ spec, onOpenEvidence }: Specificatio
       </div>
 
       <div className="mt-3 flex items-center gap-2">
+        <span className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded border ${statusStyle}`}>
+          {status}
+        </span>
         <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">
           {spec.type}
         </span>

@@ -34,14 +34,14 @@ export default function WhyDeltaWingPage() {
               At Mach 2, something catastrophic happens to a normal wing.
             </div>
             <p className="text-sm text-slate-300 leading-relaxed">
-              A powerful shock wave forms on the upper surface. The sudden pressure jump forces the boundary layer to detach from the wing. Lift disappears completely, and drag spikes exponentially.
+              Supersonic flow introduces shocks, compressibility effects, viscous interactions, and wave-drag changes. The resulting flow field can increase separation risk and alter lift and drag characteristics.
             </p>
 
             {/* Shock wave vs Vortex Visual */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-6">
               <div className="rounded-xl border border-red-500/30 bg-[#160b0b] p-4 text-center space-y-2">
                 <span className="text-xs font-mono text-red-400 font-bold block">
-                  Conventional Swept Wing (Mach 2)
+                  Conventional swept-wing response (illustrative)
                 </span>
                 <svg viewBox="0 0 300 120" className="w-full h-28">
                   {/* Wing profile */}
@@ -54,7 +54,7 @@ export default function WhyDeltaWingPage() {
                   <text x="220" y="55" fill="#fca5a5" fontSize="9" fontFamily="monospace">Separation Bubble</text>
                 </svg>
                 <p className="text-[11px] text-red-200/80">
-                  Shock-boundary layer separation causes complete loss of lift.
+                  Shock and boundary-layer interaction can increase separation risk and drag.
                 </p>
               </div>
 
@@ -71,7 +71,7 @@ export default function WhyDeltaWingPage() {
                   <text x="210" y="53" textAnchor="middle" fill="#38bdf8" fontSize="8" fontFamily="monospace">Vortex Core</text>
                 </svg>
                 <p className="text-[11px] text-emerald-200/80">
-                  Coiling leading-edge vortex re-energizes boundary layer.
+                  Leading-edge vortical flow contributes to lift in the modeled regime.
                 </p>
               </div>
             </div>

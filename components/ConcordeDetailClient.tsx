@@ -111,7 +111,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
             </h2>
           </div>
           <p className="text-xs text-slate-400 font-mono">
-            SHOCK-BOUNDARY LAYER INTERACTION // SBLI SOLVED
+            SHOCK-BOUNDARY LAYER INTERACTION // DESIGN RESPONSE
           </p>
         </div>
 
@@ -135,7 +135,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
               </div>
 
               <p className="text-base text-slate-200 leading-relaxed">
-                At Mach 2, something extreme happens: a shock wave forms over a conventional wing, and the air stops flowing smoothly. The boundary layer detaches, lift vanishes, and the aircraft stalls in mid-air.
+                At supersonic speed, shocks, compressibility, viscous interactions, and wave drag become tightly coupled. Delta-wing vortical flow became an important part of Concorde&apos;s aerodynamic solution, with behavior that depends on geometry, Mach number, and angle of attack.
               </p>
 
               <div className="p-4 rounded-xl border border-emerald-500/30 bg-[#07190f]">
@@ -273,7 +273,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
                     <span className="font-mono text-amber-400 font-bold uppercase block mb-1">
                       Rolls-Royce / SNECMA Olympus 593 — Test Cell Firing
                     </span>
-                    Notice the visible diamond shock diamonds in the supersonic exhaust plume. At Mach 2.04, the intake air reaches 127°C, which would shred conventional turbofan blades. Concorde used this pure turbojet (BPR = 0) with variable geometry intake ramps.
+                    Notice the visible diamond shock diamonds in the supersonic exhaust plume. Sustained supersonic cruise created demanding inlet and engine-cycle conditions. Concorde used the low/zero-bypass Olympus 593 turbojet architecture with variable-geometry intake ramps rather than a conventional high-bypass turbofan.
                   </div>
                 </div>
               )}

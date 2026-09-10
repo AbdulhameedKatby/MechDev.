@@ -9,6 +9,7 @@ import {
   recoveryTempC,
   isaTemperatureK,
 } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function KineticHeatingLab() {
   const [mach, setMach] = useState(2.04)
@@ -66,7 +67,7 @@ export default function KineticHeatingLab() {
           Flight Speed ↔ Kinetic Heating & Thermal Limits
         </h1>
         <p className="mt-1 text-sm text-slate-300">
-          Compressing air molecules at Mach 2 turns kinetic energy directly into thermal energy, heating the airframe to boiling temperatures.
+          Use an ideal stagnation-temperature model to explore how Mach number and altitude affect thermal conditions. Model output is not the same as measured skin temperature.
         </p>
       </div>
 
@@ -97,7 +98,7 @@ export default function KineticHeatingLab() {
           {/* Aircraft Silhouette Heat Map */}
           <div className="rounded-2xl border border-white/10 bg-[#07160d] p-5 shadow-lg flex flex-col items-center">
             <div className="text-xs font-mono uppercase text-slate-400 mb-2">
-              Concorde Airframe Kinetic Temperature Gradient
+              Idealized Thermal Model: Stagnation and Recovery Temperatures
             </div>
             <svg viewBox="0 0 500 120" className="w-full max-w-md h-28">
               <defs>
@@ -145,8 +146,8 @@ export default function KineticHeatingLab() {
 
         <div className="space-y-6">
           <div className="rounded-2xl border border-white/10 bg-[#0a2014] p-6 shadow-xl space-y-4">
-            <div className="text-xs font-mono uppercase tracking-wider text-slate-400">
-              Peak Thermal Stagnation
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-400">
+              Ideal Stagnation Temperature
             </div>
             <div className="text-4xl font-extrabold font-mono text-white">
               {stagC.toFixed(1)}°C
@@ -162,7 +163,7 @@ export default function KineticHeatingLab() {
                 <span className="text-amber-300">{recC.toFixed(1)}°C</span>
               </div>
               <div className="flex justify-between text-slate-400">
-                <span>Aluminum RR58 Limit:</span>
+                <span>Reference model temperature:</span>
                 <span className="text-emerald-400">130°C</span>
               </div>
             </div>
@@ -179,11 +180,17 @@ export default function KineticHeatingLab() {
               {stagC > 130 ? '⚠ Structural Limit Warning' : '✓ Safe for RR58 Aluminum Alloy'}
             </div>
             <p className="text-xs leading-relaxed">
-              At Mach 2.04 and 60,000 ft, Concorde&apos;s nose reaches exactly 127°C. This dictated the absolute maximum speed Concorde could fly without using costly, heavy titanium alloys.
+              This is a simplified ideal stagnation-temperature result, not a direct measurement of Concorde&apos;s nose skin. Actual surface temperature depends on heat transfer, recovery factor, boundary-layer state, emissivity, material properties, and flight duration. Historical reference data describe Concorde skin temperatures above 120°C in sustained supersonic cruise.
             </p>
           </div>
         </div>
       </div>
+      <ModelDisclosure
+        model="Ideal stagnation and recovery-temperature relations"
+        variables="Mach number, altitude, ambient ISA temperature, heat-recovery assumptions"
+        assumptions="Calorically perfect gas, adiabatic deceleration, and standard-atmosphere reference conditions"
+        limitations="Model output is not measured skin temperature. Heat transfer, emissivity, duration, local geometry, and boundary-layer state are not fully represented."
+      />
     </div>
   )
 }

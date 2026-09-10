@@ -2,6 +2,8 @@
 
 export type CredibilityTier = 'primary' | 'secondary' | 'tertiary'
 
+export type ClaimStatus = 'VERIFIED' | 'CALCULATED' | 'MODELED' | 'ESTIMATED' | 'INTERPRETED' | 'HISTORICAL' | 'USER INPUT'
+
 export interface Source {
   tier: CredibilityTier
   publisher: string
@@ -28,6 +30,7 @@ export interface Specification {
   value: string
   unit?: string
   type: string               // "Measured" | "Operational limit" | "Design specification"
+  status?: ClaimStatus
   source: string
   sourceDetail?: string
   date?: string

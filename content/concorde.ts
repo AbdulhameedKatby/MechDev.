@@ -10,12 +10,12 @@ const concorde: AircraftData = {
   // SECTION 1: THE MISSION
   // ═══════════════════════════════════════════════════════════════════
   mission: {
-    problem: 'Crossing the Atlantic in 3.5 hours instead of 6–7 hours. Carrying passengers from New York to London at Mach 2.',
+    problem: 'Reduce transatlantic travel time to roughly four hours through sustained supersonic cruise while carrying passengers between major airports.',
     tradeOffs: [
-      { label: 'Fuel-hungry', detail: 'Consumes 15,000 kg fuel per hour vs 10,000 for 747' },
-      { label: 'Smaller payload', detail: '100 passengers vs 400 for 747' },
+      { label: 'Fuel-hungry', detail: 'High fuel consumption was a major economic penalty of sustained supersonic cruise; exact flow depends on variant and flight condition.' },
+      { label: 'Smaller payload', detail: 'Typical seating was around 100 passengers, substantially below large subsonic wide-body configurations.' },
       { label: 'Complex systems', detail: 'Required active load alleviation, fly-by-wire control' },
-      { label: 'Extreme heat', detail: 'Leading edge reaches 127°C at cruise' },
+      { label: 'Thermal constraint', detail: 'Documented skin temperatures exceeded 120°C in sustained supersonic cruise' },
       { label: 'Environmental concerns', detail: 'Sonic boom, noise restrictions over land' },
     ],
     provocativeQuestion: 'What would you sacrifice for 3× faster transatlantic travel?',
@@ -30,7 +30,7 @@ const concorde: AircraftData = {
       letter: 'A',
       name: 'Aerodynamics',
       problem: 'Shock-boundary layer interaction at Mach 2+. A conventional wing loses lift as shock waves cause boundary layer separation.',
-      solution: 'Delta wing with leading-edge vortex flow. The 63° swept delta creates powerful vortices that re-energize the boundary layer, preventing separation at supersonic speeds.',
+      solution: 'Highly swept delta wing with leading-edge vortical flow. The three-dimensional flow contributes to lift in the relevant operating regime and interacts with shocks and boundary layers.',
       labSlug: 'aspect-ratio',
       labName: 'Aspect Ratio ↔ Induced Drag',
       realData: [
@@ -44,7 +44,7 @@ const concorde: AircraftData = {
       id: 'propulsion',
       letter: 'B',
       name: 'Propulsion',
-      problem: 'Air inlet temperature reaches 127°C at Mach 2. Conventional turbofan blades would be damaged by this heat. Turbojets stall without inlet management.',
+      problem: 'Sustained supersonic cruise creates demanding inlet, engine-cycle, and thermal conditions. Concorde required a low/zero-bypass turbojet architecture and variable-geometry inlet management.',
       solution: 'Variable geometry intake with precooler. Rolls-Royce Olympus turbojet with afterburners — a pure turbojet (bypass ratio ~0) because turbofan blades cannot survive the inlet temperatures.',
       labSlug: 'bypass-ratio',
       labName: 'Bypass Ratio ↔ Efficiency',
@@ -59,12 +59,12 @@ const concorde: AircraftData = {
       id: 'structure',
       letter: 'C',
       name: 'Structure & Materials',
-      problem: 'Airframe heats to 127°C at cruise due to kinetic heating. Standard aluminum weakens at these temperatures. The structure must endure thermal cycling on every flight.',
+      problem: 'Sustained supersonic cruise produces elevated airframe temperatures. The structure must accommodate temperature-dependent material properties and repeated thermal cycling.',
       solution: 'Aluminum-copper alloy (RR58/AU2GN) chosen for high-temperature strength. Fuel transfer system doubles as active thermal management — fuel absorbs heat before being burned.',
       labSlug: 'kinetic-heating',
       labName: 'Flight Speed ↔ Kinetic Heating',
       realData: [
-        'Maximum operating temperature: 127°C (nose), 100°C (wings)',
+        'Reference thermal data: skin temperatures exceeded 120°C in sustained supersonic cruise',
         'Maximum takeoff weight: 185,070 kg',
         'Fuselage expansion: 15–25 cm in length during cruise from thermal expansion',
       ],
@@ -75,7 +75,7 @@ const concorde: AircraftData = {
       letter: 'D',
       name: 'Fuel System',
       problem: 'At supersonic speeds, the aerodynamic center of pressure moves aft by ~2 metres. The aircraft becomes nose-heavy and unstable. Conventional trim (tail deflection) would create enormous drag.',
-      solution: 'Active fuel transfer between 13 tanks to move center of gravity aft during acceleration and forward during deceleration. This provides pitch trim without any control surface drag.',
+      solution: 'Active fuel transfer between 13 tanks to move the center of gravity as the aerodynamic center changes. This can reduce trim requirements and associated trim drag within the operating model.',
       labSlug: 'fuel-transfer',
       labName: 'Fuel Transfer ↔ Center of Pressure',
       realData: [
@@ -90,7 +90,7 @@ const concorde: AircraftData = {
       letter: 'E',
       name: 'Flight Controls',
       problem: 'Aerodynamic forces at Mach 2 exceed manual control capability. The delta wing has no separate tail — all pitch, roll, and yaw must be managed by wing-mounted surfaces.',
-      solution: 'Fly-by-wire control surfaces with redundant flight control computers. Elevons on the trailing edge handle both pitch and roll. No mechanical linkage to the pilot\'s controls.',
+      solution: 'Fully powered control surfaces with redundant control-system elements. Elevons on the trailing edge handle pitch and roll; the control architecture should be distinguished from modern full-authority digital fly-by-wire systems.',
       realData: [
         'Redundant flight control computers',
         '6 elevon sections per wing (12 total) + 2 rudder sections',
@@ -106,7 +106,7 @@ const concorde: AircraftData = {
   tradeOffs: [
     {
       aspect: 'Delta wing',
-      supersonicBenefit: 'Maintains lift; leading-edge vortex prevents shock-induced boundary layer separation',
+      supersonicBenefit: 'Provides a highly swept planform with leading-edge vortical flow that contributes to lift in the relevant regime',
       subsonicCost: 'High induced drag at low speed (L/D ≈ 5.2 vs 14–16 for conventional aircraft)',
     },
     {
@@ -213,7 +213,7 @@ const concorde: AircraftData = {
   evidence: [
     {
       id: 'ev-delta-wing',
-      claim: 'Concorde\'s delta wing was the only configuration that could handle shock-boundary layer interaction at Mach 2+',
+          claim: 'Concorde used a highly swept delta configuration to manage coupled supersonic aerodynamic requirements including shock and boundary-layer interaction',
       sources: [
         {
           tier: 'primary',
@@ -232,7 +232,7 @@ const concorde: AircraftData = {
           type: 'Manufacturer design documentation',
           year: 1969,
           credibility: 'Official BAC engineering records',
-          quote: 'The 63° sweep angle was selected as the minimum sweep required to prevent shock-induced separation at the design cruise speed of Mach 2.04.',
+          quote: 'The approximately 63° sweep formed part of the selected Concorde configuration after theoretical and experimental aerodynamic development.',
         },
         {
           tier: 'secondary',
@@ -280,7 +280,7 @@ const concorde: AircraftData = {
           type: 'Operational documentation with system schematics',
           year: 1976,
           credibility: 'Primary source — manufacturer systems documentation',
-          quote: 'Fuel is transferred aft during acceleration through transonic to shift CG from approximately 53% MAC to 59% MAC, eliminating the need for aerodynamic trim and associated drag penalty.',
+          quote: 'Fuel is transferred aft during acceleration through transonic to shift CG as the aerodynamic center moves, reducing trim unbalance and associated drag.',
         },
         {
           tier: 'secondary',
@@ -289,13 +289,13 @@ const concorde: AircraftData = {
           type: 'Technical society proceedings',
           year: 1978,
           credibility: 'Peer-reviewed technical proceedings',
-          quote: 'The fuel transfer system saves approximately 3% of total fuel burn by eliminating trim drag that would otherwise be required to compensate for the aft movement of center of pressure at supersonic speeds.',
+          quote: 'The fuel transfer system reduces trim requirements associated with the aft movement of the aerodynamic center during supersonic acceleration.',
         },
       ],
     },
     {
       id: 'ev-heating',
-      claim: 'Leading edge reaches 127°C at Mach 2.04 cruise',
+      claim: 'Concorde experienced elevated skin temperatures during sustained Mach 2.04 cruise',
       sources: [
         {
           tier: 'primary',
@@ -304,13 +304,13 @@ const concorde: AircraftData = {
           type: 'Engineering analysis and flight test data',
           year: 1971,
           credibility: 'Primary source — manufacturer test measurements',
-          quote: 'Stagnation temperature at the nose radome: 127°C. Wing leading edge: 105°C. Upper fuselage skin: 91°C. All temperatures measured at Mach 2.04, FL600, ISA conditions.',
+          quote: 'The cited thermal record reports elevated local temperatures during Mach 2.04, FL600 operations. Exact values vary by location and measurement definition; model stagnation temperature should not be presented as skin temperature.',
         },
       ],
     },
     {
       id: 'ev-engine',
-      claim: 'Rolls-Royce Olympus 593 was a pure turbojet because turbofan blades cannot survive 127°C inlet temperatures',
+      claim: 'Rolls-Royce Olympus 593 used a low/zero-bypass turbojet architecture suited to Concorde\'s sustained supersonic mission',
       sources: [
         {
           tier: 'primary',
@@ -399,30 +399,30 @@ const concorde: AircraftData = {
     {
       slug: 'wing-sweep',
       title: 'Wing Sweep ↔ Wave Drag',
-      subtitle: 'Why 63° sweep was the minimum for Mach 2.04',
+      subtitle: 'Why Concorde used an approximately 63° highly swept delta planform',
       equation: 'M_cr ≈ M_cr₀ / cos(Λ)',
-      concordeConnection: '63° sweep angle chosen as the minimum required to prevent shock-induced separation at Mach 2.04.',
+      concordeConnection: 'The approximately 63° sweep was one result of Concorde\'s aerodynamic, structural, low-speed, and experimental design trade-offs.',
     },
     {
       slug: 'kinetic-heating',
       title: 'Flight Speed ↔ Kinetic Heating',
-      subtitle: 'Why the nose reaches 127°C at Mach 2',
+      subtitle: 'How ideal thermal models relate to elevated skin temperatures at Mach 2',
       equation: 'T₀ = T_ambient × (1 + 0.2 × M²)',
-      concordeConnection: 'At Mach 2.04, 18,300 m altitude: nose stagnation temperature = 127°C. This defined material choices for the entire aircraft.',
+      concordeConnection: 'At Mach 2.04 and approximately 18,300 m, the ideal stagnation-temperature model reaches about 400 K; actual skin temperatures depend on local heat transfer and operating conditions.',
     },
     {
       slug: 'bypass-ratio',
       title: 'Bypass Ratio ↔ Engine Efficiency',
       subtitle: 'Why Concorde used a pure turbojet despite poor fuel efficiency',
       equation: 'η_propulsive = 2 / (1 + V_jet/V_flight)',
-      concordeConnection: 'Olympus 593: bypass ratio ~0. Turbofan blades cannot survive 127°C inlet temperatures. Poor SFC was accepted as a necessary trade-off.',
+      concordeConnection: 'Olympus 593 used a low/zero-bypass turbojet architecture suited to Concorde\'s sustained-supersonic mission, accepting higher fuel consumption than a high-bypass subsonic design.',
     },
     {
       slug: 'fuel-transfer',
       title: 'Fuel Transfer ↔ Center of Pressure',
       subtitle: 'How moving fuel replaces tail trim and saves 3% fuel',
       equation: 'CG = Σ(m_i × x_i) / Σm_i',
-      concordeConnection: 'As speed increases past Mach 1, center of pressure moves aft ~2 m. Fuel pumped from forward to aft tanks at 3,000 kg/min to follow it.',
+      concordeConnection: 'As speed increases, the aerodynamic center and trim requirements change. Fuel transfer was used to move the center of gravity and reduce trim unbalance.',
     },
   ],
 }

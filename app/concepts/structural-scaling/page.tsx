@@ -29,7 +29,7 @@ export default function StructuralScalingConceptPage() {
           An airliner fuselage cruising at high altitude is a giant pressure vessel containing ~0.75 bar internal cabin pressure against thin external atmosphere.
         </p>
         <p className="text-sm text-slate-300 leading-relaxed">
-          Internal pressure creates two primary stress components in the aluminum skin: <strong className="text-white">Hoop Stress (σ_hoop)</strong> acting circumferentially around the fuselage, and <strong className="text-white">Longitudinal Stress (σ_long)</strong> acting along the length. Hoop stress is exactly double longitudinal stress!
+          For an ideal thin-walled cylindrical pressure vessel, internal pressure creates two primary stress components in the aluminum skin: <strong className="text-white">Hoop Stress (σ_hoop)</strong> acting circumferentially around the fuselage, and <strong className="text-white">Longitudinal Stress (σ_long)</strong> acting along the length. Under those ideal assumptions, hoop stress is approximately twice longitudinal stress.
         </p>
 
         <div className="rounded-xl bg-[#040118] p-4 border border-[#0e9954]/25 font-mono text-xs text-emerald-300 space-y-2">

@@ -36,7 +36,7 @@ export default function LabIndexPage() {
       title: 'Kinetic Heating ↔ Stagnation Recovery',
       subtitle: 'Calculate extreme surface stagnation temperatures across Mach regimes and inspect structural thermal expansion limits in aluminum and titanium.',
       equation: 'T_0 = T_∞ × (1 + ((γ-1)/2) × M²)',
-      aircraftLink: 'Concorde (127°C) vs SR-71 Blackbird (316°C)',
+      aircraftLink: 'Idealized model trend; compare with documented aircraft thermal data',
       difficulty: 'Beginner', time: '8 min', learn: 'Stagnation temperature',
     },
     {
@@ -56,7 +56,7 @@ export default function LabIndexPage() {
       title: 'Fuel Transfer ↔ Center of Pressure Trim',
       subtitle: "Simulate transferring fuel across 13 tanks to balance Concorde's aft center of pressure shift during the transonic acceleration from Mach 0.9 to 2.04.",
       equation: 'SM = CP(% MAC) − CG(% MAC) ≈ 0',
-      aircraftLink: 'Concorde 13-Tank Trimming System (3,000 kg/min)',
+      aircraftLink: 'Concorde 13-tank trim system; transfer rate depends on the reference source',
       difficulty: 'Intermediate', time: '12 min', learn: 'Trim and stability',
     },
     {

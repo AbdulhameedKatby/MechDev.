@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import React from 'react'
 import SiteHeader from '../components/SiteHeader'
+import NavigationLoader from '../components/NavigationLoader'
 import type { Metadata } from 'next'
 
 const siteUrl = 'https://abdulhameedkatby.vercel.app'
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
   },
   description: 'MechDev. — discover why aircraft are designed the way they are through physics, interactive labs, and traceable sources.',
   keywords: [
+    'abdulhameed katby',
     'aircraft engineering',
     'aerospace engineering',
     'aircraft aerodynamics',
@@ -83,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/icon.svg?v=4" type="image/svg+xml" />
       </head>
       <body className="min-h-screen flex flex-col">
+        <NavigationLoader />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
         <SiteHeader />
         <main className="container flex-1 pt-24 sm:pt-28 pb-10 sm:pb-12">{children}</main>
@@ -158,7 +161,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="rounded-xl border border-[#0e9954]/25 bg-[#07032a]/70 p-5">
                 <div className="flex items-center justify-between gap-3">
                   <h4 className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#0e9954]">Archive signal</h4>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase text-emerald-300"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" /> Live</span>
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase text-emerald-300"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" /> Reference</span>
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-4 font-mono">
                   <div><div className="text-lg font-bold text-white">Mach 2.04</div><div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">Flagship cruise</div></div>

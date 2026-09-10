@@ -33,12 +33,12 @@ export default function HomePage() {
           <div className="absolute top-4 left-4 sm:top-6 sm:left-6 right-4 sm:right-auto flex min-w-0 items-center gap-3">
             <span className="inline-flex min-w-0 max-w-full items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-emerald-500/30 text-emerald-400 font-mono text-[10px] sm:text-[11px] font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span className="truncate">CRUISE CONDITIONS: 60,000 FT · MACH 2.04 · STANDARD TEMPERATURE</span>
+              <span className="truncate">REFERENCE CONDITION: CONCORDE · MACH 2.04 · ~60,000 FT · ISA ~−56°C</span>
             </span>
           </div>
 
           <div className="absolute top-6 right-6 hidden sm:flex items-center gap-4 text-xs font-mono text-emerald-400/80 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
-            <span>NOSE TEMP: 127°C</span>
+            <span>REFERENCE SKIN DATA: &gt;120°C</span>
             <span>•</span>
             <span>RAM PRESSURE: 0.58 BAR</span>
           </div>
@@ -54,7 +54,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-200 font-light leading-relaxed drop-shadow">
-              Aircraft are not styled for beauty. Every millimeter of sweep angle, area-ruling taper, and leading-edge vortex is dictated by physical laws.
+              Aircraft geometry emerges from competing aerodynamic, structural, thermal, operational, manufacturing, and mission constraints.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-4">
@@ -82,7 +82,7 @@ export default function HomePage() {
           <div className="max-w-xl">
             <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-emerald-400"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" /> Evidence protocol / active</div>
             <h2 className="mt-2 text-xl font-bold text-white font-serif sm:text-2xl">Every claim leaves a trail.</h2>
-            <p className="mt-1 text-xs leading-relaxed text-slate-400 sm:text-sm">15 aircraft, 10 live workstations, and source records you can inspect instead of simply taking our word for it.</p>
+            <p className="mt-1 text-xs leading-relaxed text-slate-400 sm:text-sm">15 aircraft, 10 interactive workstations, and source records you can inspect instead of simply taking our word for it.</p>
           </div>
           <div className="grid grid-cols-3 gap-4 border-y border-white/10 py-3 sm:gap-8 sm:border-y-0 sm:border-l sm:py-0 sm:pl-6 lg:shrink-0">
             <div><div className="font-mono text-xl font-bold text-white">{aircraftList.length}</div><div className="mt-1 text-[9px] uppercase tracking-wider text-slate-500">Aircraft</div></div>
@@ -107,7 +107,7 @@ export default function HomePage() {
             </h2>
           </div>
           <p className="text-xs text-slate-400 font-mono">
-            SELECT ENTRY VECTOR // TRACEABLE EVIDENCE GUARANTEED
+            SELECT ENTRY VECTOR // SOURCE-TRACEABLE EXPLANATIONS
           </p>
         </div>
 
@@ -136,7 +136,7 @@ export default function HomePage() {
                   Why did Concorde need a delta wing?
                 </h3>
                 <p className="mt-2 text-xs text-slate-300 leading-relaxed">
-                  Conventional wings suffer complete boundary layer detachment at Mach 2. Discover how a continuous 63° leading-edge vortex prevents stall.
+                  At supersonic speed, shocks, compressibility, boundary layers, and wave drag become tightly coupled. Explore how delta-wing vortical flow contributes to the design solution.
                 </p>
               </div>
 
@@ -220,7 +220,7 @@ export default function HomePage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          FEATURED LAB HIGHLIGHT: LIVE WORKSTATION BANNER
+          FEATURED LAB HIGHLIGHT: INTERACTIVE WORKSTATIONS
       ───────────────────────────────────────────────────────────── */}
       <section className="rounded-3xl border border-[#0e9954]/40 bg-gradient-to-br from-[#110654] via-[#0a033b] to-[#05011d] p-8 sm:p-12 shadow-2xl relative overflow-hidden">
         <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -234,7 +234,7 @@ export default function HomePage() {
               Ten repeatable labs. Isolate one variable and observe the consequence.
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Adjust aspect ratios, sweep angles, bypass ratios, and kinetic heating in real-time SVG vector simulations. Compare Concorde against modern airliners like the Boeing 787 and supersonic fighters like the F-16.
+              Adjust parameters and explore simplified physics models through interactive SVG visualizations. Compare design choices across aircraft and operating regimes.
             </p>
             <div className="pt-2">
               <Link
@@ -256,12 +256,12 @@ export default function HomePage() {
             <Link href="/lab/wing-sweep" className="p-4 rounded-xl bg-black/40 border border-white/10 hover:border-emerald-400/40 transition-colors">
               <span className="text-emerald-400 block text-[10px]">LAB 02</span>
               <span className="text-white font-bold block mt-1">Sweep ↔ Wave Drag</span>
-              <span className="text-slate-400 text-[11px] block mt-1">63° minimum angle</span>
+              <span className="text-slate-400 text-[11px] block mt-1">Sweep angle ↔ compressibility</span>
             </Link>
             <Link href="/lab/kinetic-heating" className="p-4 rounded-xl bg-black/40 border border-white/10 hover:border-emerald-400/40 transition-colors">
               <span className="text-emerald-400 block text-[10px]">LAB 03</span>
               <span className="text-white font-bold block mt-1">Kinetic Heating</span>
-              <span className="text-slate-400 text-[11px] block mt-1">127°C nose stagnation</span>
+              <span className="text-slate-400 text-[11px] block mt-1">Ideal stagnation-temperature model</span>
             </Link>
             <Link href="/lab/bypass-ratio" className="p-4 rounded-xl bg-black/40 border border-white/10 hover:border-emerald-400/40 transition-colors">
               <span className="text-emerald-400 block text-[10px]">LAB 04</span>
@@ -271,7 +271,7 @@ export default function HomePage() {
             <Link href="/lab/fuel-transfer" className="p-4 rounded-xl bg-black/40 border border-white/10 hover:border-emerald-400/40 transition-colors">
               <span className="text-emerald-400 block text-[10px]">LAB 05</span>
               <span className="text-white font-bold block mt-1">Fuel Transfer & CP</span>
-              <span className="text-slate-400 text-[11px] block mt-1">3,000 kg/min trim</span>
+              <span className="text-slate-400 text-[11px] block mt-1">CG ↔ reduced trim drag</span>
             </Link>
           </div>
         </div>

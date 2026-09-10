@@ -172,7 +172,7 @@ export default function BypassRatioLab() {
                 ⚠ Physical Impossibility at Mach {mach}
               </div>
               <p className="text-xs leading-relaxed">
-                A high-bypass fan blade cannot survive 127°C intake air and supersonic shock entry. The huge frontal area also causes massive nacelle wave drag that cancels any engine efficiency gains.
+                A high-bypass turbofan is optimized for a different speed and mission regime. At sustained supersonic cruise, inlet compression, frontal area, nacelle drag, and engine-cycle requirements make a low/zero-bypass turbojet architecture a more suitable design choice for Concorde.
               </p>
             </div>
           ) : (

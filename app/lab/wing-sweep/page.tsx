@@ -4,6 +4,7 @@ import Link from 'next/link'
 import LabSlider from '../../../components/LabSlider'
 import LabChart, { Marker } from '../../../components/LabChart'
 import { computeCriticalMach, computeWaveDrag, waveDragVsMach } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function WingSweepLab() {
   const [sweepDeg, setSweepDeg] = useState(63)
@@ -56,7 +57,7 @@ export default function WingSweepLab() {
           Wing Sweep ↔ Wave Drag & Critical Mach
         </h1>
         <p className="mt-1 text-sm text-slate-300">
-          How sweeping the leading edge tricks the oncoming supersonic airflow into seeing a subsonic normal velocity component.
+          Explore how sweep changes the freestream component normal to the leading edge and influences compressibility trends.
         </p>
       </div>
 
@@ -154,11 +155,17 @@ export default function WingSweepLab() {
               BAC WB.180 Finding
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              British Aircraft Corporation engineers discovered that <strong className="text-white">63° sweep</strong> was the exact mathematical minimum needed to keep the leading edge shock attached and the normal Mach below sonic limits during Mach 2.04 cruise.
+              Concorde&apos;s approximately <strong className="text-white">63° sweep</strong> should be understood as an engineering design result, not a universal mathematical threshold. The final geometry reflected supersonic aerodynamic requirements, low-speed lift characteristics, structural considerations, and extensive experimental development.
             </p>
           </div>
         </div>
       </div>
+      <ModelDisclosure
+        model="Simplified normal-Mach and illustrative wave-drag trend model"
+        variables="Sweep angle Λ, thickness ratio t/c, flight Mach number"
+        assumptions="Steady flow, idealized geometry, and a simplified compressibility relation"
+        limitations="Does not determine Concorde's final sweep angle or predict complete three-dimensional aircraft wave drag, viscous effects, or shock interactions."
+      />
     </div>
   )
 }
