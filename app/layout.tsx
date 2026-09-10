@@ -1,10 +1,45 @@
 import '../styles/globals.css'
 import React from 'react'
 import SiteHeader from '../components/SiteHeader'
+import type { Metadata } from 'next'
 
-export const metadata = {
-  title: 'MechDev.',
+const siteUrl = 'https://abdulhameedkatby.vercel.app'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'MechDev. | Aircraft Engineering, Physics & Interactive Labs',
+    template: '%s | MechDev.',
+  },
   description: 'MechDev. — discover why aircraft are designed the way they are through physics, interactive labs, and traceable sources.',
+  keywords: [
+    'aircraft engineering',
+    'aerospace engineering',
+    'aircraft aerodynamics',
+    'supersonic aerodynamics',
+    'Concorde engineering',
+    'interactive physics labs',
+    'flight mechanics',
+  ],
+  authors: [{ name: 'Abdulhameed Katby' }],
+  creator: 'Abdulhameed Katby',
+  publisher: 'MechDev.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    siteName: 'MechDev.',
+    title: 'MechDev. | Aircraft Engineering, Physics & Interactive Labs',
+    description: 'Investigate why aircraft are designed the way they are with evidence, equations, and interactive engineering labs.',
+    images: [{ url: '/assets/concorde_mach2_cruise.jpg', width: 1200, height: 630, alt: 'Concorde flying at Mach 2.04' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MechDev. | Aircraft Engineering & Physics',
+    description: 'Investigate aircraft design through aerodynamics, flight mechanics, evidence, and interactive labs.',
+    images: ['/assets/concorde_mach2_cruise.jpg'],
+  },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 } },
   icons: {
     icon: '/icon.svg?v=4',
     shortcut: '/icon.svg?v=4',
@@ -13,12 +48,42 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        url: siteUrl,
+        name: 'MechDev.',
+        description: 'Aircraft engineering, aerospace physics, and interactive flight mechanics labs.',
+        publisher: { '@id': `${siteUrl}/#organization` },
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${siteUrl}/#organization`,
+        name: 'MechDev.',
+        url: siteUrl,
+        logo: `${siteUrl}/icon.svg`,
+        founder: { '@type': 'Person', name: 'Abdulhameed Katby' },
+        sameAs: ['https://www.linkedin.com/in/abdulhameedkatby/'],
+      },
+      {
+        '@type': 'EducationalOrganization',
+        name: 'MechDev.',
+        url: siteUrl,
+        description: 'An evidence-led platform for learning aircraft engineering through interactive investigations.',
+      },
+    ],
+  }
+
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/icon.svg?v=4" type="image/svg+xml" />
       </head>
       <body className="min-h-screen flex flex-col">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
         <SiteHeader />
         <main className="container flex-1 pt-24 sm:pt-28 pb-10 sm:pb-12">{children}</main>
         <footer className="relative overflow-hidden border-t border-[#0e9954]/30 bg-[#040118] text-slate-300">
@@ -75,6 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/lab/aspect-ratio" className="transition-colors hover:text-white">01 / Aspect ratio</a></li>
                   <li><a href="/lab/wing-sweep" className="transition-colors hover:text-white">02 / Wing sweep</a></li>
                   <li><a href="/lab/kinetic-heating" className="transition-colors hover:text-white">03 / Kinetic heating</a></li>
+                  <li><a href="/lab/bypass-ratio" className="transition-colors hover:text-white">04 / Bypass ratio</a></li>
                   <li><a href="/lab/fuel-transfer" className="transition-colors hover:text-white">05 / Fuel transfer</a></li>
                 </ul>
               </div>

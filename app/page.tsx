@@ -1,6 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { aircraftList } from '../content/aircraftRegistry'
+
+const labCount = 10
+const linkedSourceCount = aircraftList.reduce(
+  (total, aircraft) => total + aircraft.evidence.reduce((count, record) => count + record.sources.length, 0),
+  0,
+)
 
 export default function HomePage() {
   return (
@@ -26,7 +33,7 @@ export default function HomePage() {
           <div className="absolute top-4 left-4 sm:top-6 sm:left-6 right-4 sm:right-auto flex min-w-0 items-center gap-3">
             <span className="inline-flex min-w-0 max-w-full items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-emerald-500/30 text-emerald-400 font-mono text-[10px] sm:text-[11px] font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span className="truncate">TELEMETRY: FL600 · MACH 2.04 CRUISE · ISA +0°C</span>
+              <span className="truncate">CRUISE CONDITIONS: 60,000 FT · MACH 2.04 · STANDARD TEMPERATURE</span>
             </span>
           </div>
 
@@ -55,18 +62,35 @@ export default function HomePage() {
                 href="/aircraft/concorde"
                 className="px-5 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-950 font-black text-sm hover:from-emerald-400 hover:to-emerald-300 transition-all duration-200 shadow-[0_0_25px_rgba(0,255,136,0.4)] inline-flex items-center gap-2"
               >
-                <span>Launch Concorde Deep-Dive</span>
+                <span>Explore Concorde Deep-Dive</span>
                 <span className="text-base">→</span>
               </Link>
               <Link
                 href="/lab"
                 className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/40 transition-colors"
               >
-                Open Physics Labs (5)
+                Open Physics Labs (10)
               </Link>
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="relative -mt-12 overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-[#07170f] via-[#091b16] to-[#07032a] p-5 shadow-[0_0_35px_rgba(14,153,84,0.1)] sm:-mt-16 sm:p-6">
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-emerald-500/[0.08] to-transparent" />
+        <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-emerald-400"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" /> Evidence protocol / active</div>
+            <h2 className="mt-2 text-xl font-bold text-white font-serif sm:text-2xl">Every claim leaves a trail.</h2>
+            <p className="mt-1 text-xs leading-relaxed text-slate-400 sm:text-sm">15 aircraft, 10 live workstations, and source records you can inspect instead of simply taking our word for it.</p>
+          </div>
+          <div className="grid grid-cols-3 gap-4 border-y border-white/10 py-3 sm:gap-8 sm:border-y-0 sm:border-l sm:py-0 sm:pl-6 lg:shrink-0">
+            <div><div className="font-mono text-xl font-bold text-white">{aircraftList.length}</div><div className="mt-1 text-[9px] uppercase tracking-wider text-slate-500">Aircraft</div></div>
+            <div><div className="font-mono text-xl font-bold text-white">{labCount}</div><div className="mt-1 text-[9px] uppercase tracking-wider text-slate-500">Labs</div></div>
+            <div><div className="font-mono text-xl font-bold text-white">{linkedSourceCount}</div><div className="mt-1 text-[9px] uppercase tracking-wider text-slate-500">Records</div></div>
+          </div>
+        </div>
+        <div className="relative mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[10px] font-mono uppercase tracking-wider text-slate-500"><span><span className="text-amber-300">★★★★★</span> NASA / regulatory</span><span><span className="text-cyan-300">★★★★☆</span> primary engineering</span><Link href="/editorial" className="font-semibold text-emerald-300 hover:text-white transition-colors">Read the protocol →</Link></div>
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
@@ -117,7 +141,7 @@ export default function HomePage() {
               </div>
 
               <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-emerald-400 font-bold">
-                <span>Start with the Problem</span>
+                <span>Explore the Investigation</span>
                 <span className="transition-transform group-hover:translate-x-1.5">→</span>
               </div>
             </div>
@@ -152,7 +176,7 @@ export default function HomePage() {
               </div>
 
               <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-cyan-400 font-bold">
-                <span>Explore Full Airframe</span>
+                <span>Explore the Full Airframe</span>
                 <span className="transition-transform group-hover:translate-x-1.5">→</span>
               </div>
             </div>
@@ -187,7 +211,7 @@ export default function HomePage() {
               </div>
 
               <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-amber-400 font-bold">
-                <span>Explore Governing Physics</span>
+                <span>Explore the Governing Physics</span>
                 <span className="transition-transform group-hover:translate-x-1.5">→</span>
               </div>
             </div>
@@ -207,7 +231,7 @@ export default function HomePage() {
               Interactive Physics Workstation
             </span>
             <h3 className="text-3xl font-bold text-white font-serif">
-              Five repeatable labs. Isolate one variable and observe the consequence.
+              Ten repeatable labs. Isolate one variable and observe the consequence.
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">
               Adjust aspect ratios, sweep angles, bypass ratios, and kinetic heating in real-time SVG vector simulations. Compare Concorde against modern airliners like the Boeing 787 and supersonic fighters like the F-16.
@@ -238,6 +262,11 @@ export default function HomePage() {
               <span className="text-emerald-400 block text-[10px]">LAB 03</span>
               <span className="text-white font-bold block mt-1">Kinetic Heating</span>
               <span className="text-slate-400 text-[11px] block mt-1">127°C nose stagnation</span>
+            </Link>
+            <Link href="/lab/bypass-ratio" className="p-4 rounded-xl bg-black/40 border border-white/10 hover:border-emerald-400/40 transition-colors">
+              <span className="text-emerald-400 block text-[10px]">LAB 04</span>
+              <span className="text-white font-bold block mt-1">Bypass Ratio ↔ Efficiency</span>
+              <span className="text-slate-400 text-[11px] block mt-1">Turbojet vs turbofan trade-off</span>
             </Link>
             <Link href="/lab/fuel-transfer" className="p-4 rounded-xl bg-black/40 border border-white/10 hover:border-emerald-400/40 transition-colors">
               <span className="text-emerald-400 block text-[10px]">LAB 05</span>

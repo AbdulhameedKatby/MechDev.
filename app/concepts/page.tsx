@@ -1,6 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Aerospace Concepts | Aerodynamics, Propulsion & Structures',
+  description: 'Learn the physics behind aircraft design through supersonic aerodynamics, boundary layers, propulsion, aeroelasticity, fly-by-wire, VTOL, and structures.',
+  alternates: { canonical: '/concepts' },
+}
+
 export default function ConceptsIndexPage() {
   const concepts = [
     {

@@ -1,6 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Interactive Aerospace Physics Labs',
+  description: 'Run interactive aircraft engineering labs for induced drag, wing sweep, kinetic heating, bypass ratio, thrust, stress, and flight mechanics.',
+  alternates: { canonical: '/lab' },
+}
+
 export default function LabIndexPage() {
   const allLabs = [
     {
@@ -11,6 +17,7 @@ export default function LabIndexPage() {
       subtitle: "Observe why Concorde's stubby, low-aspect-ratio delta wing incurs brutal drag penalties at subsonic speeds compared to high-aspect-ratio commercial airliners.",
       equation: 'C_Di = C_L² / (π × AR × e)',
       aircraftLink: 'Concorde (AR 1.83) vs Boeing 787 (AR 10.2)',
+      difficulty: 'Beginner', time: '10 min', learn: 'Induced drag efficiency',
     },
     {
       num: '02',
@@ -20,6 +27,7 @@ export default function LabIndexPage() {
       subtitle: 'See how sweeping a wing delays the critical Mach number and prevents shock wave detachment along the leading edge at transonic cruise.',
       equation: 'M_eff = M_∞ × cos(Λ)',
       aircraftLink: 'Concorde 63° ogive vs Boeing 747 37.5° sweep',
+      difficulty: 'Beginner', time: '10 min', learn: 'Sweep and wave drag',
     },
     {
       num: '03',
@@ -29,6 +37,7 @@ export default function LabIndexPage() {
       subtitle: 'Calculate extreme surface stagnation temperatures across Mach regimes and inspect structural thermal expansion limits in aluminum and titanium.',
       equation: 'T_0 = T_∞ × (1 + ((γ-1)/2) × M²)',
       aircraftLink: 'Concorde (127°C) vs SR-71 Blackbird (316°C)',
+      difficulty: 'Beginner', time: '8 min', learn: 'Stagnation temperature',
     },
     {
       num: '04',
@@ -38,6 +47,7 @@ export default function LabIndexPage() {
       subtitle: 'Explore the thermodynamic trade-off between pure turbojets and ultra-high-bypass turbofans across subsonic, transonic, and supersonic regimes.',
       equation: 'η_p = 2 / (1 + V_jet / V_aircraft)',
       aircraftLink: 'Olympus 593 (BPR 0) vs Trent XWB (BPR 9.3)',
+      difficulty: 'Intermediate', time: '12 min', learn: 'Propulsive efficiency',
     },
     {
       num: '05',
@@ -47,6 +57,7 @@ export default function LabIndexPage() {
       subtitle: "Simulate transferring fuel across 13 tanks to balance Concorde's aft center of pressure shift during the transonic acceleration from Mach 0.9 to 2.04.",
       equation: 'SM = CP(% MAC) − CG(% MAC) ≈ 0',
       aircraftLink: 'Concorde 13-Tank Trimming System (3,000 kg/min)',
+      difficulty: 'Intermediate', time: '12 min', learn: 'Trim and stability',
     },
     {
       num: '06',
@@ -56,6 +67,7 @@ export default function LabIndexPage() {
       subtitle: 'Examine how thrust-to-weight ratio dictates vertical acceleration, climb gradient, time-to-climb to 30,000 ft, and sustained turning performance.',
       equation: 'a_v = (T/W − 1) × g · n_sustained = (T/W) × (L/D)',
       aircraftLink: 'Cessna 172 (0.06) vs Harrier (1.04) vs F-16 (1.09)',
+      difficulty: 'Intermediate', time: '12 min', learn: 'Climb and acceleration',
     },
     {
       num: '07',
@@ -65,6 +77,7 @@ export default function LabIndexPage() {
       subtitle: 'Calculate stall speed boundaries and minimum turn radii as a function of wing loading (kg/m²) and maximum usable lift coefficient.',
       equation: 'V_s = √(2(W/S) / (ρ × C_Lmax)) · R = V² / (g × √(n²−1))',
       aircraftLink: 'Cessna 172 (64 kg/m²) vs F-16 (430 kg/m²) vs 747 (700 kg/m²)',
+      difficulty: 'Intermediate', time: '10 min', learn: 'Stall speed limits',
     },
     {
       num: '08',
@@ -74,6 +87,7 @@ export default function LabIndexPage() {
       subtitle: 'Decompose rotating nozzle vector angles from 90° hover to 0° cruise, and identify the hazardous transition corridor where wing lift must replace jet thrust.',
       equation: 'T_vertical = T × sin(θ) · T_horizontal = T × cos(θ)',
       aircraftLink: 'Harrier Pegasus 4-Nozzle vs F-35B 3BSD + Lift Fan',
+      difficulty: 'Intermediate', time: '12 min', learn: 'Thrust vector components',
     },
     {
       num: '09',
@@ -83,6 +97,7 @@ export default function LabIndexPage() {
       subtitle: 'Investigate how fuselage diameter exponentially multiplies wall tensile hoop stress, safety yield margins, and catastrophic window stress concentrations.',
       equation: 'σ_hoop = (ΔP × r) / t · K_t = 1 + 2√(a/ρ)',
       aircraftLink: 'De Havilland Comet vs Boeing 747 (6.5m) vs A380 (7.1m)',
+      difficulty: 'Advanced', time: '15 min', learn: 'Pressurized structure',
     },
     {
       num: '10',
@@ -92,6 +107,7 @@ export default function LabIndexPage() {
       subtitle: 'Sweep through the ISA atmospheric layers from sea level to 85,000 ft, tracking temperature, air density drop, acoustic speed, and dynamic pressure.',
       equation: 'ρ(h) = P(h) / (R × T(h)) · q = ½ρV²',
       aircraftLink: 'Cessna (14k ft) vs 747 (43k ft) vs Concorde (60k ft) vs SR-71 (85k ft)',
+      difficulty: 'Beginner', time: '10 min', learn: 'Atmospheric envelopes',
     },
   ]
 
@@ -147,6 +163,12 @@ export default function LabIndexPage() {
                 Governing Equation: {lab.equation}
               </div>
             )}
+
+            <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-mono uppercase tracking-wide">
+              <span className="rounded border border-white/10 bg-white/5 px-2 py-1 text-slate-300">{lab.difficulty}</span>
+              <span className="rounded border border-white/10 bg-white/5 px-2 py-1 text-slate-400">{lab.time}</span>
+              <span className="rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 text-emerald-300">Learn: {lab.learn}</span>
+            </div>
 
             <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-slate-400">
               <span className="text-[#0e9954] font-bold">PRIMARY BENCHMARK:</span>

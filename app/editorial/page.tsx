@@ -1,96 +1,48 @@
 import Link from 'next/link'
 
-const sourceLevels = [
-  {
-    score: '★★★★★',
-    title: 'Official, regulatory, or peer-reviewed technical evidence',
-    detail: 'NASA reports, government certification records, and peer-reviewed technical papers are given the strongest starting position when they directly support the claim.',
-  },
-  {
-    score: '★★★★☆',
-    title: 'Primary manufacturer or operator documentation',
-    detail: 'Design manuals, operating data, and manufacturer specifications are valuable primary records. They may also reflect a commercial or program perspective.',
-  },
-  {
-    score: '★★★☆☆',
-    title: 'Technical interpretation',
-    detail: 'Technical histories and specialist commentary can explain context, but important numbers should be checked against primary evidence.',
-  },
-  {
-    score: '★★☆☆☆ / ★☆☆☆☆',
-    title: 'Secondary or informal interpretation',
-    detail: 'News, blogs, and unsourced summaries can help locate a topic but are not treated as sufficient support for a central engineering claim.',
-  },
+export const metadata = {
+  title: 'Methodology & Evidence Standards',
+  description: 'Learn how MechDev. evaluates aircraft engineering sources, separates observation from derivation, and explains credibility scores.',
+  alternates: { canonical: '/editorial' },
+}
+
+const evidenceLevels = [
+  { score: 5, label: 'Reference-grade evidence', title: 'NASA, government, regulatory, or peer-reviewed records', detail: 'These records are closest to the measurement, certification, or reviewed technical argument. They receive the strongest starting score when they directly support the claim.', examples: 'NASA technical notes · CAA / FAA records · AIAA proceedings', tone: 'border-emerald-400/40 bg-emerald-400/[0.07] text-emerald-300' },
+  { score: 4, label: 'Primary engineering record', title: 'Manufacturer, operator, or design-office documentation', detail: 'Design manuals and operating data contain valuable first-hand information. We keep the provenance visible because the producer may also have a program or commercial perspective.', examples: 'BAC design records · engine manuals · flight manuals', tone: 'border-cyan-400/30 bg-cyan-400/[0.05] text-cyan-300' },
+  { score: 3, label: 'Technical interpretation', title: 'Specialist histories and technical commentary', detail: 'These sources help explain context and connect ideas, but central numerical claims should be checked against primary evidence whenever possible.', examples: 'Technical society proceedings · specialist histories', tone: 'border-amber-400/30 bg-amber-400/[0.05] text-amber-300' },
+  { score: 1, label: 'Context only', title: 'News, blogs, and unsourced summaries', detail: 'Useful for finding a question or a lead. Not sufficient on their own for a central engineering claim.', examples: 'Popular articles · informal summaries · unattributed posts', tone: 'border-slate-400/25 bg-white/[0.03] text-slate-300' },
 ]
+
+function Stars({ score }: { score: number }) {
+  return <span className="font-mono tracking-[0.18em] text-amber-300" aria-label={`${score} out of 5 stars`}>{'★'.repeat(score)}<span className="text-slate-600">{'★'.repeat(5 - score)}</span></span>
+}
 
 export default function EditorialIndex() {
   return (
-    <div className="max-w-4xl mx-auto py-8 space-y-10">
-      <header className="space-y-4">
-        <Link href="/" className="text-xs font-mono text-emerald-400 hover:underline">
-          ← Back to MechDev.
-        </Link>
-        <div className="text-xs uppercase tracking-[0.2em] text-emerald-400 font-mono font-bold">
-          Editorial // Methodology & Trust
+    <div className="mx-auto max-w-6xl py-8 sm:py-12">
+      <header className="relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-[#07170f] p-6 sm:p-10 lg:p-14">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl" />
+        <div className="relative max-w-4xl">
+          <Link href="/" className="inline-flex text-xs font-mono text-emerald-300 hover:text-white transition-colors">← Return to the archive</Link>
+          <div className="mt-10 flex flex-wrap items-center gap-3 text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-emerald-400"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" /> Editorial protocol / 01 <span className="text-slate-600">Trust, provenance, and method</span></div>
+          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.08] text-white font-serif sm:text-6xl">Read the evidence before you trust the answer.</h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">MechDev. turns aircraft claims into inspectable engineering arguments. A number is never the whole story: we show who recorded it, what kind of record it is, and where calculation begins.</p>
+          <div className="mt-8 flex flex-wrap gap-3 text-xs font-mono"><span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-emerald-300">SOURCE-FIRST</span><span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-slate-400">NO FALSE PRECISION</span><span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-slate-400">TRACEABLE CLAIMS</span></div>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-bold text-white font-serif">
-          How MechDev. builds an engineering explanation
-        </h1>
-        <p className="max-w-3xl text-slate-300 leading-relaxed">
-          MechDev. separates what a source says from what a calculation derives. Every evidence-linked claim opens its source record, provenance, and known context so readers can inspect the reasoning instead of accepting a polished conclusion on trust.
-        </p>
       </header>
 
-      <section className="rounded-2xl border border-emerald-500/30 bg-[#07170f] p-6 sm:p-8 space-y-4">
-        <h2 className="text-2xl font-bold text-white font-serif">What “verified” means here</h2>
-        <p className="text-sm text-slate-300 leading-relaxed">
-          “Verified” currently means that a claim has been connected to a named source record and checked for consistency with the surrounding explanation. It does not mean that MechDev. has independently repeated a flight test or that an external expert has approved every page.
-        </p>
-        <p className="text-sm text-amber-200/80 leading-relaxed">
-          Independent expert attribution, statistical uncertainty intervals, and a public correction history are planned systems. They are intentionally not presented as complete until the underlying records exist.
-        </p>
+      <section className="mt-10 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="rounded-2xl border border-white/10 bg-[#07032a] p-6 sm:p-8"><div className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-emerald-400">The editorial promise</div><h2 className="mt-3 text-2xl font-bold text-white font-serif sm:text-3xl">A claim has three layers.</h2><div className="mt-7 space-y-5"><div className="flex gap-4"><span className="font-mono text-emerald-400">01</span><div><h3 className="font-semibold text-white">Observed</h3><p className="mt-1 text-sm leading-relaxed text-slate-400">What a flight test, certification record, or technical report actually records.</p></div></div><div className="flex gap-4"><span className="font-mono text-cyan-400">02</span><div><h3 className="font-semibold text-white">Explained</h3><p className="mt-1 text-sm leading-relaxed text-slate-400">What the physics says about why the aircraft behaves that way.</p></div></div><div className="flex gap-4"><span className="font-mono text-amber-400">03</span><div><h3 className="font-semibold text-white">Derived</h3><p className="mt-1 text-sm leading-relaxed text-slate-400">What MechDev. calculates from stated inputs, assumptions, and units.</p></div></div></div></div>
+        <div className="rounded-2xl border border-emerald-500/25 bg-gradient-to-br from-[#0b2417] to-[#06110a] p-6 sm:p-8"><div className="flex items-center justify-between gap-4"><div className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-emerald-400">Current standard</div><span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-1 text-[10px] font-mono text-amber-300">5 / 5</span></div><div className="mt-8"><Stars score={5} /></div><h2 className="mt-3 text-2xl font-bold text-white font-serif">NASA technical evidence</h2><p className="mt-3 text-sm leading-relaxed text-slate-300">A NASA record is rated highly because it is an official technical source with a defined institution, document identity, and research context. The rating describes provenance, not automatic infallibility.</p><div className="mt-6 border-t border-white/10 pt-4 font-mono text-[11px] text-slate-500">Example record</div><div className="mt-2 text-sm font-semibold text-emerald-200">NASA TN D-4607</div><div className="mt-1 text-xs text-slate-400">Technical report with wind-tunnel data · 1972</div></div>
       </section>
 
-      <section className="space-y-5">
-        <div>
-          <div className="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono">Evidence hierarchy</div>
-          <h2 className="text-2xl font-bold text-white font-serif mt-1">A source score is a reading aid, not a truth machine</h2>
-        </div>
-        <div className="grid gap-3">
-          {sourceLevels.map((level) => (
-            <div key={level.title} className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-amber-300 font-mono tracking-widest">{level.score}</span>
-                <h3 className="font-semibold text-white">{level.title}</h3>
-              </div>
-              <p className="mt-2 text-sm text-slate-400 leading-relaxed">{level.detail}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <section className="mt-14"><div className="max-w-3xl"><div className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500">01 / Source ladder</div><h2 className="mt-2 text-3xl font-bold text-white font-serif sm:text-4xl">What the stars actually mean</h2><p className="mt-3 text-sm leading-relaxed text-slate-400">The score is a transparent reading aid. It rewards provenance and directness, while the source type, date, document, and quotation remain visible beside it.</p></div><div className="mt-7 grid gap-3">{evidenceLevels.map((level) => <article key={level.title} className={`rounded-2xl border p-5 sm:p-6 ${level.tone}`}><div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"><div className="flex gap-4"><div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/20 font-mono text-sm text-white">{level.score}</div><div><div className="text-[10px] font-mono font-bold uppercase tracking-[0.16em]">{level.label}</div><h3 className="mt-1 text-lg font-semibold text-white">{level.title}</h3></div></div><Stars score={level.score} /></div><p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-300">{level.detail}</p><div className="mt-4 border-t border-white/10 pt-3 text-[11px] font-mono text-slate-500">{level.examples}</div></article>)}</div></section>
 
-      <section className="grid gap-5 md:grid-cols-3">
-        <div className="rounded-xl border border-white/10 bg-[#07032a] p-5">
-          <h3 className="font-semibold text-white">Discover</h3>
-          <p className="mt-2 text-sm text-slate-400">Start with an intuitive physical explanation and a real aircraft example.</p>
-        </div>
-        <div className="rounded-xl border border-white/10 bg-[#07032a] p-5">
-          <h3 className="font-semibold text-white">Understand</h3>
-          <p className="mt-2 text-sm text-slate-400">Follow the governing equation, assumptions, and design trade-off.</p>
-        </div>
-        <div className="rounded-xl border border-white/10 bg-[#07032a] p-5">
-          <h3 className="font-semibold text-white">Investigate</h3>
-          <p className="mt-2 text-sm text-slate-400">Open the evidence panel, inspect the source record, and reproduce the lab calculation.</p>
-        </div>
-      </section>
+      <section className="mt-14 rounded-2xl border border-white/10 bg-[#07032a] p-6 sm:p-8"><div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"><div><div className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-emerald-400">02 / A live example</div><h2 className="mt-2 text-2xl font-bold text-white font-serif sm:text-3xl">From source to aircraft</h2><p className="mt-3 text-sm leading-relaxed text-slate-400">On a Concorde claim, the evidence panel keeps the chain visible instead of flattening every source into one citation.</p></div><div className="space-y-3 font-mono text-xs"><div className="flex flex-col gap-2 rounded-xl border border-emerald-500/25 bg-emerald-500/[0.06] p-4 sm:flex-row sm:items-center sm:justify-between"><span className="text-slate-300">NASA TN D-4607 · wind-tunnel record</span><Stars score={5} /></div><div className="flex flex-col gap-2 rounded-xl border border-cyan-500/25 bg-cyan-500/[0.05] p-4 sm:flex-row sm:items-center sm:justify-between"><span className="text-slate-300">BAC WB.180 · design documentation</span><Stars score={4} /></div><div className="flex flex-col gap-2 rounded-xl border border-amber-500/25 bg-amber-500/[0.05] p-4 sm:flex-row sm:items-center sm:justify-between"><span className="text-slate-300">MechDev. · derived explanation</span><span className="text-amber-300">M = V / a</span></div></div></div></section>
 
-      <section className="border-t border-white/10 pt-6 text-sm text-slate-400 leading-relaxed">
-        <h2 className="text-xl font-bold text-white font-serif">Corrections and limitations</h2>
-        <p className="mt-2">Aircraft performance varies by variant, configuration, atmospheric condition, payload, and measurement method. Pages should state those conditions where they are known. Corrections will be added to a public history as the content versioning system is developed.</p>
-        <Link href="/aircraft" className="inline-flex mt-4 text-emerald-400 hover:text-emerald-300 font-semibold">
-          Browse the aircraft archive →
-        </Link>
-      </section>
+      <section className="mt-14 grid gap-5 md:grid-cols-3">{[['Discover', 'Visual intuition', 'See the design problem before meeting the equation.'], ['Understand', 'Governing physics', 'Follow the equation, assumptions, and trade-off.'], ['Investigate', 'Trace the record', 'Open sources, compare evidence, and reproduce the lab.']].map(([title, label, detail]) => <div key={title} className="rounded-2xl border border-white/10 bg-[#07032a] p-6"><div className="text-[10px] font-mono uppercase tracking-[0.18em] text-emerald-400">{label}</div><h3 className="mt-2 text-xl font-bold text-white font-serif">{title}</h3><p className="mt-2 text-sm leading-relaxed text-slate-400">{detail}</p></div>)}</section>
+
+      <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm leading-relaxed text-slate-400 sm:flex-row sm:items-center sm:justify-between"><p><span className="text-white">The standard is simple:</span> make the reasoning inspectable.</p><Link href="/aircraft/concorde" className="font-semibold text-emerald-300 hover:text-white transition-colors">Inspect a live investigation →</Link></div>
     </div>
   )
 }

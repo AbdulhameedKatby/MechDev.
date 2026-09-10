@@ -6,7 +6,7 @@ import concorde from '../../../content/concorde'
 
 export default function WhyDeltaWingPage() {
   return (
-    <div className="max-w-4xl mx-auto py-8 space-y-10">
+    <div className="max-w-6xl mx-auto py-8 sm:py-10 space-y-8 sm:space-y-12">
       {/* Breadcrumb & Header */}
       <div>
         <Link
@@ -18,7 +18,7 @@ export default function WhyDeltaWingPage() {
         <div className="text-xs uppercase font-mono text-slate-400">
           Investigation 01 · Fluid Dynamics
         </div>
-        <h1 className="text-4xl font-extrabold text-white font-serif mt-1">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-white font-serif mt-1 leading-tight">
           Why did Concorde need a delta wing?
         </h1>
         <p className="mt-2 text-slate-300">
@@ -38,7 +38,7 @@ export default function WhyDeltaWingPage() {
             </p>
 
             {/* Shock wave vs Vortex Visual */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-6">
               <div className="rounded-xl border border-red-500/30 bg-[#160b0b] p-4 text-center space-y-2">
                 <span className="text-xs font-mono text-red-400 font-bold block">
                   Conventional Swept Wing (Mach 2)

@@ -1,6 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Aircraft Engineering Questions | Investigations',
+  description: 'Investigate why aircraft use delta wings, lift fans, composite structures, swept wings, fly-by-wire, and other engineering solutions.',
+  alternates: { canonical: '/questions' },
+}
+
 export default function QuestionsIndexPage() {
   const questions = [
     {

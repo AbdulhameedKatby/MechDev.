@@ -39,7 +39,7 @@ const SEARCH_INDEX = [
   { title: 'Lab 01: Aspect Ratio',                     subtitle: 'Induced drag vs span efficiency',              href: '/lab/aspect-ratio',                  category: 'Lab',      icon: '🧪' },
   { title: 'Lab 02: Wing Sweep Angle',                 subtitle: 'Normal Mach number & drag rise',              href: '/lab/wing-sweep',                    category: 'Lab',      icon: '🧪' },
   { title: 'Lab 03: Kinetic Heating',                  subtitle: 'Stagnation temperature at Mach 2+',           href: '/lab/kinetic-heating',               category: 'Lab',      icon: '🧪' },
-  { title: 'Lab 04: Engine Thrust',                    subtitle: 'Dry vs reheat thrust modelling',              href: '/lab/engine-thrust',                 category: 'Lab',      icon: '🧪' },
+  { title: 'Lab 04: Bypass Ratio',                     subtitle: 'Turbojet vs turbofan efficiency',              href: '/lab/bypass-ratio',                  category: 'Lab',      icon: '🧪' },
   { title: 'Lab 05: Fuel Transfer',                    subtitle: 'Centre-of-pressure trim via fuel shift',      href: '/lab/fuel-transfer',                 category: 'Lab',      icon: '🧪' },
   { title: 'Lab 06: Thrust-to-Weight',                 subtitle: 'T/W ratio vs climb rate',                     href: '/lab/thrust-to-weight',              category: 'Lab',      icon: '🧪' },
   { title: 'Lab 07: Wing Loading',                     subtitle: 'Wing loading vs stall speed',                 href: '/lab/wing-loading',                  category: 'Lab',      icon: '🧪' },
