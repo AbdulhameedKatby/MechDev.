@@ -6,6 +6,15 @@ out/
 coverage/
 *.tsbuildinfo
 .env*
+*.pem
 *.log
+*.key
+*.p12
+*.pfx
+*.secret
+.idea/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .DS_Store
 Thumbs.db
