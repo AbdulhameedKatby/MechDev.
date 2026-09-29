@@ -4,6 +4,7 @@ import Link from 'next/link'
 import LabSlider from '../../../components/LabSlider'
 import LabChart, { Marker } from '../../../components/LabChart'
 import { computeStallSpeedKnots, computeTurnRadiusMeters } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function WingLoadingLab() {
   const [wingLoading, setWingLoading] = useState(430)
@@ -155,6 +156,12 @@ export default function WingLoadingLab() {
           </div>
         </div>
       </div>
+      <ModelDisclosure
+        model="Stall-speed and coordinated-turn estimates from wing loading and maximum lift coefficient."
+        variables="Wing loading, C_Lmax, air density, reference speed, and load factor."
+        assumptions="Steady flight, ISA sea-level density, fixed C_Lmax, and idealized coordinated turns."
+        limitations="Does not model flap schedules, compressibility, aircraft mass distribution, bank-angle limits, or pilot/structural constraints."
+      />
     </div>
   )
 }

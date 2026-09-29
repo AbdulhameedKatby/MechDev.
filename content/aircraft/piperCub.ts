@@ -5,6 +5,11 @@ const piperCub: AircraftData = {
   name: 'Piper J-3 Cub',
   subtitle: 'Ultra-Simple Pioneer — Welded steel tube, fabric & minimal systems',
   role: 'General aviation pioneer',
+  heroImage: '/assets/piper-cub.svg',
+  heroImageAlt: 'Piper J-3 Cub strut-braced high-wing schematic',
+  hoverImage: '/assets/Piper-J-3%20Cub.jpeg',
+  hoverImageAlt: 'Piper J-3 Cub aircraft',
+  imageSource: 'https://1000aircraftphotos.com/',
   mission: {
     problem: 'Providing basic, reliable, low-cost flight training with absolute mechanical simplicity.',
     tradeOffs: [

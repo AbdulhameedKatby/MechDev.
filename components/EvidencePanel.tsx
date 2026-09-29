@@ -10,6 +10,7 @@ interface EvidencePanelProps {
 
 export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePanelProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null)
 
   const getCredibilityScore = (source: Source) => {
     const text = `${source.publisher} ${source.type} ${source.credibility}`.toLowerCase()
@@ -28,15 +29,51 @@ export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePan
   }
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) {
+      previouslyFocusedRef.current?.focus()
+      return
+    }
+
+    previouslyFocusedRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null
+    const previousOverflow = document.body.style.overflow
+    const previousPaddingRight = document.body.style.paddingRight
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    document.body.style.overflow = 'hidden'
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose()
+        return
+      }
+
+      if (e.key === 'Tab') {
+        const focusable = Array.from(document.querySelectorAll<HTMLElement>(
+          '[role="dialog"] button, [role="dialog"] a[href], [role="dialog"] input, [role="dialog"] [tabindex]:not([tabindex="-1"])',
+        ))
+        if (focusable.length === 0) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
       }
     }
     window.addEventListener('keydown', handleKeyDown)
     closeButtonRef.current?.focus()
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = previousOverflow
+      document.body.style.paddingRight = previousPaddingRight
+    }
   }, [isOpen, onClose])
 
   if (!isOpen) return null
@@ -71,11 +108,11 @@ export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePan
       role="dialog"
       aria-modal="true"
       aria-labelledby="evidence-panel-title"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-3 backdrop-blur-md transition-opacity duration-100 sm:p-6"
+      className="fixed inset-0 z-[100] flex items-center justify-center overscroll-contain bg-transparent p-3 transition-opacity duration-100 sm:p-4"
       onClick={onClose}
     >
       <div
-        className="flex w-full max-w-5xl max-h-[92vh] flex-col overflow-hidden rounded-2xl border border-emerald-500/25 bg-[#07170f] text-[#EDF7EF] shadow-[0_24px_90px_rgba(0,0,0,0.7),0_0_36px_rgba(14,153,84,0.12)] transition-transform duration-100 ease-out sm:rounded-3xl"
+        className="grid h-[90svh] max-h-[calc(100svh-1.5rem)] w-full max-w-5xl grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-2xl border border-emerald-500/25 bg-[#07170f] text-[#EDF7EF] shadow-[0_24px_90px_rgba(0,0,0,0.7),0_0_36px_rgba(14,153,84,0.12)] transition-transform duration-100 ease-out sm:max-h-[calc(100svh-2rem)] sm:rounded-3xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -104,7 +141,7 @@ export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePan
         </div>
 
         {/* Sources list */}
-        <div className="min-h-0 flex-1 overflow-y-auto p-5 sm:p-7">
+        <div className="min-h-0 overflow-y-auto overscroll-contain p-5 pb-8 sm:p-7 sm:pb-10">
           <div className="mb-4 flex items-end justify-between gap-4">
             <div><div className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-400 font-mono">Evidence register</div><h4 className="mt-1 text-lg font-bold text-white font-serif">Primary records and technical context</h4></div>
             <span className="hidden text-[10px] font-mono uppercase tracking-wider text-slate-500 sm:block">Ranked by provenance</span>
@@ -162,17 +199,19 @@ export default function EvidencePanel({ evidence, isOpen, onClose }: EvidencePan
             </div>
           ))}
           </div>
-        </div>
 
-        {/* Disagreement / Context */}
-        {evidence.disagreement && (
-          <div className="border-t border-amber-500/20 bg-amber-950/20 p-5 text-amber-200/90 sm:p-6">
-            <div className="font-semibold text-amber-300 flex items-center gap-2 mb-2 text-sm">
-              <span aria-hidden="true">△</span> Context and disagreement
-            </div>
-            <p className="leading-relaxed text-amber-100/80">{evidence.disagreement}</p>
-          </div>
-        )}
+          {/* Disagreement / Context stays inside the modal scroll region. */}
+          {evidence.disagreement && (
+            <>
+              <div className="-mx-5 mt-5 mb-1 border-y border-amber-500/20 bg-amber-950/20 p-5 text-amber-200/90 sm:-mx-7 sm:mt-7 sm:mb-1 sm:p-6">
+                <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-amber-300">
+                  <span aria-hidden="true">△</span> Context and disagreement
+                </div>
+                <p className="leading-relaxed text-amber-100/80">{evidence.disagreement}</p>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   )

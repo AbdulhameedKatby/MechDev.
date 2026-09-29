@@ -5,6 +5,11 @@ const bellX1: AircraftData = {
   name: 'Bell X-1',
   subtitle: 'Historic First — Breaking the sound barrier (October 14, 1947)',
   role: 'Historic rocket research aircraft',
+  heroImage: '/assets/bell-x1.svg',
+  heroImageAlt: 'Bell X-1 bullet-shaped transonic research schematic',
+  hoverImage: '/assets/bell%20X1.jpg',
+  hoverImageAlt: 'Bell X-1 research aircraft',
+  imageSource: 'https://fineartamerica.com/',
   mission: {
     problem: 'Proving human survival and control authority beyond the sound barrier (Mach 1.0) in transonic flight.',
     tradeOffs: [

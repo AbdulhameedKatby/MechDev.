@@ -110,6 +110,11 @@ export interface AircraftData {
   name: string
   subtitle: string
   role: string
+  heroImage: string
+  heroImageAlt?: string
+  hoverImage?: string
+  hoverImageAlt?: string
+  imageSource?: string
   mission: {
     problem: string
     tradeOffs: MissionTradeOff[]
@@ -122,4 +127,12 @@ export interface AircraftData {
   comparisonAircraft: AircraftPoint[]
   relatedQuestions: RelatedQuestion[]
   labs: LabDefinition[]
+}
+
+export function getAircraftImage(aircraft: AircraftData): string {
+  return aircraft.heroImage
+}
+
+export function getAircraftHoverImage(aircraft: AircraftData): string | undefined {
+  return aircraft.hoverImage
 }

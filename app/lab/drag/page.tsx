@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { computeDragSI, toMps } from '../../../lib/calculations/physics'
 import ExperimentPanel from '../../../components/ExperimentPanel'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function DragLab() {
   const router = useRouter()
@@ -92,6 +93,12 @@ export default function DragLab() {
           </label>
         </div>
       </ExperimentPanel>
+      <ModelDisclosure
+        model="Steady parasite/total drag estimate: D = 0.5 × rho × V² × S × C_D."
+        variables="Density, speed, reference area, and drag coefficient."
+        assumptions="Uniform flow, fixed C_D, SI units after conversion, and no induced, wave, or installation-drag breakdown."
+        limitations="The result is a simplified force estimate, not a wind-tunnel or flight-test value; C_D varies with Mach, Reynolds number, configuration, and angle of attack."
+      />
     </div>
   )
 }

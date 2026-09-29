@@ -5,6 +5,11 @@ const sr71: AircraftData = {
   name: 'SR-71 Blackbird',
   subtitle: 'Extreme Conditions — Mach 3.2+ cruise at 85,000 ft',
   role: 'Strategic reconnaissance',
+  heroImage: '/assets/sr71-blackbird.svg',
+  heroImageAlt: 'SR-71 Blackbird high-speed reconnaissance schematic',
+  hoverImage: '/assets/sr71%20blackbird.jpg',
+  hoverImageAlt: 'SR-71 Blackbird reconnaissance aircraft',
+  imageSource: 'https://www.lockheedmartin.com/',
   mission: {
     problem: 'Sustaining Mach 3.2+ flight at 85,000 ft where airframe kinetic friction reaches 316°C (600°F).',
     tradeOffs: [

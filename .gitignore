@@ -2,5 +2,10 @@ node_modules/
 .next/
 .next-dev/
 out/
+.vercel/
+coverage/
+*.tsbuildinfo
 .env*
 *.log
+.DS_Store
+Thumbs.db

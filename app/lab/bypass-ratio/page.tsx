@@ -9,6 +9,7 @@ import {
   relativeNoiseLevel,
   sfcVsBPR,
 } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function BypassRatioLab() {
   const [bpr, setBpr] = useState(0)
@@ -169,10 +170,10 @@ export default function BypassRatioLab() {
           {isSupersonicTurbofan ? (
             <div className="rounded-2xl border border-red-500/50 bg-red-950/20 p-5 shadow-xl text-red-200 space-y-2">
               <div className="text-xs font-bold font-mono uppercase tracking-wider text-red-400">
-                ⚠ Physical Impossibility at Mach {mach}
+                ⚠ Model caution at Mach {mach}
               </div>
               <p className="text-xs leading-relaxed">
-                A high-bypass turbofan is optimized for a different speed and mission regime. At sustained supersonic cruise, inlet compression, frontal area, nacelle drag, and engine-cycle requirements make a low/zero-bypass turbojet architecture a more suitable design choice for Concorde.
+                A high-bypass turbofan is optimized for a different speed and mission regime. At sustained supersonic cruise, inlet compression, frontal area, nacelle drag, and engine-cycle requirements can make a low/zero-bypass architecture a more suitable design direction. This simplified model does not certify an engine configuration.
               </p>
             </div>
           ) : (
@@ -181,12 +182,18 @@ export default function BypassRatioLab() {
                 Why Olympus 593 Kept BPR = 0
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Rolls-Royce chose a pure turbojet (BPR=0). While fuel consumption was 3× higher subsonically, its tiny frontal diameter kept wave drag minimal, and compressor blades could withstand sustained Mach 2 aerodynamic heating.
+                Rolls-Royce chose a pure turbojet (BPR=0) for Concorde&apos;s mission. The architecture balanced frontal area, inlet management, afterburning, and supersonic cruise requirements; this lab does not establish a universal fuel-consumption multiplier.
               </p>
             </div>
           )}
         </div>
       </div>
+      <ModelDisclosure
+        model="Illustrative bypass-ratio comparison using simplified SFC, propulsive-efficiency, and relative-noise functions."
+        variables="Bypass ratio and operating Mach number."
+        assumptions="Idealized jet velocity relationships, representative engine trends, and no aircraft-specific installation losses."
+        limitations="The model is not an engine deck or certified performance prediction; it does not capture turbine temperature limits, inlet distortion, nacelle drag, noise certification, or detailed cycle analysis."
+      />
     </div>
   )
 }

@@ -5,6 +5,11 @@ const f35b: AircraftData = {
   name: 'F-35B Lightning II',
   subtitle: 'Modern STOVL Fighter — Stealth, Mach 1.6 & 40,000 lbf shaft lift',
   role: 'Fifth-generation STOVL stealth fighter',
+  heroImage: '/assets/f35b-lightning.svg',
+  heroImageAlt: 'F-35B Lightning II STOVL fighter schematic',
+  hoverImage: '/assets/f35%20lightning%202.webp',
+  hoverImageAlt: 'F-35B Lightning II aircraft',
+  imageSource: 'https://www.codeonemagazine.com/f35_gallery_slideshow.html?gallery_id=47&gallery_style=2',
   mission: {
     problem: 'Combining stealth radar evasion, Mach 1.6 supersonic performance, and vertical landing on amphib assault ships.',
     tradeOffs: [

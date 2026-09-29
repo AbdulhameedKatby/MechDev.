@@ -3,24 +3,26 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { AircraftData } from '../lib/types'
+import { getAircraftImage } from '../lib/types'
 import TradeOffTable from './TradeOffTable'
 import DesignSpaceChart from './DesignSpaceChart'
 import SpecificationCard from './SpecificationCard'
 import DepthTabs from './DepthTabs'
-import EvidenceClaim from './EvidenceClaim'
 import EvidencePanel from './EvidencePanel'
+import Breadcrumbs from './Breadcrumbs'
 
-interface ConcordeDetailClientProps {
+interface AircraftDetailClientProps {
   aircraft: AircraftData
 }
 
-export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientProps) {
+export default function ConcordeDetailClient({ aircraft }: AircraftDetailClientProps) {
   const [selectedEvidenceId, setSelectedEvidenceId] = useState<string | null>(null)
 
   const activeEvidence = aircraft.evidence.find((e) => e.id === selectedEvidenceId)
 
   return (
     <article className="max-w-6xl mx-auto py-8 space-y-28">
+      <Breadcrumbs items={[{ label: 'Aircraft', href: '/aircraft' }, { label: aircraft.name }]} />
       {/* ─────────────────────────────────────────────────────────────
           SECTION 1: THE MISSION (With Epic Mach 2 Stratosphere Banner)
       ───────────────────────────────────────────────────────────── */}
@@ -28,11 +30,12 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
         <div className="relative rounded-3xl overflow-hidden border border-white/10 aerolab-glass shadow-2xl">
           <div className="relative w-full h-[400px] sm:h-[480px]">
             <Image
-              src="/assets/concorde_mach2_cruise.jpg"
-              alt="Concorde flying at Mach 2.04 at edge of space"
+              src={getAircraftImage(aircraft)}
+              alt={aircraft.heroImageAlt ?? `${aircraft.name} engineering schematic`}
               fill
               priority
-              className="object-cover object-center brightness-[0.75] contrast-[1.15]"
+              sizes="100vw"
+              className={`object-cover object-center brightness-[0.75] contrast-[1.15] ${aircraft.heroImage ? '' : 'object-contain p-8 opacity-80'}`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#030806] via-[#030806]/50 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#030806]/80 via-transparent to-transparent" />
@@ -42,7 +45,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
                 AIRCRAFT DEEP-DIVE // {aircraft.role}
               </span>
               <span className="text-xs font-mono text-slate-300 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                CRUISE: MACH 2.04 @ 60,000 FT
+                {aircraft.subtitle}
               </span>
             </div>
 
@@ -70,7 +73,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
 
           <div className="pt-6 border-t border-white/10">
             <div className="text-xs font-mono uppercase text-slate-400 mb-4 tracking-wider">
-              Brutal Trade-Offs Accepted to Halve Crossing Time
+              Engineering trade-offs
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {aircraft.mission.tradeOffs.map((item, idx) => (
@@ -98,7 +101,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 2: THE PHYSICS BEHIND CONCORDE'S GEOMETRY (With Wind Tunnel Vortex Art)
+          SECTION 2: AIRCRAFT-SPECIFIC ENGINEERING ARCHITECTURE
       ───────────────────────────────────────────────────────────── */}
       <section className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
@@ -107,7 +110,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
               Section 02 // Aerodynamic Genesis
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mt-1">
-              Why does Concorde have a delta wing?
+              How does {aircraft.name} answer its engineering problem?
             </h2>
           </div>
           <p className="text-xs text-slate-400 font-mono">
@@ -120,29 +123,27 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
             <div className="space-y-6">
               <div className="relative w-full h-[320px] sm:h-[400px] rounded-2xl overflow-hidden border border-white/10">
                 <Image
-                  src="/assets/concorde_delta_vortex.jpg"
-                  alt="Wind tunnel laser sheet of Concorde delta wing leading-edge vortex"
+                  src={getAircraftImage(aircraft)}
+                  alt={aircraft.heroImageAlt ?? `${aircraft.name} engineering schematic`}
                   fill
-                  className="object-cover object-center"
+                  sizes="(max-width: 640px) 100vw, 900px"
+                  className={`object-cover object-center ${aircraft.heroImage ? '' : 'object-contain p-8 opacity-80'}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#05110a] via-transparent to-black/30" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md p-4 rounded-xl border border-white/10 text-xs text-slate-200">
                   <span className="font-mono text-emerald-400 font-bold uppercase block mb-1">
                     Laser Particle Image Velocimetry (PIV) Wind Tunnel Test
                   </span>
-                  Notice the intense green coiling vortices along both 63° swept leading edges. These high-speed helical air currents energize the boundary layer, pulling air downward to prevent detachment across supersonic shock fronts.
+                  The design response is specific to the mission, operating regime, and constraints documented for this aircraft.
                 </div>
               </div>
 
               <p className="text-base text-slate-200 leading-relaxed">
-                At supersonic speed, shocks, compressibility, viscous interactions, and wave drag become tightly coupled. Delta-wing vortical flow became an important part of Concorde&apos;s aerodynamic solution, with behavior that depends on geometry, Mach number, and angle of attack.
+                {aircraft.mission.problem}
               </p>
 
               <div className="p-4 rounded-xl border border-emerald-500/30 bg-[#07190f]">
-                <EvidenceClaim evidenceId="ev-delta-wing" evidence={aircraft.evidence}>
-                  The delta wing solves this by continuously generating a controlled high-energy vortex along its swept leading edge
-                </EvidenceClaim>
-                , forcing the boundary layer to remain attached.
+                {aircraft.designSystems[0]?.solution}
               </div>
             </div>
           }
@@ -156,36 +157,36 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
               </p>
               <div className="p-4 bg-black/60 rounded-xl border border-emerald-500/20 font-mono text-xs text-emerald-300 space-y-1">
                 <div className="text-slate-400">Critical Condition:</div>
-                <div>At Mach 2.04, shock position on unswept wing = boundary layer separation point.</div>
+                <div>{aircraft.designSystems[0]?.problem}</div>
                 <div className="pt-2 text-slate-400">Governing Vortex Strength:</div>
                 <div>Γ_vortex ∝ V_infinity × c × tan(α) × cos(Λ)</div>
               </div>
               <p className="text-sm text-slate-300 leading-relaxed">
-                The 63° swept ogival delta generates strong leading-edge vortices whose suction peak provides lift independent of traditional airfoil camber, allowing stable high-speed flight.
+                {aircraft.designSystems[0]?.solution}
               </p>
             </div>
           }
           investigate={
             <div className="space-y-4">
               <h4 className="text-lg font-bold text-white font-serif">
-                NASA & BAC Flight Test Envelope Parameters
+                {aircraft.name} engineering parameters
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
                 <div className="p-4 rounded-xl bg-black/50 border border-white/10">
-                  <span className="text-slate-400 block text-[10px]">Planform Area</span>
-                  <span className="text-emerald-400 font-bold text-base">358.25 m²</span>
+                    <span className="text-slate-400 block text-[10px]">Role</span>
+                    <span className="text-emerald-400 font-bold text-base">{aircraft.role}</span>
                 </div>
                 <div className="p-4 rounded-xl bg-black/50 border border-white/10">
-                  <span className="text-slate-400 block text-[10px]">Aspect Ratio</span>
-                  <span className="text-emerald-400 font-bold text-base">1.83</span>
+                    <span className="text-slate-400 block text-[10px]">Systems</span>
+                    <span className="text-emerald-400 font-bold text-base">{aircraft.designSystems.length}</span>
                 </div>
                 <div className="p-4 rounded-xl bg-black/50 border border-white/10">
-                  <span className="text-slate-400 block text-[10px]">Leading Sweep</span>
-                  <span className="text-emerald-400 font-bold text-base">63° Ogival</span>
+                    <span className="text-slate-400 block text-[10px]">Specifications</span>
+                    <span className="text-emerald-400 font-bold text-base">{aircraft.specifications.length}</span>
                 </div>
                 <div className="p-4 rounded-xl bg-black/50 border border-white/10">
-                  <span className="text-slate-400 block text-[10px]">Thickness Ratio</span>
-                  <span className="text-emerald-400 font-bold text-base">3% (Ultra-thin)</span>
+                    <span className="text-slate-400 block text-[10px]">Evidence records</span>
+                    <span className="text-emerald-400 font-bold text-base">{aircraft.evidence.length}</span>
                 </div>
               </div>
             </div>
@@ -259,24 +260,6 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
                 )}
               </div>
 
-              {/* Special Featured Image for Propulsion (Olympus Afterburner) */}
-              {sys.id === 'propulsion' && (
-                <div className="relative w-full h-[300px] sm:h-[380px] rounded-2xl overflow-hidden border border-white/10">
-                  <Image
-                    src="/assets/olympus_engine_afterburner.jpg"
-                    alt="Rolls-Royce Olympus 593 turbojet test bench afterburner firing"
-                    fill
-                    className="object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05110a] via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md p-4 rounded-xl border border-white/10 text-xs text-slate-200">
-                    <span className="font-mono text-amber-400 font-bold uppercase block mb-1">
-                      Rolls-Royce / SNECMA Olympus 593 — Test Cell Firing
-                    </span>
-                    Notice the visible diamond shock diamonds in the supersonic exhaust plume. Sustained supersonic cruise created demanding inlet and engine-cycle conditions. Concorde used the low/zero-bypass Olympus 593 turbojet architecture with variable-geometry intake ramps rather than a conventional high-bypass turbofan.
-                  </div>
-                </div>
-              )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed">
                 <div className="space-y-2 rounded-2xl bg-black/40 p-5 border border-red-500/20">
@@ -348,14 +331,14 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
             Verifiable Research Guarantee
           </span>
           <p className="text-slate-200 leading-relaxed">
-            Every green dashed claim across AeroLab is clickable. Selecting it opens primary NASA wind tunnel reports, BAC technical memoranda, and peer-reviewed AIAA papers.
+            Evidence records and specification links show which claims have supporting source material.
           </p>
         </div>
         <button
-          onClick={() => setSelectedEvidenceId('ev-delta-wing')}
+          onClick={() => setSelectedEvidenceId(aircraft.evidence[0]?.id ?? null)}
           className="whitespace-nowrap px-6 py-3.5 rounded-xl bg-emerald-500 text-slate-950 font-mono font-black hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(0,255,136,0.3)]"
         >
-          Inspect Sample Source: NASA TN D-4607 →
+          Inspect first evidence record →
         </button>
       </section>
 
@@ -369,7 +352,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
               Section 07 // Aerodynamic Mapping
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mt-1">
-              Where Concorde Fits in the Aviation Design Space
+              Where {aircraft.name} Fits in the Aviation Design Space
             </h2>
           </div>
           <p className="text-xs text-slate-400 font-mono">
@@ -390,7 +373,7 @@ export default function ConcordeDetailClient({ aircraft }: ConcordeDetailClientP
               Section 08 // Branching Investigations
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mt-1">
-              The Questions Concorde Raises
+              The Questions {aircraft.name} Raises
             </h2>
           </div>
           <p className="text-xs text-slate-400 font-mono">

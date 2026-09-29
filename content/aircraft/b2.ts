@@ -5,6 +5,11 @@ const b2: AircraftData = {
   name: 'B-2 Spirit',
   subtitle: 'Stealth Flying Wing — Unconventional aerodynamics & radar stealth',
   role: 'Stealth strategic bomber',
+  heroImage: '/assets/b2-spirit.svg',
+  heroImageAlt: 'B-2 Spirit stealth flying-wing schematic',
+  hoverImage: '/assets/B2%20spirit.avif',
+  hoverImageAlt: 'B-2 Spirit bomber in flight',
+  imageSource: 'https://www.northropgrumman.com/',
   mission: {
     problem: 'Penetrating dense integrated air defense networks undetected while carrying 18,000 kg payload.',
     tradeOffs: [

@@ -28,10 +28,10 @@ const SEARCH_INDEX = [
   { title: 'How does the A350 save 25% fuel?',         subtitle: 'Composites + laminar flow + bypass ratio',     href: '/questions/a350-efficiency',         category: 'Question', icon: '?' },
   // Concepts
   { title: 'Supersonic Aerodynamics',                  subtitle: 'Shock waves, SBLI, drag divergence',           href: '/concepts/supersonic-aerodynamics',  category: 'Concept',  icon: '⚡' },
-  { title: 'Thermodynamics of High-Speed Flight',      subtitle: 'Kinetic heating, stagnation temperature',      href: '/concepts/thermodynamics',           category: 'Concept',  icon: '⚡' },
-  { title: 'Structural Engineering',                   subtitle: 'Fatigue, stress concentrations, Comet lessons',href: '/concepts/structural-engineering',   category: 'Concept',  icon: '⚡' },
-  { title: 'Delta Wing Aerodynamics',                  subtitle: 'Vortex lift, leading-edge separation',         href: '/concepts/delta-wing-aerodynamics',  category: 'Concept',  icon: '⚡' },
-  { title: 'Propulsion Systems',                       subtitle: 'Turbojets, ramjets, bypass ratio',             href: '/concepts/propulsion',               category: 'Concept',  icon: '⚡' },
+  { title: 'Thermodynamics of High-Speed Flight',      subtitle: 'Kinetic heating, stagnation temperature',      href: '/concepts/propulsion-thermo',        category: 'Concept',  icon: '⚡' },
+  { title: 'Structural Engineering',                   subtitle: 'Fatigue, stress concentrations, Comet lessons',href: '/concepts/structural-scaling',       category: 'Concept',  icon: '⚡' },
+  { title: 'Delta Wing Aerodynamics',                  subtitle: 'Vortex lift, leading-edge separation',         href: '/concepts/supersonic-aerodynamics',  category: 'Concept',  icon: '⚡' },
+  { title: 'Propulsion Systems',                       subtitle: 'Turbojets, ramjets, bypass ratio',             href: '/concepts/propulsion-thermo',        category: 'Concept',  icon: '⚡' },
   { title: 'Fly-By-Wire',                              subtitle: 'Static margin, quad redundancy, FBW loop',     href: '/concepts/fly-by-wire',              category: 'Concept',  icon: '⚡' },
   { title: 'VTOL Mechanics',                           subtitle: 'Momentum theory, thermal fountain, puffers',   href: '/concepts/vtol-mechanics',           category: 'Concept',  icon: '⚡' },
   { title: 'Structural Scaling',                       subtitle: 'Hoop stress, Comet K_t factor',                href: '/concepts/structural-scaling',       category: 'Concept',  icon: '⚡' },
@@ -114,10 +114,11 @@ export default function SiteHeader() {
           </div>
 
           <nav className="hidden lg:flex items-center gap-1.5 p-1.5 rounded-full bg-[#040118]/80 border border-white/10 shadow-inner">
-            <Link href="/aircraft/concorde" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Deep-Dive</Link>
+            <Link href="/aircraft" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Aircraft</Link>
             <Link href="/questions" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Questions</Link>
             <Link href="/concepts" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Concepts</Link>
             <Link href="/lab" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Labs</Link>
+            <Link href="/sources" className="px-5 py-2 rounded-full text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#0e9954]/25 hover:shadow-[0_0_20px_rgba(14,153,84,0.35)] transition-all duration-150">Sources</Link>
           </nav>
 
           {/* ── Search Button (desktop) ─────────────────────────── */}
@@ -315,6 +316,9 @@ export default function SiteHeader() {
                 <Link href="/questions" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Questions</Link>
                 <Link href="/concepts" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Physics Concepts</Link>
                 <Link href="/lab" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Interactive Labs</Link>
+                <Link href="/sources" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Source Library</Link>
+                <Link href="/methodology" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Methodology</Link>
+                <Link href="/about" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">About MechDev.</Link>
               </nav>
             </div>
           </div>

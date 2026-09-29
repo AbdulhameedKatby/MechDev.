@@ -5,6 +5,11 @@ const x59: AircraftData = {
   name: 'NASA X-59 QueSST',
   subtitle: 'Quiet Supersonic Experiment — Shaped sonic boom (75 PLdB)',
   role: 'Experimental supersonic research',
+  heroImage: '/assets/x59-quesst.svg',
+  heroImageAlt: 'NASA X-59 QueSST long slender low-boom schematic',
+  hoverImage: '/assets/nasa%20x-59%20quesst.jpg',
+  hoverImageAlt: 'NASA X-59 QueSST research aircraft',
+  imageSource: 'https://www.nasa.gov/gallery/quesst/page/4/',
   mission: {
     problem: 'Demonstrating quiet supersonic flight over land by suppressing the N-wave sonic boom to an acceptable 75 PLdB ground rumble.',
     tradeOffs: [

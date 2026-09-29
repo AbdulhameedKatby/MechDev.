@@ -5,6 +5,11 @@ const a350: AircraftData = {
   name: 'Airbus A350-1000',
   subtitle: 'Modern Efficiency — 53% CFRP airframe & 8,700 nm range',
   role: 'Long-range commercial transport',
+  heroImage: '/assets/a350-1000.svg',
+  heroImageAlt: 'Airbus A350-1000 composite wide-body schematic',
+  hoverImage: '/assets/Airbus-A350-1000.webp',
+  hoverImageAlt: 'Airbus A350 aircraft in flight',
+  imageSource: 'https://www.airbus.com/',
   mission: {
     problem: 'Flying 8,700 nautical miles with 350+ passengers while reducing fuel burn per seat by 25% compared to older aluminum wide-bodies.',
     tradeOffs: [

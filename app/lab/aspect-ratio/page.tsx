@@ -4,6 +4,7 @@ import Link from 'next/link'
 import LabSlider from '../../../components/LabSlider'
 import LabChart, { Marker } from '../../../components/LabChart'
 import { computeInducedDragCoeff, inducedDragVsAR } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function AspectRatioLab() {
   const [ar, setAr] = useState(1.83)
@@ -111,6 +112,20 @@ export default function AspectRatioLab() {
             formatX={(v) => v.toFixed(1)}
             formatY={(v) => v.toFixed(3)}
             height={320}
+          />
+
+          <div className="rounded-2xl border border-cyan-500/25 bg-[#071126] p-5 text-xs leading-relaxed text-slate-300">
+            <div className="font-mono text-[10px] uppercase tracking-wider text-cyan-300">Calculation trail</div>
+            <p className="mt-2 font-mono text-slate-200">C_Di = C_L² / (π × AR × e)</p>
+            <p className="mt-2 text-slate-400">Substitution: {cl.toFixed(2)}² / (π × {ar.toFixed(2)} × 0.80) = {currentCDi.toFixed(4)}</p>
+            <p className="mt-2 text-slate-500">Model result, not a measured aircraft drag coefficient.</p>
+          </div>
+
+          <ModelDisclosure
+            model="Incompressible induced-drag estimate using a constant Oswald efficiency factor."
+            variables="C_L, aspect ratio (AR), and span efficiency (e)."
+            assumptions="Steady level flight; fixed e = 0.80; no compressibility, viscous profile drag, wave drag, or ground effect."
+            limitations="The result isolates induced drag only. It cannot predict total aircraft drag, takeoff performance, or supersonic behavior."
           />
         </div>
 

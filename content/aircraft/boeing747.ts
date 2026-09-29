@@ -5,6 +5,11 @@ const boeing747: AircraftData = {
   name: 'Boeing 747-400',
   subtitle: 'The Wide-Body Revolution — Transatlantic scale & efficiency',
   role: 'Long-range commercial transport',
+  heroImage: '/assets/boeing-747.svg',
+  heroImageAlt: 'Boeing 747-400 four-engine wide-body schematic',
+  hoverImage: '/assets/boeing-747-400.webp',
+  hoverImageAlt: 'Boeing 747-400 aircraft in flight',
+  imageSource: 'https://readyfortakeoffbook.com/',
   mission: {
     problem: 'Carrying 400+ passengers across intercontinental distances at high subsonic speed with viable per-seat economics.',
     tradeOffs: [

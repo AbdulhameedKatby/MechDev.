@@ -1,7 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-  <rect width="100%" height="100%" fill="#0F141D" />
-  <g transform="translate(100,200) scale(0.8)" fill="#00D9FF">
-    <path d="M0 100 C200 50 400 50 600 100 C700 120 900 130 1000 120 L980 110 C840 100 760 80 600 80 C450 80 300 90 140 120 Z" opacity="0.9"/>
-    <rect x="580" y="70" width="260" height="10" rx="5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Concorde engineering schematic</title>
+  <desc id="desc">Technical planform drawing of the Concorde with its slender fuselage, ogival delta wing, four engines, and tail.</desc>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#7dd3fc" stroke-opacity=".12"/>
+    </pattern>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="675" fill="#07152a"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+
+  <g fill="none" stroke="#72e0e8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <!-- Slender ogival fuselage, nose to tail -->
+    <path d="M70 337 C112 326 155 321 225 320 L870 320 C956 320 1035 325 1102 337 C1035 349 956 354 870 354 L225 354 C155 353 112 348 70 337Z" stroke-width="4"/>
+    <!-- Concorde's distinctive curved delta wing -->
+    <path d="M360 321 C430 267 520 219 675 202 C630 246 594 286 570 320" stroke-width="4"/>
+    <path d="M360 353 C430 407 520 455 675 472 C630 428 594 388 570 354" stroke-width="4"/>
+    <!-- Inner wing and elevon breaks -->
+    <path d="M470 321 C520 286 570 258 625 239 M470 353 C520 388 570 416 625 435" stroke-width="2" opacity=".8"/>
+    <path d="M625 239 677 202 M625 435 677 472" stroke-width="2" opacity=".8"/>
+    <!-- Four engine nacelles beneath the wing -->
+    <path d="M505 300h112l24 12H505Z M505 374h112l24-12H505Z" stroke-width="3"/>
+    <path d="M530 300v-13h62v13 M530 374v13h62v-13" stroke-width="2"/>
+    <path d="M642 312h22 M642 362h22" stroke-width="3"/>
+    <!-- Vertical tail and rudder -->
+    <path d="M875 321 920 238 948 230 925 321 M875 353 920 436 948 444 925 353" stroke-width="3"/>
+    <!-- Drooped nose and cockpit windows -->
+    <path d="M70 337 45 347 70 337 45 327Z" stroke-width="3"/>
+    <path d="M116 326h48l18 10-18 10h-48" stroke-width="2"/>
+    <!-- Centerline and landing reference -->
+    <path d="M220 337h690" stroke="#f2c879" stroke-width="2" stroke-dasharray="10 10" opacity=".7"/>
+    <path d="M470 300v-24 M600 300v-24 M470 374v24 M600 374v24" stroke="#f2c879" stroke-width="2"/>
+  </g>
+
+  <g fill="#8be9c1" font-family="monospace" font-size="18" letter-spacing="2" opacity=".9">
+    <text x="72" y="76">CONCORDE // MACH 2.04 DELTA TRANSPORT</text>
+    <text x="78" y="565">OGIVAL DELTA WING</text>
+    <text x="505" y="610">4 × OLYMPUS 593 TURBOJETS</text>
+    <text x="900" y="565">TWIN RUDDER TAIL</text>
+  </g>
+  <g fill="none" stroke="#7dd3fc" stroke-width="2" opacity=".55">
+    <path d="M230 525h460M230 515v20M690 515v20"/>
+    <path d="M500 165h220M500 155v20M720 155v20"/>
   </g>
 </svg>

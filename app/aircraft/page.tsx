@@ -1,7 +1,9 @@
 ﻿'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { aircraftList } from '../../content/aircraftRegistry'
+import { getAircraftHoverImage, getAircraftImage } from '../../lib/types'
 
 // Category definitions
 const CATEGORIES = [
@@ -55,6 +57,67 @@ const DISCIPLINE_COLOR: Record<string, string> = {
   'Fundamentals':      'text-green-300   border-green-400/30   bg-green-400/10',
 }
 
+function AircraftVisual({ plane }: { plane: (typeof aircraftList)[number] }) {
+  const visualRef = useRef<HTMLDivElement>(null)
+  const [isNearViewport, setIsNearViewport] = useState(false)
+
+  useEffect(() => {
+    const visual = visualRef.current
+    if (!visual) return
+
+    if (!('IntersectionObserver' in window)) {
+      setIsNearViewport(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsNearViewport(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '240px 0px' },
+    )
+
+    observer.observe(visual)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div ref={visualRef} className="aircraft-card-visual relative -mx-5 -mt-5 h-44 overflow-hidden rounded-t-2xl border-b border-white/10 bg-[#040118]">
+      <Image
+        src={getAircraftImage(plane)}
+        alt={`${plane.name} engineering archive image`}
+        fill
+        loading="lazy"
+        decoding="async"
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+        className="aircraft-card-visual__schematic absolute inset-0 z-10 object-cover object-center"
+      />
+      {isNearViewport && getAircraftHoverImage(plane) && (
+        <Image
+          src={getAircraftHoverImage(plane)!}
+          alt={plane.hoverImageAlt ?? `${plane.name} in flight`}
+          fill
+          loading="lazy"
+          decoding="async"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          unoptimized
+          className="aircraft-card-visual__photo absolute inset-0 z-0 object-cover object-center"
+          onError={(event) => {
+            const photo = event.currentTarget
+            photo.style.display = 'none'
+            photo.closest('.aircraft-card-visual')?.setAttribute('data-photo-failed', 'true')
+          }}
+        />
+      )}
+      <div className="aircraft-card-visual__wash pointer-events-none absolute inset-0 z-20" />
+      <div className="aircraft-card-visual__reticle pointer-events-none absolute inset-0 z-30" />
+    </div>
+  )
+}
+
 export default function AircraftIndex() {
   const [activeCategory, setActiveCategory] = useState('all')
 
@@ -99,6 +162,7 @@ export default function AircraftIndex() {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
+            aria-pressed={activeCategory === cat.id}
             className={`px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-75 border ${
               activeCategory === cat.id
                 ? 'bg-emerald-500 text-slate-950 border-emerald-500'
@@ -124,7 +188,7 @@ export default function AircraftIndex() {
             <Link
               key={plane.slug}
               href={`/aircraft/${plane.slug}`}
-              className={`group relative rounded-2xl border p-5 flex flex-col gap-4 transition-all duration-75 aerolab-glass no-underline ${
+              className={`aircraft-card group relative rounded-2xl border p-5 flex flex-col gap-4 transition-all duration-75 aerolab-glass no-underline ${
                 isFeatured
                   ? 'border-emerald-500/50 shadow-[0_0_30px_rgba(14,153,84,0.15)]'
                   : 'border-white/10 hover:border-emerald-500/25'
@@ -137,6 +201,8 @@ export default function AircraftIndex() {
                   </span>
                 </div>
               )}
+
+              <AircraftVisual plane={plane} />
 
               {/* Top badges */}
               <div className="flex flex-wrap items-center gap-2">

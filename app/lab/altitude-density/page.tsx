@@ -3,6 +3,7 @@ import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import LabSlider from '../../../components/LabSlider'
 import { computeStandardAtmosphere } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function AltitudeDensityLab() {
   const [altitudeFt, setAltitudeFt] = useState(35000)
@@ -170,6 +171,12 @@ export default function AltitudeDensityLab() {
           </div>
         </div>
       </div>
+      <ModelDisclosure
+        model="International Standard Atmosphere layer and dynamic-pressure calculation."
+        variables="Geometric altitude, Mach number, temperature, density, speed of sound, and true airspeed."
+        assumptions="Standard atmosphere, no weather variation, and ideal-gas acoustic relations."
+        limitations="Does not represent real-day atmosphere, humidity, wind, temperature offsets, compressibility corrections beyond the selected model, or aircraft performance."
+      />
     </div>
   )
 }

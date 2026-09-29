@@ -5,6 +5,11 @@ const comet: AircraftData = {
   name: 'De Havilland Comet',
   subtitle: 'Jet Age Pioneer — Structural fatigue & pressurization lessons',
   role: 'Pioneering commercial jetliner',
+  heroImage: '/assets/comet.svg',
+  heroImageAlt: 'De Havilland Comet early jetliner schematic',
+  hoverImage: '/assets/De_Havilland__Comet.jpg',
+  hoverImageAlt: 'De Havilland Comet jetliner',
+  imageSource: 'https://www.gettyimages.com/',
   mission: {
     problem: 'Pioneering passenger jet service in 1952 at 40,000 ft altitude with 0.57 bar cabin pressurization.',
     tradeOffs: [

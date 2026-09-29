@@ -5,6 +5,11 @@ const spaceShipOne: AircraftData = {
   name: 'SpaceShipOne',
   subtitle: 'Suborbital Spaceflight — Feathering re-entry & hybrid rocket engine',
   role: 'Suborbital commercial spacecraft',
+  heroImage: '/assets/spaceshipone.svg',
+  heroImageAlt: 'SpaceShipOne feathered re-entry spaceplane schematic',
+  hoverImage: '/assets/space%20ship%20one.jpg',
+  hoverImageAlt: 'SpaceShipOne on display with wings feathered',
+  imageSource: 'https://airandspace.si.edu/collection-objects/spaceshipone/nasm_A20050459000',
   mission: {
     problem: 'Climbing to 100 km altitude (the Kármán line boundary of space) and re-entering atmosphere safely without complex computer control.',
     tradeOffs: [

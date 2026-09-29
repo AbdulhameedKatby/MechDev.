@@ -5,6 +5,11 @@ const concorde: AircraftData = {
   name: 'Concorde',
   subtitle: 'Supersonic transport — Mach 2.04 across the Atlantic',
   role: 'Supersonic transport',
+  heroImage: '/assets/concorde-hero.svg',
+  heroImageAlt: 'Concorde technical aircraft schematic',
+  hoverImage: '/assets/Concorde.jpg',
+  hoverImageAlt: 'Concorde real aircraft photograph',
+  imageSource: 'Local asset supplied by the project owner',
 
   // ═══════════════════════════════════════════════════════════════════
   // SECTION 1: THE MISSION

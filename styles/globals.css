@@ -50,6 +50,135 @@ body {
   line-height: 1.65;
 }
 
+/* Lightweight global scene: CSS layers keep the effect off the main thread and out of layout. */
+.space-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 75% 60% at 50% -15%, rgba(37, 20, 118, 0.5), transparent 72%),
+    linear-gradient(145deg, #02010e 0%, #08042a 52%, #100728 100%);
+}
+
+.space-background::before,
+.space-background::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+}
+
+.space-background::before {
+  background: radial-gradient(ellipse at 20% 20%, rgba(14, 153, 84, 0.08), transparent 32%);
+  animation: space-drift 26s ease-in-out infinite alternate;
+}
+
+.space-background::after {
+  background: radial-gradient(ellipse at 80% 72%, rgba(104, 73, 220, 0.12), transparent 34%);
+  animation: space-drift-reverse 34s ease-in-out infinite alternate;
+}
+
+.space-background__stars {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  will-change: transform, opacity;
+}
+
+.space-background__stars--far {
+  opacity: 0.42;
+  background-image:
+    radial-gradient(circle at 12px 18px, rgba(255,255,255,0.75) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 88px 72px, rgba(148,163,255,0.6) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 164px 34px, rgba(255,255,255,0.5) 0 0.8px, transparent 1.3px);
+  background-size: 210px 150px, 280px 210px, 340px 260px;
+  animation: star-drift 48s linear infinite, star-twinkle 7s ease-in-out infinite;
+}
+
+.space-background__stars--near {
+  opacity: 0.7;
+  background-image:
+    radial-gradient(circle at 34px 42px, rgba(255,255,255,0.95) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 142px 112px, rgba(110,231,183,0.8) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 246px 64px, rgba(191,219,254,0.85) 0 1.4px, transparent 2px);
+  background-size: 320px 240px, 410px 310px, 530px 370px;
+  animation: star-drift-reverse 72s linear infinite, star-twinkle 5s ease-in-out infinite reverse;
+}
+
+.space-background__nebula {
+  position: absolute;
+  top: 14%;
+  right: -10%;
+  width: min(42vw, 540px);
+  height: min(42vw, 540px);
+  border: 1px solid rgba(110, 231, 183, 0.08);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,153,84,0.1), rgba(21,12,71,0.03) 52%, transparent 70%);
+  filter: blur(1px);
+  opacity: 0.8;
+  animation: nebula-pulse 12s ease-in-out infinite;
+}
+
+.space-background__orbit {
+  position: absolute;
+  top: 15%;
+  right: 8%;
+  width: clamp(170px, 22vw, 330px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(148, 163, 255, 0.16);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+  animation: orbit-tilt 20s ease-in-out infinite alternate;
+}
+
+.space-background__orbit::before {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border: 1px dashed rgba(110, 231, 183, 0.18);
+  border-radius: 50%;
+}
+
+.space-background__moon {
+  position: absolute;
+  top: 50%;
+  left: -13px;
+  width: clamp(22px, 3vw, 42px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #eef2ff 0 8%, #a7b0d1 38%, #4d5580 72%, #1b1b3d 100%);
+  box-shadow: 0 0 22px rgba(148, 163, 255, 0.5), inset -7px -4px 10px rgba(5, 2, 26, 0.55);
+  transform: translateY(-50%);
+  animation: moon-orbit 20s linear infinite;
+}
+
+.space-background__scanline {
+  position: absolute;
+  inset: 0;
+  opacity: 0.13;
+  background: linear-gradient(to bottom, transparent 0, rgba(255,255,255,0.08) 50%, transparent 51%);
+  background-size: 100% 8px;
+  mix-blend-mode: screen;
+}
+
+@keyframes star-drift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-32px, 22px, 0); } }
+@keyframes star-drift-reverse { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(26px, -18px, 0); } }
+@keyframes star-twinkle { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+@keyframes space-drift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 2%, 0) scale(1.08); } }
+@keyframes space-drift-reverse { from { transform: translate3d(2%, 1%, 0) scale(1.04); } to { transform: translate3d(-2%, -2%, 0) scale(1); } }
+@keyframes nebula-pulse { 0%, 100% { opacity: 0.5; transform: scale(0.96); } 50% { opacity: 0.9; transform: scale(1.04); } }
+@keyframes orbit-tilt { from { transform: rotate(-20deg) scale(0.98); } to { transform: rotate(-14deg) scale(1.03); } }
+@keyframes moon-orbit { from { transform: rotate(0deg) translateY(-50%); } to { transform: rotate(360deg) translateY(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .space-background *, .space-background::before, .space-background::after {
+    animation: none !important;
+  }
+}
+
 .container {
   width: 100%;
   max-width: 1180px;
@@ -109,6 +238,106 @@ code, kbd, samp, pre, .font-mono {
 .aerolab-glass:hover {
   border-color: rgba(14, 153, 84, 0.65);
   box-shadow: 0 20px 48px rgba(2, 0, 12, 0.9), 0 0 28px rgba(14, 153, 84, 0.25);
+}
+
+/* Aircraft archive reveal: the technical plate dissolves into the field photograph. */
+.aircraft-card-visual {
+  isolation: isolate;
+  perspective: 900px;
+}
+
+.aircraft-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 560px;
+}
+
+.aircraft-card-visual__schematic,
+.aircraft-card-visual__photo,
+.aircraft-card-visual__wash,
+.aircraft-card-visual__reticle {
+  transition-property: opacity, transform, filter;
+  transition-duration: 700ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.aircraft-card-visual__schematic {
+  transform: scale(1.015);
+  filter: saturate(1.08) brightness(0.92);
+}
+
+.aircraft-card-visual__photo {
+  opacity: 0;
+  transform: scale(1.12);
+  filter: saturate(0.82) brightness(0.66) blur(10px);
+}
+
+.aircraft-card-visual__wash {
+  background:
+    linear-gradient(180deg, rgba(4, 1, 24, 0.04) 0%, rgba(4, 1, 24, 0.12) 42%, rgba(4, 1, 24, 0.94) 100%),
+    linear-gradient(90deg, rgba(4, 1, 24, 0.2), transparent 35%, rgba(4, 1, 24, 0.18));
+  transition-property: opacity, background;
+}
+
+.aircraft-card-visual__reticle {
+  opacity: 0.58;
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgba(110, 231, 183, 0.32) 50%, transparent 50.2%),
+    linear-gradient(0deg, transparent 49.8%, rgba(110, 231, 183, 0.22) 50%, transparent 50.2%);
+  background-size: 100% 100%, 100% 100%;
+  mix-blend-mode: screen;
+}
+
+.group:hover .aircraft-card-visual__schematic,
+.group:focus-visible .aircraft-card-visual__schematic,
+.group:focus-within .aircraft-card-visual__schematic {
+  opacity: 0;
+  transform: scale(0.96);
+  filter: saturate(0.5) brightness(0.7) blur(5px);
+}
+
+.group:hover .aircraft-card-visual__photo,
+.group:focus-visible .aircraft-card-visual__photo,
+.group:focus-within .aircraft-card-visual__photo {
+  opacity: 1;
+  transform: scale(1);
+  filter: saturate(1.06) brightness(0.82) blur(0);
+}
+
+.group:hover .aircraft-card-visual__wash,
+.group:focus-visible .aircraft-card-visual__wash,
+.group:focus-within .aircraft-card-visual__wash {
+  background:
+    linear-gradient(180deg, rgba(4, 1, 24, 0.02) 0%, rgba(4, 1, 24, 0.08) 42%, rgba(4, 1, 24, 0.88) 100%),
+    linear-gradient(90deg, rgba(4, 1, 24, 0.14), transparent 35%, rgba(4, 1, 24, 0.12));
+}
+
+.group:hover .aircraft-card-visual__reticle,
+.group:focus-visible .aircraft-card-visual__reticle,
+.group:focus-within .aircraft-card-visual__reticle {
+  opacity: 0.08;
+}
+
+/* A remote source can disappear or block hotlinking. Keep the card visual intact. */
+.aircraft-card-visual[data-photo-failed='true'] .aircraft-card-visual__photo {
+  display: none;
+}
+
+.aircraft-card-visual[data-photo-failed='true'] .aircraft-card-visual__schematic,
+.aircraft-card-visual[data-photo-failed='true'] .aircraft-card-visual__schematic:hover,
+.aircraft-card-visual[data-photo-failed='true']:hover .aircraft-card-visual__schematic,
+.aircraft-card-visual[data-photo-failed='true']:focus-within .aircraft-card-visual__schematic {
+  opacity: 1;
+  transform: scale(1.015);
+  filter: saturate(1.08) brightness(0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aircraft-card-visual__schematic,
+  .aircraft-card-visual__photo,
+  .aircraft-card-visual__wash,
+  .aircraft-card-visual__reticle {
+    transition-duration: 0.01ms;
+  }
 }
 
 /* Tactical HUD Accents */

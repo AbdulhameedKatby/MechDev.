@@ -5,6 +5,11 @@ const a380: AircraftData = {
   name: 'Airbus A380-800',
   subtitle: 'Massive Scale — 575,000 kg MTOW double-deck mega-liner',
   role: 'Ultra-large commercial transport',
+  heroImage: '/assets/a380-800.svg',
+  heroImageAlt: 'Airbus A380-800 double-deck superjumbo schematic',
+  hoverImage: '/assets/airbus_a380.jpg',
+  hoverImageAlt: 'Airbus A380 aircraft on the ground',
+  imageSource: 'https://www.airbus.com/',
   mission: {
     problem: 'Transporting up to 853 passengers in a double-deck layout on high-density hub-to-hub global routes.',
     tradeOffs: [

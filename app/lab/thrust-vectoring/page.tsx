@@ -3,6 +3,7 @@ import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import LabSlider from '../../../components/LabSlider'
 import { computeVectorDecomposition } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function ThrustVectoringLab() {
   const [angle, setAngle] = useState(90)
@@ -195,6 +196,12 @@ export default function ThrustVectoringLab() {
           </div>
         </div>
       </div>
+      <ModelDisclosure
+        model="Ideal thrust-vector decomposition with a separately scaled illustrative wing-lift estimate."
+        variables="Nozzle angle, thrust, airspeed, and assumed aircraft weight."
+        assumptions="Constant thrust, ideal sine/cosine vector components, and wing lift proportional to airspeed squared."
+        limitations="The transition result is not a flight-control or propulsion certification model; it omits inlet losses, engine response, ground effect, attitude, and real lift curves."
+      />
     </div>
   )
 }

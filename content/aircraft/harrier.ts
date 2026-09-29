@@ -5,6 +5,11 @@ const harrier: AircraftData = {
   name: 'Harrier GR.9',
   subtitle: 'Vectored Thrust VTOL — Runway-independent tactical strike',
   role: 'V/STOL strike fighter',
+  heroImage: '/assets/harrier-vtol.svg',
+  heroImageAlt: 'Harrier GR.9 vectoring-nozzle VTOL schematic',
+  hoverImage: '/assets/harrier%20gr9.jpg',
+  hoverImageAlt: 'Harrier GR.9 aircraft',
+  imageSource: 'https://www.jetphotos.com/aircraft/British%20Aerospace%20Harrier%20GR.9',
   mission: {
     problem: 'Operating from unprepared forward forest clearings and small ships without runways while maintaining 550 knot strike speed.',
     tradeOffs: [

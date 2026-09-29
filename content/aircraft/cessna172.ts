@@ -5,6 +5,11 @@ const cessna172: AircraftData = {
   name: 'Cessna 172 Skyhawk',
   subtitle: 'Simple & Stable — The most produced aircraft in history (44,000+)',
   role: 'General aviation & trainer',
+  heroImage: '/assets/cessna-172.svg',
+  heroImageAlt: 'Cessna 172 Skyhawk high-wing trainer schematic',
+  hoverImage: '/assets/cessna%20172%20skyhawk.jpg',
+  hoverImageAlt: 'Cessna 172 Skyhawk aircraft',
+  imageSource: 'https://simpleflying.com/',
   mission: {
     problem: 'Providing docile, safe, and highly forgiving flight characteristics for pilot training.',
     tradeOffs: [

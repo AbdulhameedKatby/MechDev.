@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { computeLiftSI, toMps } from '../../../lib/calculations/physics'
 import ExperimentPanel from '../../../components/ExperimentPanel'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function LiftLab() {
   const router = useRouter()
@@ -71,6 +72,12 @@ export default function LiftLab() {
             </label>
           </div>
         </ExperimentPanel>
+        <ModelDisclosure
+          model="Steady lift estimate: L = 0.5 × rho × V² × S × C_L."
+          variables="Density, speed, reference area, and lift coefficient."
+          assumptions="Uniform flow, fixed C_L, SI units after conversion, and no unsteady or compressibility correction."
+          limitations="This is a simplified aerodynamic force estimate, not a measured aircraft lift result; C_L depends on geometry, angle of attack, Mach number, Reynolds number, and configuration."
+        />
       </div>
     </div>
   )

@@ -8,6 +8,14 @@ module.exports = (phase) => ({
     cpus: 1,
     workerThreads: false,
   },
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'commons.wikimedia.org' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
+      { protocol: 'https', hostname: 'www.codeonemagazine.com' },
+      { protocol: 'https', hostname: 'ids.si.edu' },
+    ],
+  },
   webpack: (config, { dev }) => {
     if (dev) {
       config.cache = false

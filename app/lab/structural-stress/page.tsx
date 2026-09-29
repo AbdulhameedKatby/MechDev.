@@ -7,6 +7,7 @@ import LabSlider from '../../../components/LabSlider';
 // Fallback if the real computeHoopStress doesn't exist, we use the requested import path.
 // But we'll also implement a local fallback function just in case it's a mock.
 import { computeHoopStress } from '../../../lib/calculations/physics';
+import ModelDisclosure from '../../../components/ModelDisclosure';
 
 const PRESETS = {
   cessna172: { name: 'Cessna 172', diameter: 1.1, pressure: 0, thickness: 0.8, material: 'Aluminium' as const },
@@ -229,6 +230,12 @@ export default function FuselageStructuralStressLab() {
         </div>
 
       </div>
+      <ModelDisclosure
+        model="Thin-walled cylindrical pressure-vessel hoop-stress estimate with a square-window stress concentration illustration."
+        variables="Differential pressure, fuselage radius, wall thickness, material, and concentration factor."
+        assumptions="Uniform thin wall, cylindrical geometry, static pressure differential, and simplified local stress concentration."
+        limitations="Does not predict fatigue life, crack growth, joints, frames, cut-outs, composite anisotropy, or certification margins."
+      />
     </div>
   );
 }

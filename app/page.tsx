@@ -1,7 +1,8 @@
-import React from 'react'
+﻿import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { aircraftList } from '../content/aircraftRegistry'
+import EngineerBanner from '../components/EngineerBanner'
 
 const labCount = 10
 const linkedSourceCount = aircraftList.reduce(
@@ -11,7 +12,7 @@ const linkedSourceCount = aircraftList.reduce(
 
 export default function HomePage() {
   return (
-    <div className="max-w-6xl mx-auto py-8 space-y-28">
+    <div className="max-w-6xl mx-auto py-8 space-y-24">
       {/* ─────────────────────────────────────────────────────────────
           HERO SECTION WITH CINEMATIC PHOTOREALISTIC CONCORDE
       ───────────────────────────────────────────────────────────── */}
@@ -220,6 +221,11 @@ export default function HomePage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
+          ENGINEER SPOTLIGHT & LINKEDIN BANNER
+      ───────────────────────────────────────────────────────────── */}
+      <EngineerBanner />
+
+      {/* ─────────────────────────────────────────────────────────────
           FEATURED LAB HIGHLIGHT: INTERACTIVE WORKSTATIONS
       ───────────────────────────────────────────────────────────── */}
       <section className="rounded-3xl border border-[#0e9954]/40 bg-gradient-to-br from-[#110654] via-[#0a033b] to-[#05011d] p-8 sm:p-12 shadow-2xl relative overflow-hidden">
@@ -230,7 +236,7 @@ export default function HomePage() {
             <span className="inline-block px-3 py-1 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider">
               Interactive Physics Workstation
             </span>
-            <h3 className="text-3xl font-bold text-white font-serif">
+            <h3 className="text-3xl font-bold text-[#EDF7EF] font-serif">
               Ten repeatable labs. Isolate one variable and observe the consequence.
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">

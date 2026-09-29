@@ -5,6 +5,11 @@ const f16: AircraftData = {
   name: 'F-16 Fighting Falcon',
   subtitle: 'Unstable by Design — Relaxed static stability & 9G agility',
   role: 'Multirole fighter',
+  heroImage: '/assets/f16-falcon.svg',
+  heroImageAlt: 'F-16 Fighting Falcon cropped-delta fighter schematic',
+  hoverImage: '/assets/f16%20flight%20falcon.avif',
+  hoverImageAlt: 'F-16 Fighting Falcon in flight',
+  imageSource: 'https://www.af.mil/',
   mission: {
     problem: 'Achieving unprecedented turn rates, vertical climb acceleration, and dogfight agility by sacrificing aerodynamic stability.',
     tradeOffs: [

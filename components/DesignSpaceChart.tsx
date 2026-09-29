@@ -8,10 +8,10 @@ interface DesignSpaceChartProps {
 
 export default function DesignSpaceChart({ aircraft }: DesignSpaceChartProps) {
   const [selectedOne, setSelectedOne] = useState<AircraftPoint | null>(
-    aircraft.find((a) => a.name.includes('Concorde')) || null
+    aircraft[0] || null
   )
   const [selectedTwo, setSelectedTwo] = useState<AircraftPoint | null>(
-    aircraft.find((a) => a.name.includes('787')) || null
+    aircraft[1] || null
   )
 
   // Bounds
@@ -309,7 +309,7 @@ export default function DesignSpaceChart({ aircraft }: DesignSpaceChartProps) {
       {/* Engineering Insight */}
       <div className="mt-4 p-4 rounded-xl border border-white/10 bg-[#040118] text-xs text-slate-300 leading-relaxed">
         <span className="text-[#0e9954] font-bold font-mono mr-2">PHYSICS INSIGHT:</span>
-        Concorde stands isolated in the upper-left quadrant (AR = 1.83, Mach 2.04). Commercial airliners (like Boeing 787, AR = 10.2) cluster in the high-AR subsonic efficiency region to minimize induced drag. Concorde sacrificed aspect ratio and fuel burn entirely to prevent shock wave detachment and flutter at Mach 2.
+        Lower aspect ratio generally increases induced drag in subsonic flight, while higher maximum Mach numbers expose the aircraft to stronger compressibility and wave-drag effects. The plotted points show how these competing constraints vary across the supplied comparison set.
       </div>
     </div>
   )

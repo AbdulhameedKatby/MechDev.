@@ -4,17 +4,19 @@ import Link from 'next/link'
 import LabSlider from '../../../components/LabSlider'
 import LabChart, { Marker } from '../../../components/LabChart'
 import { computeClimbRate, computeSustainedG } from '../../../lib/calculations/physics'
+import ModelDisclosure from '../../../components/ModelDisclosure'
 
 export default function ThrustToWeightLab() {
   const [twRatio, setTwRatio] = useState(1.04)
   const [ldRatio, setLdRatio] = useState(10)
+  const [speedMps, setSpeedMps] = useState(250)
 
   // Calculations
   const vertAccelG = useMemo(() => (twRatio - 1.0).toFixed(2), [twRatio])
-  const climbRateFtMin = useMemo(() => computeClimbRate(twRatio, 250, ldRatio).toFixed(0), [twRatio, ldRatio])
+  const climbRateFtMin = useMemo(() => computeClimbRate(twRatio, speedMps, ldRatio).toFixed(0), [twRatio, speedMps, ldRatio])
   const sustainedG = useMemo(() => computeSustainedG(twRatio, Math.min(6, ldRatio)).toFixed(1), [twRatio, ldRatio])
   const timeTo30kSec = useMemo(() => {
-    const rate = computeClimbRate(twRatio, 250, ldRatio)
+    const rate = computeClimbRate(twRatio, speedMps, ldRatio)
     if (rate <= 0) return '∞'
     return (30000 / (rate / 60)).toFixed(0)
   }, [twRatio, ldRatio])
@@ -77,6 +79,16 @@ export default function ThrustToWeightLab() {
               onChange={setLdRatio}
             />
 
+            <LabSlider
+              label="Reference True Airspeed for Climb Model"
+              min={80}
+              max={320}
+              step={5}
+              value={speedMps}
+              unit="m/s"
+              onChange={setSpeedMps}
+            />
+
             {/* Presets */}
             <div className="pt-2 flex flex-wrap items-center gap-2 text-xs font-mono">
               <span className="text-slate-400">Aircraft Presets:</span>
@@ -91,7 +103,7 @@ export default function ThrustToWeightLab() {
           {/* Chart */}
           <div className="rounded-2xl border border-white/10 bg-[#07032a] p-6 shadow-xl space-y-3">
             <h3 className="text-sm font-bold text-white font-serif">
-              Initial Sea-Level Climb Rate vs. Thrust-to-Weight Ratio
+              Model Climb Rate vs. Thrust-to-Weight Ratio
             </h3>
             <LabChart
               series={[{ id: 'climb', name: 'Climb Rate (ft/min)', data: curveData, color: '#0e9954' }]}
@@ -121,7 +133,7 @@ export default function ThrustToWeightLab() {
               </div>
 
               <div className="p-3 rounded-xl bg-[#040118] border border-white/10 flex justify-between items-center">
-                <span className="text-xs text-slate-400">Sea-Level Climb Rate:</span>
+                <span className="text-xs text-slate-400">Model Climb Rate:</span>
                 <span className="text-base font-bold text-white">
                   {climbRateFtMin} ft/min
                 </span>
@@ -135,7 +147,7 @@ export default function ThrustToWeightLab() {
               </div>
 
               <div className="p-3 rounded-xl bg-[#040118] border border-white/10 flex justify-between items-center">
-                <span className="text-xs text-slate-400">Est. Time to 30,000 ft:</span>
+                <span className="text-xs text-slate-400">Model Time to 30,000 ft:</span>
                 <span className="text-base font-bold text-amber-400">
                   {timeTo30kSec} sec
                 </span>
@@ -159,7 +171,7 @@ export default function ThrustToWeightLab() {
               PHYSICS INSIGHT: THE 1.0 THRESHOLD
             </span>
             <p>
-              When T/W reaches 1.0, total engine thrust equals total aircraft weight. At this threshold, wings are no longer required to support the aircraft mass — jet thrust directly opposes gravity.
+              When T/W reaches 1.0, total engine thrust equals total aircraft weight. That comparison is useful for vertical-force reasoning, but it does not by itself prove a hover condition because thrust direction, aircraft attitude, inlet losses, and available power also matter.
             </p>
             <p>
               Fighters like the F-16 or F-22 use T/W &gt; 1.0 for rapid acceleration in vertical maneuvers, while VTOL aircraft like the Harrier GR.9 rotate nozzles 90° to hover.
@@ -167,6 +179,12 @@ export default function ThrustToWeightLab() {
           </div>
         </div>
       </div>
+      <ModelDisclosure
+        model="Simplified climb-gradient relation: sin(gamma) = T/W - 1/(L/D), then vertical speed = true airspeed × sin(gamma)."
+        variables="Thrust-to-weight ratio, lift-to-drag ratio, and reference true airspeed."
+        assumptions="Steady flight, constant T/W and L/D, small-angle climb interpretation, and the visible reference airspeed."
+        limitations="This is not a flight-test climb rate. It omits thrust lapse, altitude, mass change, compressibility, throttle setting, excess-power limits, and climb acceleration."
+      />
     </div>
   )
 }
