@@ -123,6 +123,9 @@ export default function HomePage() {
                 src="/assets/concorde_delta_vortex.jpg"
                 alt="Wind tunnel laser sheet of delta wing vortex"
                 fill
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-200 brightness-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#040e09] via-transparent to-black/40" />
@@ -158,6 +161,9 @@ export default function HomePage() {
                 src="/assets/concorde_mach2_cruise.jpg"
                 alt="Concorde at Mach 2"
                 fill
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-200 brightness-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#040e09] via-transparent to-black/40" />

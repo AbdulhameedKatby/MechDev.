@@ -92,7 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NavigationLoader />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
         <SiteHeader />
-        <main className="container relative z-10 flex-1 pt-24 sm:pt-28 pb-10 sm:pb-12">{children}</main>
+        <main className="page-content container relative z-10 flex-1 pt-24 sm:pt-28 pb-10 sm:pb-12">{children}</main>
         <footer className="relative z-10 overflow-hidden border-t border-[#0e9954]/30 bg-[#040118] text-slate-300">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0e9954] to-transparent opacity-70" />
           <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-[#0e9954]/10 blur-3xl" />

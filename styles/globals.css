@@ -188,6 +188,20 @@ body {
   padding-right: clamp(16px, 4vw, 24px);
 }
 
+/* Keep the initial viewport light while preserving space for complete sections.
+   The browser renders each section as it approaches the viewport, so text,
+   controls, charts, and images appear together instead of in partial chunks. */
+.page-content > * > * {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+@media (max-width: 640px) {
+  .page-content > * > * {
+    contain-intrinsic-size: auto 560px;
+  }
+}
+
 img, svg, video, canvas {
   max-width: 100%;
 }
