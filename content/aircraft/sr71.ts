@@ -50,7 +50,7 @@ const sr71: AircraftData = {
       id: 'thermal',
       letter: 'A',
       name: 'Titanium & Fuel Heat-Sink',
-      problem: 'Aluminum melts at SR-71 skin stagnation temperatures (316°C).',
+      problem: 'Sustained high-speed heating reduces the strength and creep resistance of conventional aluminum alloys.',
       solution: 'Beta-C120VCA titanium alloy skin combined with circulating JP-7 fuel through airframe heat exchangers to absorb thermal energy before injection into engine afterburners.',
       labSlug: 'kinetic-heating',
       labName: 'Kinetic Heating ↔ Stagnation Recovery',
@@ -83,7 +83,7 @@ const sr71: AircraftData = {
     },
   ],
   comparisonAircraft: [
-    { name: 'SR-71 Blackbird', slug: 'sr71-blackbird', aspectRatio: 1.94, maxMach: 3.3, wingArea: 167, era: '1960s', wingType: 'Delta with chines' },
+    { name: 'SR-71 Blackbird', slug: 'sr71-blackbird', aspectRatio: 1.94, maxMach: 3.2, wingArea: 167, era: '1960s', wingType: 'Delta with chines' },
     { name: 'Concorde', slug: 'concorde', aspectRatio: 1.83, maxMach: 2.04, wingArea: 358, era: '1960s', wingType: 'Ogival delta' },
     { name: 'XB-70 Valkyrie', aspectRatio: 1.6, maxMach: 3.1, wingArea: 585, era: '1960s', wingType: 'Delta' },
   ],

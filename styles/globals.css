@@ -85,7 +85,6 @@ body {
   position: absolute;
   inset: 0;
   background-repeat: repeat;
-  will-change: transform, opacity;
 }
 
 .space-background__stars--far {
@@ -188,20 +187,6 @@ body {
   padding-right: clamp(16px, 4vw, 24px);
 }
 
-/* Keep the initial viewport light while preserving space for complete sections.
-   The browser renders each section as it approaches the viewport, so text,
-   controls, charts, and images appear together instead of in partial chunks. */
-.page-content > * > * {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 720px;
-}
-
-@media (max-width: 640px) {
-  .page-content > * > * {
-    contain-intrinsic-size: auto 560px;
-  }
-}
-
 img, svg, video, canvas {
   max-width: 100%;
 }
@@ -246,7 +231,6 @@ code, kbd, samp, pre, .font-mono {
   border: 1px solid rgba(14, 153, 84, 0.3);
   box-shadow: 0 16px 40px rgba(2, 0, 12, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: border-color 75ms ease-out, box-shadow 75ms ease-out, transform 75ms ease-out;
-  will-change: transform, border-color;
 }
 
 .aerolab-glass:hover {
@@ -261,8 +245,78 @@ code, kbd, samp, pre, .font-mono {
 }
 
 .aircraft-card {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 560px;
+}
+
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
+  /* 1. Simplify body background: avoid multi-layer dynamic gradients on mobile GPU */
+  body {
+    background-image: none !important;
+    background-color: var(--bg-deep) !important;
+  }
+
+  /* 2. Completely eliminate fixed animated space background on mobile & touch */
+  .space-background,
+  .space-background * {
+    display: none !important;
+    animation: none !important;
+  }
+
+  /* 3. Strip expensive backdrop-filter blur everywhere on mobile to prevent GPU re-blurs */
+  .aerolab-glass,
+  [class*='backdrop-blur'],
+  [class*='backdrop-filter'],
+  header,
+  nav {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  [class*='backdrop-blur'] {
+    background-color: rgba(7, 3, 42, 0.95) !important;
+  }
+
+  /* 4. High-contrast opaque card backgrounds with lightweight shadows */
+  .aerolab-glass {
+    background: #08032b !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  /* 5. Strip 3D perspective, saturate/brightness/blur filters, and mix-blend-mode layers */
+  .aircraft-card-visual {
+    perspective: none !important;
+    isolation: auto !important;
+  }
+
+  .aircraft-card-visual__schematic {
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .aircraft-card-visual__photo {
+    display: none !important;
+  }
+
+  .aircraft-card-visual__reticle {
+    display: none !important;
+  }
+
+  .aircraft-card-visual__wash {
+    background: linear-gradient(180deg, transparent 40%, rgba(4, 1, 24, 0.9) 100%) !important;
+    transition: none !important;
+  }
+
+  /* 6. Hide massive blur-3xl / blur-2xl ambient glow circles that choke GPU fill-rate */
+  .blur-3xl,
+  .blur-2xl {
+    display: none !important;
+  }
+
+  /* 7. Remove hover transforms on mobile */
+  .homepage-hero-image {
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 .aircraft-card-visual__schematic,
@@ -405,3 +459,112 @@ code, kbd, samp, pre, .font-mono {
 ::-webkit-scrollbar-thumb:hover {
   background: #0e9954;
 }
+
+/* ─── Hero photograph styling ─── */
+.homepage-hero-image {
+  transform: none;
+}
+
+/* ─── Section fade-up reveal (progressive enhancement) ─── */
+/* Base: always visible. JS adds .will-animate before observing,
+   then .revealed fires the animation. If JS is blocked/slow,
+   content is still readable at full opacity. */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Only hidden when JS has opted the element in */
+.reveal-section.will-animate {
+  opacity: 0;
+}
+
+/* Animation fires when observer marks it visible */
+.reveal-section.will-animate.revealed {
+  animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Gradient text utility ─── */
+.text-gradient-green {
+  background: linear-gradient(135deg, #6ee7b7 0%, #0e9954 60%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-white {
+  background: linear-gradient(180deg, #ffffff 0%, #9aa8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Accent glowing border-top for premium cards ─── */
+.glow-top {
+  position: relative;
+}
+.glow-top::before {
+  content: '';
+  position: absolute;
+  inset-x: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #0e9954 50%, transparent 100%);
+  opacity: 0.7;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ─── Shimmering accent line animation for headers ─── */
+@keyframes shimmer-line {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #0e9954 25%, #38bdf8 50%, #0e9954 75%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer-line 4s linear infinite;
+}
+
+/* ─── Flicker-free pulsing status dot ─── */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0   0   rgba(14,153,84,0.7); }
+  50%       { opacity: 0.7; box-shadow: 0 0 10px 3px rgba(14,153,84,0.3); }
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0e9954;
+  animation: status-pulse 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* ─── Fine dot-grid overlay (cosmetic texture) ─── */
+.dot-grid-bg {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Floating upward particles (decorative, desktop only) ─── */
+@keyframes float-up {
+  0%   { opacity: 0; transform: translateY(0) scale(0.8); }
+  15%  { opacity: 0.8; }
+  85%  { opacity: 0.4; }
+  100% { opacity: 0; transform: translateY(-80px) scale(0.6); }
+}
+
+/* ─── Disable all custom animations for reduced-motion and touch ─── */
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .homepage-hero-image          { animation: none !important; }
+  .hud-scan-line                { animation: none !important; display: none; }
+  /* reveal system: JS won't add .will-animate on touch, but guard here too */
+  .reveal-section.will-animate  { opacity: 1 !important; }
+  .reveal-section.will-animate.revealed { animation: none !important; }
+  .shimmer-line                 { animation: none !important; }
+  .status-dot                   { animation: none !important; }
+}
+

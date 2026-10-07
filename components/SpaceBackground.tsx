@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function SpaceBackground() {
   return (
     <div className="space-background" aria-hidden="true">

@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 import React, { useEffect, useState, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -100,7 +100,7 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="fixed top-3 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] sm:w-[95%] max-w-6xl rounded-full bg-[#07032a]/90 backdrop-blur-xl border border-[#0e9954]/40 shadow-[0_10px_40px_-10px_rgba(2,0,12,0.9),0_0_20px_rgba(14,153,84,0.3)] ring-1 ring-white/10 transition-all duration-150 hover:bg-[#07032a]/95 hover:shadow-[0_10px_50px_-5px_rgba(14,153,84,0.5)] hover:border-[#0e9954]/60">
+      <header className="fixed top-3 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] sm:w-[95%] max-w-6xl rounded-full bg-[#07032a] lg:bg-[#07032a]/90 lg:backdrop-blur-xl border border-[#0e9954]/40 shadow-[0_4px_20px_rgba(2,0,12,0.7)] lg:shadow-[0_10px_40px_-10px_rgba(2,0,12,0.9),0_0_20px_rgba(14,153,84,0.3)] ring-1 ring-white/10 transition-all duration-150 hover:bg-[#07032a]/95 hover:shadow-[0_10px_50px_-5px_rgba(14,153,84,0.5)] hover:border-[#0e9954]/60">
         <div className="flex items-center justify-between min-h-14 sm:h-16 px-2.5 sm:px-5 py-2 sm:py-0">
           <div className="flex min-w-0 items-center gap-2 sm:gap-4">
             <Link href="/" className="flex items-center gap-3 group">
@@ -177,7 +177,7 @@ export default function SiteHeader() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-[60] flex items-start justify-center pt-20 px-4 bg-black/80 backdrop-blur-md"
+          className="fixed inset-0 z-[60] flex items-start justify-center pt-20 px-4 bg-black/80 lg:backdrop-blur-md"
           onClick={() => setSearchOpen(false)}
         >
           <div
@@ -292,7 +292,7 @@ export default function SiteHeader() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md lg:hidden"
+          className="fixed inset-0 z-50 bg-black/90 lg:hidden"
           onClick={() => setMobileOpen(false)}
         >
           <div

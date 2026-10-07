@@ -26,8 +26,22 @@ export default function LabSlider({
     <div className="flex flex-col space-y-2">
       <div className="flex justify-between items-center text-sm">
         <label className="text-slate-300 font-medium tracking-wide">{label}</label>
-        <div className="font-mono text-emerald-400 font-bold bg-[#0d2217] px-2 py-0.5 rounded border border-emerald-500/20">
-          {value} <span className="text-xs text-slate-400">{unit}</span>
+        <div className="flex items-center gap-2">
+          <input
+            type="number"
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            disabled={disabled}
+            onChange={(event) => {
+              const nextValue = Number(event.target.value)
+              if (Number.isFinite(nextValue)) onChange(Math.min(max, Math.max(min, nextValue)))
+            }}
+            aria-label={`${label} numeric value`}
+            className="w-20 rounded border border-emerald-500/20 bg-[#0d2217] px-2 py-0.5 text-right font-mono font-bold text-emerald-400 outline-none focus:border-emerald-400 disabled:opacity-50"
+          />
+          <span className="text-xs text-slate-400">{unit}</span>
         </div>
       </div>
 

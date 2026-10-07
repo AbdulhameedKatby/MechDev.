@@ -114,7 +114,7 @@ export default function ConcordeDetailClient({ aircraft }: AircraftDetailClientP
             </h2>
           </div>
           <p className="text-xs text-slate-400 font-mono">
-            SHOCK-BOUNDARY LAYER INTERACTION // DESIGN RESPONSE
+            AIRCRAFT-SPECIFIC FLOW PHYSICS // DESIGN RESPONSE
           </p>
         </div>
 
@@ -132,9 +132,9 @@ export default function ConcordeDetailClient({ aircraft }: AircraftDetailClientP
                 <div className="absolute inset-0 bg-gradient-to-t from-[#05110a] via-transparent to-black/30" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md p-4 rounded-xl border border-white/10 text-xs text-slate-200">
                   <span className="font-mono text-emerald-400 font-bold uppercase block mb-1">
-                    Laser Particle Image Velocimetry (PIV) Wind Tunnel Test
+                    Aircraft schematic // illustrative
                   </span>
-                  The design response is specific to the mission, operating regime, and constraints documented for this aircraft.
+                  This illustration is a schematic, not a wind-tunnel or flight-test image. The design response is specific to the mission, operating regime, and constraints documented for this aircraft.
                 </div>
               </div>
 
@@ -150,16 +150,16 @@ export default function ConcordeDetailClient({ aircraft }: AircraftDetailClientP
           understand={
             <div className="space-y-4">
               <h4 className="text-lg font-bold text-white font-serif">
-                Shock-Boundary Layer Interaction (SBLI) & Vortex Lift
+                Flow physics and design response
               </h4>
               <p className="text-sm text-slate-300 leading-relaxed">
-                The core aerodynamic phenomenon is SBLI. When a normal shock strikes an adverse pressure gradient, low-energy air inside the boundary layer separates immediately.
+                The relevant flow physics depend on the aircraft and the operating regime. This investigation summarizes the design problem and response recorded for {aircraft.name}; it does not treat one aerodynamic mechanism as universal.
               </p>
               <div className="p-4 bg-black/60 rounded-xl border border-emerald-500/20 font-mono text-xs text-emerald-300 space-y-1">
-                <div className="text-slate-400">Critical Condition:</div>
+                <div className="text-slate-400">Design problem:</div>
                 <div>{aircraft.designSystems[0]?.problem}</div>
-                <div className="pt-2 text-slate-400">Governing Vortex Strength:</div>
-                <div>Γ_vortex ∝ V_infinity × c × tan(α) × cos(Λ)</div>
+                <div className="pt-2 text-slate-400">Design response:</div>
+                <div>{aircraft.designSystems[0]?.solution}</div>
               </div>
               <p className="text-sm text-slate-300 leading-relaxed">
                 {aircraft.designSystems[0]?.solution}
@@ -216,7 +216,7 @@ export default function ConcordeDetailClient({ aircraft }: AircraftDetailClientP
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 4: FIVE CORE AIRFRAME SYSTEMS (With Olympus Engine Art)
+            SECTION 4: CORE AIRFRAME SYSTEMS
       ───────────────────────────────────────────────────────────── */}
       <section className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
@@ -225,7 +225,7 @@ export default function ConcordeDetailClient({ aircraft }: AircraftDetailClientP
               Section 04 // Core Systems Architecture
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mt-1">
-              The Five Design Decisions
+              The Core Design Decisions
             </h2>
           </div>
           <p className="text-xs text-slate-400 font-mono">

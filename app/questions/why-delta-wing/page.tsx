@@ -31,17 +31,17 @@ export default function WhyDeltaWingPage() {
         discover={
           <div className="space-y-6 text-slate-200">
             <div className="text-lg leading-relaxed font-serif text-white">
-              At Mach 2, something catastrophic happens to a normal wing.
+              At Mach 2, the wing must solve a wave-drag problem without making takeoff and landing impractical.
             </div>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Supersonic flow introduces shocks, compressibility effects, viscous interactions, and wave-drag changes. The resulting flow field can increase separation risk and alter lift and drag characteristics.
+              Supersonic flow introduces compressibility and wave drag. A thin, highly swept leading edge places the normal component of the flow in a more favorable regime, while the delta planform also provides structural depth and fuel volume.
             </p>
 
             {/* Shock wave vs Vortex Visual */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-6">
               <div className="rounded-xl border border-red-500/30 bg-[#160b0b] p-4 text-center space-y-2">
                 <span className="text-xs font-mono text-red-400 font-bold block">
-                  Conventional swept-wing response (illustrative)
+                  Wave-drag constraint (illustrative)
                 </span>
                 <svg viewBox="0 0 300 120" className="w-full h-28">
                   {/* Wing profile */}
@@ -54,7 +54,7 @@ export default function WhyDeltaWingPage() {
                   <text x="220" y="55" fill="#fca5a5" fontSize="9" fontFamily="monospace">Separation Bubble</text>
                 </svg>
                 <p className="text-[11px] text-red-200/80">
-                  Shock and boundary-layer interaction can increase separation risk and drag.
+                  Sweep and thickness control the strength of the supersonic wave system.
                 </p>
               </div>
 
@@ -80,36 +80,34 @@ export default function WhyDeltaWingPage() {
               <EvidenceClaim evidenceId="ev-delta-wing" evidence={concorde.evidence}>
                 The delta wing creates a continuous high-energy vortex along its sharp leading edge
               </EvidenceClaim>
-              . This vortex pulls fresh air down onto the wing, preventing the boundary layer from separating even behind supersonic shock waves.
+              . Its leading-edge vortex is especially important at high angle of attack during takeoff and landing, where it contributes vortex lift. It is not a universal cure for shock-boundary-layer separation on conventional wings.
             </p>
           </div>
         }
         understand={
           <div className="space-y-6 text-slate-200">
             <h3 className="text-lg font-bold text-white font-serif">
-              The Physics of Shock-Boundary Layer Interaction (SBLI)
+              Why the delta works across two flight regimes
             </h3>
             <p className="text-sm leading-relaxed text-slate-300">
-              When supersonic flow encounters an adverse pressure gradient (such as an oblique or normal shock on a wing surface), the low-momentum fluid inside the boundary layer cannot overcome the sudden pressure rise:
+              At cruise, the first constraint is wave drag. At low speed, the thin delta must generate lift at a high angle of attack, where controlled leading-edge separation forms a vortex that adds lift:
             </p>
 
             <div className="rounded-xl bg-[#06110a] p-4 border border-emerald-500/20 font-mono text-xs text-emerald-300 space-y-2">
-              <div>Δp_shock ≈ (2γ / (γ + 1)) × (M₁² - 1) × p₁</div>
-              <div className="text-slate-400">
-                At Mach 2.04, the static pressure doubles across the shock in less than 1 millimeter.
-              </div>
+                <div>μ = arcsin(1 / M)</div>
+                <div className="text-slate-400">At M = 2, the Mach angle is about 30 degrees. The leading edge is swept farther aft than this angle so its normal Mach component is reduced.</div>
             </div>
 
             <p className="text-sm leading-relaxed text-slate-300">
-              The delta planform solves this by shedding a strong vortex from the highly swept leading edge (sweep angle Λ = 63°). The vortex strength scales with:
+              The delta planform then accepts a low-speed induced-drag penalty in exchange for a slender, stiff, fuel-carrying wing with a 63° leading-edge sweep. At high angle of attack, the sharp leading edge sheds a stable vortex that contributes lift:
             </p>
 
             <div className="rounded-xl bg-[#06110a] p-4 border border-emerald-500/20 font-mono text-xs text-emerald-300">
-              Γ_vortex ∝ V_infinity × c × tan(α) × cos(Λ)
+              C_L = C_L,potential + C_L,vortex
             </div>
 
             <p className="text-sm leading-relaxed text-slate-300">
-              This suction peak generates what aerodynamicists term <strong className="text-white">&ldquo;vortex lift&rdquo;</strong>, allowing Concorde to maintain stable controllable flight all the way up to Mach 2.04 cruise.
+              This suction peak generates what aerodynamicists term <strong className="text-white">&ldquo;vortex lift&rdquo;</strong>. It helps at low speed; it is not the reason Concorde could cruise at Mach 2.04.
             </p>
           </div>
         }
@@ -140,7 +138,7 @@ export default function WhyDeltaWingPage() {
                     <td className="p-3 text-white font-semibold">Leading Edge Sweep</td>
                     <td className="p-3 text-emerald-400 font-bold">63° (Ogival)</td>
                     <td className="p-3 text-slate-400">37.5°</td>
-                    <td className="p-3">NASA TN D-4607</td>
+                    <td className="p-3">Concorde aerodynamic development record (verification pending)</td>
                   </tr>
                   <tr>
                     <td className="p-3 text-white font-semibold">Planform Area</td>
@@ -159,7 +157,7 @@ export default function WhyDeltaWingPage() {
             </div>
 
             <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-950/20 text-xs text-amber-200 leading-relaxed">
-              <span className="font-bold text-amber-300">Model Limitation & Disclaimers:</span> Wind tunnel measurements from NASA TN D-4607 indicated that canard configurations produced higher peak L/D in clean air, but created severe downwash ingestion problems into the Olympus turbojet inlets, making the pure delta wing the only viable integrated solution.
+              <span className="font-bold text-amber-300">Model Limitation & Disclaimers:</span> The comparison values are engineering context, not a substitute for a verified flight-test record. The aerodynamic development source for this table is still being verified, so the page does not attribute canard performance or inlet effects to a NASA report.
             </div>
           </div>
         }
@@ -174,7 +172,7 @@ export default function WhyDeltaWingPage() {
           <div>
             <span className="text-xs font-mono text-emerald-400 uppercase">Next In Airframe</span>
             <h4 className="text-base font-bold text-white mt-1">Concorde Full Aircraft Deep-Dive</h4>
-            <p className="text-xs text-slate-400 mt-1">Inspect fuel transfer, Olympus 593 turbojets, and 127°C kinetic heating.</p>
+            <p className="text-xs text-slate-400 mt-1">Inspect fuel transfer, Olympus 593 turbojets, and the ideal stagnation-temperature model.</p>
           </div>
           <span className="mt-4 text-xs font-mono text-emerald-400">Explore Aircraft Blueprint →</span>
         </Link>

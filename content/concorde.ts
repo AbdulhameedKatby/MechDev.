@@ -19,11 +19,11 @@ const concorde: AircraftData = {
     tradeOffs: [
       { label: 'Fuel-hungry', detail: 'High fuel consumption was a major economic penalty of sustained supersonic cruise; exact flow depends on variant and flight condition.' },
       { label: 'Smaller payload', detail: 'Typical seating was around 100 passengers, substantially below large subsonic wide-body configurations.' },
-      { label: 'Complex systems', detail: 'Required active load alleviation, fly-by-wire control' },
+      { label: 'Complex systems', detail: 'Required powered flight controls, variable-geometry inlets, and fuel transfer for trim management.' },
       { label: 'Thermal constraint', detail: 'Documented skin temperatures exceeded 120°C in sustained supersonic cruise' },
       { label: 'Environmental concerns', detail: 'Sonic boom, noise restrictions over land' },
     ],
-    provocativeQuestion: 'What would you sacrifice for 3× faster transatlantic travel?',
+    provocativeQuestion: 'What would you sacrifice for roughly half the usual transatlantic travel time?',
   },
 
   // ═══════════════════════════════════════════════════════════════════
@@ -34,8 +34,8 @@ const concorde: AircraftData = {
       id: 'aerodynamics',
       letter: 'A',
       name: 'Aerodynamics',
-      problem: 'Shock-boundary layer interaction at Mach 2+. A conventional wing loses lift as shock waves cause boundary layer separation.',
-      solution: 'Highly swept delta wing with leading-edge vortical flow. The three-dimensional flow contributes to lift in the relevant operating regime and interacts with shocks and boundary layers.',
+      problem: 'Sustained Mach 2 cruise demands low wave drag, while takeoff and landing demand useful lift from a thin, slender planform.',
+      solution: 'A thin, highly swept ogival delta keeps the leading edge behind the Mach cone at cruise and uses leading-edge vortex lift at high angle of attack during low-speed operations.',
       labSlug: 'aspect-ratio',
       labName: 'Aspect Ratio ↔ Induced Drag',
       realData: [
@@ -43,14 +43,14 @@ const concorde: AircraftData = {
         'Aspect ratio: 1.83',
         'Leading edge sweep: 63°',
       ],
-      sources: ['NASA TN D-4607', 'BAC Technical Specification BAC/KKL/WB.180'],
+      sources: ['BAC Technical Specification BAC/KKL/WB.180', 'Concorde aerodynamic development record (verification pending)'],
     },
     {
       id: 'propulsion',
       letter: 'B',
       name: 'Propulsion',
       problem: 'Sustained supersonic cruise creates demanding inlet, engine-cycle, and thermal conditions. Concorde required a low/zero-bypass turbojet architecture and variable-geometry inlet management.',
-      solution: 'Variable geometry intake with precooler. Rolls-Royce Olympus turbojet with afterburners — a pure turbojet (bypass ratio ~0) because turbofan blades cannot survive the inlet temperatures.',
+      solution: 'Variable-geometry intake ramps and Rolls-Royce Olympus turbojets with afterburners. Near-zero bypass matched jet velocity to the aircraft at Mach 2 and avoided the frontal-area and mismatch penalties of a large fan; ram compression also constrained the allowable overall pressure ratio.',
       labSlug: 'bypass-ratio',
       labName: 'Bypass Ratio ↔ Efficiency',
       realData: [
@@ -220,16 +220,6 @@ const concorde: AircraftData = {
       id: 'ev-delta-wing',
           claim: 'Concorde used a highly swept delta configuration to manage coupled supersonic aerodynamic requirements including shock and boundary-layer interaction',
       sources: [
-        {
-          tier: 'primary',
-          publisher: 'NASA',
-          document: 'NASA TN D-4607',
-          type: 'Technical report with wind tunnel data',
-          year: 1972,
-          credibility: 'NASA peer-reviewed research',
-          quote: 'The delta planform\'s leading-edge vortex structure is essential to maintaining boundary layer attachment at transonic and supersonic conditions where conventional swept wings experience separation.',
-          url: 'https://ntrs.nasa.gov/',
-        },
         {
           tier: 'primary',
           publisher: 'British Aircraft Corporation',

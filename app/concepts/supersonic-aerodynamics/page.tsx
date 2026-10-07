@@ -61,7 +61,7 @@ export default function SupersonicAerodynamicsConceptPage() {
 
         <div className="rounded-xl bg-[#06110a] p-4 border border-emerald-500/20 font-mono text-xs text-emerald-300">
           <EvidenceClaim evidenceId="ev-delta-wing" evidence={concorde.evidence}>
-            Wave Drag scales inversely with the cosine of the wing sweep angle: C_Dw ∝ (t/c)² / √(M² - 1)
+            Linearized supersonic theory: wave drag is reduced by thin sections and by sweep that lowers the effective normal Mach number. The exact coefficient depends on planform and flow regime.
           </EvidenceClaim>
         </div>
 
@@ -86,9 +86,9 @@ export default function SupersonicAerodynamicsConceptPage() {
 
         <p className="text-sm text-slate-300 leading-relaxed">
           <EvidenceClaim evidenceId="ev-heating" evidence={concorde.evidence}>
-            At Mach 2.04 and 60,000 ft (standard-atmosphere ambient about -56.5°C = 216.65 K), the ideal stagnation-temperature model reaches about 400 K (127°C)
+            At Mach 2.04 and 60,000 ft (standard-atmosphere ambient about -56.5°C = 216.65 K), the ideal stagnation-temperature model reaches about 397 K (124°C)
           </EvidenceClaim>
-          . This sets the structural ceiling for aluminum alloys.
+          . This is an ideal stagnation temperature, not a measured skin temperature. Real recovery depends on the boundary layer and surface heat transfer, so it should not be presented as a universal structural ceiling.
         </p>
       </section>
 

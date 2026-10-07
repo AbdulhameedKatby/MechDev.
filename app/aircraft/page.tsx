@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -60,8 +60,16 @@ const DISCIPLINE_COLOR: Record<string, string> = {
 function AircraftVisual({ plane }: { plane: (typeof aircraftList)[number] }) {
   const visualRef = useRef<HTMLDivElement>(null)
   const [isNearViewport, setIsNearViewport] = useState(false)
+  const [canHover, setCanHover] = useState(false)
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      setCanHover(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!canHover) return
     const visual = visualRef.current
     if (!visual) return
 
@@ -82,7 +90,7 @@ function AircraftVisual({ plane }: { plane: (typeof aircraftList)[number] }) {
 
     observer.observe(visual)
     return () => observer.disconnect()
-  }, [])
+  }, [canHover])
 
   return (
     <div ref={visualRef} className="aircraft-card-visual relative -mx-5 -mt-5 h-44 overflow-hidden rounded-t-2xl border-b border-white/10 bg-[#040118]">
@@ -95,7 +103,7 @@ function AircraftVisual({ plane }: { plane: (typeof aircraftList)[number] }) {
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         className="aircraft-card-visual__schematic absolute inset-0 z-10 object-cover object-center"
       />
-      {isNearViewport && getAircraftHoverImage(plane) && (
+      {canHover && isNearViewport && getAircraftHoverImage(plane) && (
         <Image
           src={getAircraftHoverImage(plane)!}
           alt={plane.hoverImageAlt ?? `${plane.name} in flight`}

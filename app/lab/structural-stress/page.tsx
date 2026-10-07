@@ -207,9 +207,10 @@ export default function FuselageStructuralStressLab() {
           <h2 className="text-2xl font-bold text-amber-500 mb-4">Case Study: The De Havilland Comet</h2>
           <div className="prose prose-invert max-w-none text-slate-300">
             <p className="mb-4">
-              The De Havilland Comet was the world's first commercial jet airliner. It flew higher and faster than 
-              previous aircraft, requiring a pressurized cabin. However, early models suffered catastrophic inflight 
-              breakups due to metal fatigue exacerbated by <strong>square windows</strong>.
+              The De Havilland Comet was the world's first commercial jet airliner. It flew higher and faster than
+              previous aircraft, requiring a pressurized cabin. Investigations of the early breakups traced fatigue
+              cracking to stress concentrations around openings, including the corner of an aerial cutout near the cabin roof.
+              The square-window story is a useful introduction, but it is not the complete causal account.
             </p>
             <div className="bg-[#07032a] p-4 rounded-lg font-mono text-sm mb-4 border border-slate-700">
               <p>Stress Concentration Factor (K_t):</p>
@@ -218,13 +219,13 @@ export default function FuselageStructuralStressLab() {
             </div>
             <p className="mb-4">
               With your current settings, the baseline hoop stress is <strong>{isFinite(hoopStress) ? hoopStress.toFixed(1) : 0} MPa</strong>. 
-              Around a perfectly round window, this stress only increases slightly. But with a square window like the early Comet, 
-              stress at the corners spikes to <strong>{(isFinite(hoopStress) ? maxLocalStressSquare : 0).toFixed(1)} MPa</strong>!
+              Around a perfectly round opening, this stress only increases slightly. A sharp-cornered opening can raise
+              local stress to <strong>{(isFinite(hoopStress) ? maxLocalStressSquare : 0).toFixed(1)} MPa</strong> in this simplified illustration.
             </p>
             <p>
-              This localized high stress caused microscopic cracks to form at the window corners during each pressurization cycle 
-              (each flight). Over time, these cracks grew until the fuselage could no longer contain the pressure, leading to 
-              explosive decompression. This tragedy taught aerospace engineers the crucial importance of round windows and fatigue testing.
+              Repeated pressurization can grow cracks from a high-stress detail until the pressure shell loses its required
+              damage tolerance. The Comet investigations helped establish the importance of smooth openings, inspection,
+              and full-scale fatigue testing.
             </p>
           </div>
         </div>

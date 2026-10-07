@@ -28,7 +28,7 @@ export default function SR71BlackbirdPage() {
                 Sustained flight at Mach 3.2 creates atmospheric friction and air compression that turns the aircraft into an oven.
               </div>
               <p className="text-sm text-slate-300 leading-relaxed">
-                At 85,000 feet, the ambient temperature is a frigid -56°C. Yet, traveling at over 2,100 mph (3,400 km/h) creates intense kinetic heating through adiabatic compression. The air molecules slam into the aircraft, compressing and heating up tremendously. Traditional aluminum aircraft would literally melt under these conditions.
+                At 85,000 feet, the ambient temperature is a frigid -56°C. Yet, traveling at over 2,100 mph (3,400 km/h) creates intense kinetic heating through adiabatic compression. The air molecules slam into the aircraft, compressing and heating up tremendously. Traditional aluminum alloys would lose useful strength and creep resistance under these conditions, even though their melting point is higher.
               </p>
 
               {/* 3 SVG Diagrams */}
@@ -226,7 +226,7 @@ export default function SR71BlackbirdPage() {
                     <tr>
                       <td className="p-3 text-white font-semibold">Skin Temperature</td>
                       <td className="p-3 text-emerald-400 font-bold">300°C+</td>
-                      <td className="p-3">127°C</td>
+                      <td className="p-3">Ideal stagnation model: 124°C</td>
                       <td className="p-3">650°C</td>
                       <td className="p-3">300°C</td>
                     </tr>
@@ -271,7 +271,7 @@ export default function SR71BlackbirdPage() {
 
               <div className="mt-6 rounded-xl border border-amber-500/30 bg-amber-950/20 p-4 text-xs text-amber-200 space-y-1">
                 <span className="font-bold font-mono text-amber-400 block">MODEL LIMITATIONS & DISCLAIMERS</span>
-                <p>Calculations assume standard stratospheric conditions (ISA standard atmosphere). In reality, ambient temperatures vary, which significantly shifts the stagnation temperature and safe operating margins. Data sourced from Lockheed SR-71 Flight Manual (TO 1SR-71A-1) and NASA TN D-6847.</p>
+                <p>Calculations assume standard stratospheric conditions (ISA standard atmosphere). In reality, ambient temperatures vary, which significantly shifts the stagnation temperature and safe operating margins. Flight-envelope limits are attributed to the Lockheed SR-71 Flight Manual (TO 1SR-71A-1); skin-temperature values and total-temperature limits are different quantities.</p>
               </div>
             </div>
           )

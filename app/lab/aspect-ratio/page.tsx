@@ -1,6 +1,7 @@
 "use client"
-import React, { useState, useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 import LabSlider from '../../../components/LabSlider'
 import LabChart, { Marker } from '../../../components/LabChart'
 import { computeInducedDragCoeff, inducedDragVsAR } from '../../../lib/calculations/physics'
@@ -9,6 +10,22 @@ import ModelDisclosure from '../../../components/ModelDisclosure'
 export default function AspectRatioLab() {
   const [ar, setAr] = useState(1.83)
   const [cl, setCl] = useState(0.5)
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const urlAr = Number(searchParams.get('AR'))
+    const urlCl = Number(searchParams.get('CL'))
+    if (Number.isFinite(urlAr) && urlAr >= 0.5 && urlAr <= 12) setAr(urlAr)
+    if (Number.isFinite(urlCl) && urlCl >= 0.1 && urlCl <= 1.5) setCl(urlCl)
+  }, [searchParams])
+
+  useEffect(() => {
+    const params = new URLSearchParams()
+    params.set('AR', ar.toFixed(2))
+    params.set('CL', cl.toFixed(2))
+    router.replace(`/lab/aspect-ratio?${params.toString()}`, { scroll: false })
+  }, [ar, cl, router])
 
   // Current calculated C_Di
   const currentCDi = useMemo(() => computeInducedDragCoeff(cl, ar), [cl, ar])

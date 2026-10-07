@@ -115,3 +115,66 @@ Still open:
 | Automated link/accessibility/mobile checks | NOT RUN | No configured link checker, browser test runner, or accessibility test suite exists. |
 
 Remaining engineering debt: the legacy aircraft data interface still needs a full neutral-field migration; route-level JSON-LD and image attribution are not complete; and visual/mobile QA still requires a browser test pass. All current lab routes now expose model assumptions and limitations; calculation-trail detail is strongest in Labs 01 and 06 and remains a follow-up enhancement for the other models.
+
+## Audit reconciliation and execution backlog
+
+Review date: 2026-10-03
+
+The attached website strategy was checked against the local repository and the deployed site at `https://abdulhameedkatby.vercel.app/`. The deployed site was behind the local worktree during this review: production still showed the old delta-wing explanation, the 127 C wording, and the old Concorde image alt text, while local source already contained several corresponding fixes. Local changes must be deployed before production can be considered corrected.
+
+### Verified as already implemented locally
+
+- Aircraft detail metadata has route-specific titles, canonical paths, Open Graph images, Twitter cards, and article plus breadcrumb JSON-LD.
+- `NEXT_PUBLIC_SITE_URL` is centralized in `lib/site.ts`; sitemap and robots routes exist.
+- `/about`, `/sources`, `/methodology`, and `/manifest.webmanifest` exist.
+- The shared aircraft renderer uses aircraft-owned images and comparison data rather than a Concorde image fallback.
+- Source search and tier filters expose `aria-pressed`; modal keyboard handling includes Escape, focus restoration, scroll locking, and Tab wrapping.
+- Labs 01, 03, 04, 05, and 06 expose model assumptions or limitations to varying levels of detail.
+- TypeScript and production builds pass. The latest build generated 59 routes.
+
+### Corrected during the 2026-10-03 review
+
+- Reframed the delta-wing explanation around supersonic wave drag, Mach-cone geometry, low-speed vortex lift, and explicit trade-offs.
+- Replaced the Concorde engine claim about turbofan blades being destroyed by 127 C inlet air with low-bypass, frontal-area, jet-velocity, and ram-compression reasoning.
+- Removed the shared renderer's false PIV test caption and universal SBLI explanation.
+- Corrected ideal Concorde stagnation temperature to approximately 397 K / 124 C and distinguished it from measured skin temperature.
+- Labeled the fuel-transfer diagram as a reconstructed model.
+- Corrected SR-71 aluminum wording, aligned its Mach value to 3.2, and separated skin temperature from total-temperature limits.
+- Corrected the hoop-stress index wording from exponential to proportional and softened the Comet explanation to reflect fatigue cracking at stress-concentrating openings rather than the simplified square-window story.
+- Corrected the homepage Concorde alt text and stale delta-wing index copy.
+- Restored the missing level-2 source tier in the methodology ladder.
+
+### Report claims that need verification, not automatic acceptance
+
+- NASA TN D-4607 is now verified as NASA-TN-D-4607, "Critical-speed analysis of flexibly mounted rigid rotors" by R. H. Cavicchi, published in 1968. It is not a Concorde delta-wing source and was removed from the Concorde evidence trail. NASA TN D-6847, AIAA 74-32, BAC/KKL/WB.180, and all remaining manufacturer-document dates, titles, authors, and URLs still require checking against their original catalog records.
+- The report's SR-71 estimate of ideal stagnation temperature near 660 K at Mach 3.2 and 85,000 ft should not be accepted without calculating the chosen standard-atmosphere temperature. Ideal stagnation temperature depends on ambient temperature and Mach; it is not the same as skin temperature or an engine total-temperature limit.
+- `85% titanium` must state its basis, such as structural weight, before being presented as a general aircraft percentage.
+- Concorde fuel flow, L/D comparisons, active-load-alleviation language, B-2 radar cross-section values, and Comet failure wording require claim-level sources before being retained.
+- The report's recommendation to use KaTeX, Zod, Pagefind, Vitest, Playwright, axe, Pyodide, and 3D tooling is strategic rather than mandatory. Add each dependency only when a measured requirement justifies it.
+
+## Ordered roadmap
+
+1. **Deploy and re-crawl the credibility fixes.** Publish the current local changes, then fetch the homepage, flagship question, Concorde, SR-71, sitemap, and robots routes. Confirm production text, canonical URLs, metadata, and route counts.
+2. **Create source records that can be verified.** Add stable IDs, deep URLs, authors, institution, access status, locator, archive URL, last-verified date, and confidence. Reject bare homepages for claims presented as inspectable evidence.
+3. **Add an automated content guard.** Build a script that renders or scans every aircraft record and fails on forbidden template phrases, unsupported universal headings, missing image attribution, missing source IDs, and non-aircraft-specific copy.
+4. **Migrate the legacy aircraft contract.** Replace `concordeConnection` with neutral fields such as `context`, `assumptions`, `claimIds`, and `sourceIds`. Validate every aircraft record before the page renderer can consume it.
+5. **Make the evidence model claim-level.** Introduce `Claim`, `Source`, locator, layer, confidence, and reviewer fields. Show evidence coverage and mark incomplete aircraft pages as drafts rather than implying complete authority.
+6. **Finish metadata and route QA.** Add unique metadata to every question, concept, and lab page; make `/methodology` the canonical public route and redirect or clearly deprecate `/editorial`; verify JSON-LD with a structured-data validator.
+7. **Repair source and navigation integrity.** Replace dead concept links, reconcile aircraft/question duplicate routes, remove or create promised branching investigations, derive footer lab links from one registry, and ensure every visible “open record” link is useful.
+8. **Complete the flagship content audit.** Audit all 15 aircraft records and all question/concept pages for numerical contradictions, image type and credit, unsupported superlatives, units, assumptions, and aircraft-specific wording.
+9. **Strengthen the labs in a measured sequence.** Start with shareable URL state and equation tests for Labs 01, 03, and 04; then add data-table fallbacks, reset behavior, model-vs-reality panels, exports, and version labels. Do not publish measured comparisons without a source and uncertainty boundary.
+10. **Fix accessibility and mobile behavior.** Add explicit focus styling, dialog labelling, reduced-motion handling, keyboard and screen-reader chart fallbacks, slider text inputs, and scroll-container affordances. Validate key routes at phone and desktop widths.
+11. **Build the trust surfaces.** Add corrections/errata, cite-this-page, licensing, accessibility statement, last-updated dates, reviewer status, and a contact/report-issue path. Do not invent reviewer names; use a visible Draft status until review exists.
+12. **Add the first differentiator.** Implement a small compare tool using only normalized fields that are actually present and sourced. Make the output explain assumptions instead of presenting false precision.
+13. **Add the Equation Atlas incrementally.** Start with lift, drag polar, Mach, stagnation temperature, hoop stress, and Breguet range. Each entry needs units, assumptions, a worked example, a test, references, and links to the labs that use it.
+14. **Publish open data only after provenance is ready.** Export the validated aircraft registry as JSON/CSV, add a license and `CITATION.cff`, then consider an API and Zenodo DOI.
+15. **Expand content one high-quality investigation at a time.** Prioritize one aircraft, one concept, one accident case study, or one myth hub entry per month. Defer 3D, AR, multilingual content, Pyodide, newsletters, and broad social distribution until the evidence and QA pipeline is reliable.
+
+### Definition of done for the current foundation
+
+- Production matches the validated local build.
+- Every indexed route has unique title, description, canonical, and appropriate structured data.
+- Every displayed source has a deep link or an explicit unavailable-access status.
+- Every aircraft page passes the leakage scan and has attributed, typed imagery.
+- Every lab exposes equations, units, assumptions, limitations, reset behavior, and a reproducible test for its core calculation.
+- Key pages pass typecheck, production build, link checks, keyboard checks, accessibility checks, and responsive browser checks.

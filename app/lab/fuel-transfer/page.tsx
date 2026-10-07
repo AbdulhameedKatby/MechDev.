@@ -80,7 +80,7 @@ export default function FuelTransferLab() {
                     onClick={() => setOverrideAftFraction(null)}
                     className="text-xs text-emerald-400 underline font-mono"
                   >
-                    Reset to Concorde Auto-Trim
+                    Reset to model auto-trim
                   </button>
                 )}
               </div>
@@ -90,7 +90,7 @@ export default function FuelTransferLab() {
           {/* Interactive Aircraft Fuel Tank Profile Schematic */}
           <div className="rounded-2xl border border-white/10 bg-[#07160d] p-6 shadow-xl flex flex-col items-center">
             <div className="text-xs font-mono uppercase text-slate-400 mb-2">
-              Concorde 13-Tank Fuel Transfer Architecture
+              Reconstructed 13-Tank Fuel Transfer Model
             </div>
 
             <svg viewBox="0 0 600 200" className="w-full h-auto select-none">
