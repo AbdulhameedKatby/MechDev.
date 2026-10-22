@@ -92,6 +92,24 @@ function AircraftVisual({ plane }: { plane: (typeof aircraftList)[number] }) {
     return () => observer.disconnect()
   }, [canHover])
 
+  let schematicPosition = 'object-center'
+  let photoPosition = 'object-center'
+
+  if (plane.slug === 'b2-spirit') {
+    schematicPosition = 'object-[center_75%]'
+    photoPosition = 'object-[center_30%]'
+  }
+
+  if (plane.slug === 'f35b-hover') {
+    schematicPosition = 'object-[center_25%]'
+    photoPosition = 'object-[center_75%]'
+  }
+
+  if (plane.slug === 'x59-nose') {
+    schematicPosition = 'object-[center_10%]'
+    photoPosition = 'object-[center_190%]'
+  }
+
   return (
     <div ref={visualRef} className="aircraft-card-visual relative -mx-5 -mt-5 h-44 overflow-hidden rounded-t-2xl border-b border-white/10 bg-[#040118]">
       <Image
@@ -101,7 +119,7 @@ function AircraftVisual({ plane }: { plane: (typeof aircraftList)[number] }) {
         loading="lazy"
         decoding="async"
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-        className="aircraft-card-visual__schematic absolute inset-0 z-10 object-cover object-center"
+        className={`aircraft-card-visual__schematic absolute inset-0 z-10 object-cover ${schematicPosition}`}
       />
       {canHover && isNearViewport && getAircraftHoverImage(plane) && (
         <Image
@@ -112,7 +130,7 @@ function AircraftVisual({ plane }: { plane: (typeof aircraftList)[number] }) {
           decoding="async"
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
           unoptimized
-          className="aircraft-card-visual__photo absolute inset-0 z-0 object-cover object-center"
+          className={`aircraft-card-visual__photo absolute inset-0 z-0 object-cover ${photoPosition}`}
           onError={(event) => {
             const photo = event.currentTarget
             photo.style.display = 'none'

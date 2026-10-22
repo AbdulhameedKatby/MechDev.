@@ -85,7 +85,10 @@ export default function SiteHeader() {
         e.preventDefault()
         setSearchOpen((v) => !v)
       }
-      if (e.key === 'Escape') setSearchOpen(false)
+      if (e.key === 'Escape') {
+        setSearchOpen(false)
+        setMobileOpen(false)
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -165,6 +168,8 @@ export default function SiteHeader() {
               onClick={() => setMobileOpen((v) => !v)}
               className="w-9 h-9 flex items-center justify-center text-slate-300 hover:text-white bg-[#040118] rounded-full border border-white/10 transition-colors"
               aria-label="Menu"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
             </button>
@@ -182,7 +187,6 @@ export default function SiteHeader() {
         >
           <div
             className="w-full max-w-2xl rounded-3xl overflow-hidden
-                       border border-[#0e9954]/30
                        bg-gradient-to-b from-[#07032a] to-[#040118]
                        shadow-[0_32px_80px_rgba(2,0,12,0.95),0_0_40px_rgba(14,153,84,0.2)]
                        ring-1 ring-white/5"
@@ -190,11 +194,9 @@ export default function SiteHeader() {
           >
             {/* ── Input row ────────────────────────────────────── */}
             <div className="relative flex items-center border-b border-white/8 px-5 py-4">
-              {/* Search icon */}
               <svg className="absolute left-5 w-5 h-5 text-[#0e9954]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
               </svg>
-
               <input
                 ref={inputRef}
                 value={query}
@@ -202,8 +204,6 @@ export default function SiteHeader() {
                 placeholder="Search aircraft, concepts, labs, questions…"
                 className="w-full bg-transparent pl-10 pr-16 py-1 text-base text-white placeholder-slate-500 focus:outline-none font-brand caret-[#0e9954]"
               />
-
-              {/* ESC badge */}
               <button
                 onClick={() => setSearchOpen(false)}
                 className="absolute right-5 px-2.5 py-1 text-[10px] font-mono text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-all duration-75"
@@ -292,34 +292,49 @@ export default function SiteHeader() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/90 lg:hidden"
+          aria-labelledby="mobile-menu-title"
+          className="fixed inset-0 z-50 bg-[#010108]/80 lg:hidden"
           onClick={() => setMobileOpen(false)}
         >
           <div
-            className="w-4/5 max-w-xs h-full bg-[#07032a] border-r border-[#0e9954]/30 p-6 flex flex-col justify-between"
+            id="mobile-navigation"
+            className="flex h-full w-[min(88vw,24rem)] flex-col overflow-y-auto border-r border-[#0e9954]/40 bg-gradient-to-b from-[#0b0635] via-[#07032a] to-[#040118] p-4 shadow-[12px_0_45px_rgba(0,0,0,0.55)] sm:p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <div>
-              <div className="flex items-center justify-between pb-6 border-b border-white/10">
+            <div className="flex min-h-full flex-col">
+              <div className="flex items-center justify-between border-b border-white/10 pb-5">
                 <div className="flex items-center gap-2.5">
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#0e9954]">
+                  <div className="relative h-9 w-9 overflow-hidden rounded-full border border-[#0e9954] shadow-[0_0_14px_rgba(14,153,84,0.35)]">
                     <Image src="/assets/logo.png" alt="MechDev. Logo" fill className="object-cover object-top" />
                   </div>
-                  <span className="text-xl font-bold text-white font-brand">
+                  <span id="mobile-menu-title" className="font-brand text-xl font-bold text-white">
                     <span className="text-[#0e9954] font-black">M</span>ech<span className="text-[#0e9954] font-black">D</span>ev<span className="text-[#0e9954] font-black">.</span>
                   </span>
                 </div>
-                <button onClick={() => setMobileOpen(false)} className="text-slate-300 hover:text-white">✕</button>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-[#0e9954]/50 hover:bg-[#0e9954]/15 hover:text-white"
+                  aria-label="Close menu"
+                >
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 6l12 12M18 6L6 18" />
+                  </svg>
+                </button>
               </div>
-              <nav className="mt-6 flex flex-col space-y-4 text-base font-medium">
-                <Link href="/aircraft/concorde" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Concorde Deep-Dive</Link>
-                <Link href="/questions" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Questions</Link>
-                <Link href="/concepts" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Physics Concepts</Link>
-                <Link href="/lab" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Interactive Labs</Link>
-                <Link href="/sources" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Source Library</Link>
-                <Link href="/methodology" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">Methodology</Link>
-                <Link href="/about" onClick={() => setMobileOpen(false)} className="text-slate-200 hover:text-[#0e9954]">About MechDev.</Link>
-              </nav>
+              <div className="mt-7">
+                <p className="px-3 text-[10px] font-bold uppercase tracking-[0.22em] text-[#0e9954]">Flight mechanics archive</p>
+                <nav className="mt-3 flex flex-col gap-1" aria-label="Mobile navigation">
+                  <Link href="/aircraft" onClick={() => setMobileOpen(false)} className="group flex min-h-12 items-center justify-between rounded-xl border border-[#0e9954]/25 bg-[#0e9954]/10 px-3.5 text-base font-semibold text-white transition-colors hover:border-[#0e9954]/60 hover:bg-[#0e9954]/20"><span>Aircraft</span><span className="text-[#0e9954] transition-transform group-hover:translate-x-1">→</span></Link>
+                  <Link href="/aircraft/concorde" onClick={() => setMobileOpen(false)} className="group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"><span>Concorde Deep-Dive</span><span className="text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-[#0e9954]">→</span></Link>
+                  <Link href="/questions" onClick={() => setMobileOpen(false)} className="group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"><span>Questions</span><span className="text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-[#0e9954]">→</span></Link>
+                  <Link href="/concepts" onClick={() => setMobileOpen(false)} className="group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"><span>Physics Concepts</span><span className="text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-[#0e9954]">→</span></Link>
+                  <Link href="/lab" onClick={() => setMobileOpen(false)} className="group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"><span>Interactive Labs</span><span className="text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-[#0e9954]">→</span></Link>
+                  <Link href="/sources" onClick={() => setMobileOpen(false)} className="group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"><span>Source Library</span><span className="text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-[#0e9954]">→</span></Link>
+                  <Link href="/methodology" onClick={() => setMobileOpen(false)} className="group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"><span>Methodology</span><span className="text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-[#0e9954]">→</span></Link>
+                  <Link href="/about" onClick={() => setMobileOpen(false)} className="group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"><span>About MechDev.</span><span className="text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-[#0e9954]">→</span></Link>
+                </nav>
+              </div>
+              <div className="mt-auto border-t border-white/10 pt-5 text-[10px] font-mono uppercase tracking-widest text-slate-500">Evidence · Equations · Experiments</div>
             </div>
           </div>
         </div>

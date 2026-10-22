@@ -55,8 +55,8 @@ export default function EngineerBanner() {
             rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0a66c2] hover:bg-[#08519c] px-6 py-4 text-sm font-bold font-brand text-white transition-all duration-200 shadow-[0_0_30px_rgba(10,102,194,0.5)] hover:shadow-[0_0_40px_rgba(10,102,194,0.8)] hover:scale-[1.02]"
           >
-            <svg className="h-5 w-5 fill-current text-white" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69 1.69 1.69 0 0 0-1.69 1.69m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+            <svg className="h-5 w-5 fill-current text-white" viewBox="-40 25 580 580" aria-hidden="true">
+              <path d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/>
             </svg>
             <span>Connect on LinkedIn</span>
             <span className="text-xs transition-transform duration-200 group-hover:translate-x-1">↗</span>

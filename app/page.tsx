@@ -145,7 +145,7 @@ const LAB_CATS = [
 
 export default function HomePage() {
   return (
-    <div className="max-w-6xl mx-auto py-4 sm:py-6 space-y-20 sm:space-y-28">
+    <div className="max-w-6xl mx-auto py-4 sm:py-6 space-y-10 sm:space-y-10">
       <PageRevealObserver />
 
       {/* ── LIVE TELEMETRY RIBBON ─────────────────────────────────────── */}
@@ -170,7 +170,7 @@ export default function HomePage() {
             fill
             priority
             quality={95}
-            className="object-cover object-center brightness-[0.92] contrast-[1.05] translate-x-[62px]"
+            className="object-cover object-[70%_center] brightness-[0.92] contrast-[1.05] sm:object-center sm:translate-x-[62px]"
           />
           {/* Deep dark gradient on the left text area for crisp typography, smoothly opening up to the sunset aircraft and reheat flames on the right */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#030114]/95 via-[#030114]/75 to-transparent max-w-2xl sm:max-w-3xl pointer-events-none" />
@@ -179,13 +179,13 @@ export default function HomePage() {
         </div>
 
         {/* ══ HERO FOREGROUND CONTAINER ══ */}
-        <div className="relative z-10 p-6 sm:p-10 lg:p-14 flex flex-col justify-between min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] gap-8">
+        <div className="relative z-10 p-4 sm:p-10 lg:p-14 flex flex-col justify-between min-h-[650px] sm:min-h-[620px] lg:min-h-[560px] gap-8">
           
           {/* Top Aerospace Metadata Ribbon */}
           <div className="flex items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/60 border border-emerald-500/30 backdrop-blur-md">
+            <div className="inline-flex min-w-0 max-w-full items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/60 border border-emerald-500/30 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-emerald-400">
+              <span className="truncate text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.12em] sm:tracking-[0.2em] uppercase text-emerald-400">
                 First-Principles Flight Mechanics
               </span>
             </div>
@@ -197,7 +197,7 @@ export default function HomePage() {
           </div>
 
           {/* Central Hero Body */}
-          <div className="max-w-2xl space-y-5 my-auto">
+          <div className="w-full max-w-2xl space-y-5 my-auto">
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-brand tracking-tight text-white leading-[1.08]">
               Why does this aircraft{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
@@ -209,10 +209,10 @@ export default function HomePage() {
               Geometry is never decoration. Every delta wing contour, variable intake ramp, and fuel-transfer cell is the mathematical answer to competing aerodynamic, thermal, and structural laws.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 pt-2">
               <Link
                 href="/aircraft/concorde"
-                className="group px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-slate-950 font-bold font-brand text-sm transition-all duration-200 shadow-[0_0_25px_rgba(14,153,84,0.35)] hover:shadow-[0_0_35px_rgba(14,153,84,0.55)] inline-flex items-center gap-2"
+                className="group w-full justify-center px-5 sm:w-auto sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-slate-950 font-bold font-brand text-sm transition-all duration-200 shadow-[0_0_25px_rgba(14,153,84,0.35)] hover:shadow-[0_0_35px_rgba(14,153,84,0.55)] inline-flex items-center gap-2"
               >
                 <span>Explore Concorde Case Study</span>
                 <span className="text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -220,7 +220,7 @@ export default function HomePage() {
 
               <Link
                 href="/aircraft"
-                className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 hover:border-white/30 text-white font-medium text-sm transition-all inline-flex items-center gap-2 backdrop-blur-md"
+                className="w-full justify-center px-5 sm:w-auto sm:px-6 py-3.5 sm:py-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 hover:border-white/30 text-white font-medium text-sm transition-all inline-flex items-center gap-2 backdrop-blur-md"
               >
                 <span>All 15 Aircraft</span>
                 <span className="text-slate-400">→</span>
@@ -237,26 +237,26 @@ export default function HomePage() {
           </div>
 
           {/* Bottom Integrated Telemetry Dock */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-5 border-t border-white/10 bg-black/40 -mx-6 -mb-6 sm:-mx-10 sm:-mb-10 lg:-mx-14 lg:-mb-14 p-4 sm:p-6 backdrop-blur-md rounded-b-3xl">
-            <div className="space-y-0.5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-4 pt-5 border-t border-white/10 bg-black/40 -mx-4 -mb-4 sm:-mx-10 sm:-mb-10 lg:-mx-14 lg:-mb-14 p-4 sm:p-6 backdrop-blur-md rounded-b-3xl">
+            <div className="min-w-0 space-y-0.5">
               <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Cruise Speed</div>
               <div className="text-sm sm:text-base font-bold font-mono text-emerald-400">Mach 2.04</div>
               <div className="text-[10px] font-mono text-slate-500">2,179 km/h @ FL600</div>
             </div>
 
-            <div className="space-y-0.5">
+            <div className="min-w-0 space-y-0.5">
               <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Service Ceiling</div>
               <div className="text-sm sm:text-base font-bold font-mono text-white">60,000 ft</div>
               <div className="text-[10px] font-mono text-slate-500">Stratospheric Cruise</div>
             </div>
 
-            <div className="space-y-0.5">
+            <div className="min-w-0 space-y-0.5">
               <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Wing Geometry</div>
               <div className="text-sm sm:text-base font-bold font-mono text-cyan-300">63° Ogival Delta</div>
               <div className="text-[10px] font-mono text-slate-500">Vortex Lift Generation</div>
             </div>
 
-            <div className="space-y-0.5">
+            <div className="min-w-0 space-y-0.5">
               <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Nose Stagnation</div>
               <div className="text-sm sm:text-base font-bold font-mono text-amber-300">+127°C T₀</div>
               <div className="text-[10px] font-mono text-slate-500">ISA Stratosphere (−56.5°C)</div>
